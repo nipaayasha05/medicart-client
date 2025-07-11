@@ -48,6 +48,7 @@ const AuthProvider = ({ children }) => {
     googleSignIn,
     handleLogOut,
     updateUser,
+    setUser,
     user,
     loading,
   };
@@ -56,6 +57,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
+      console.log(user);
     });
     return () => {
       unsubscribe();

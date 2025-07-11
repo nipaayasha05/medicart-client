@@ -1,26 +1,31 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { auth } from "../firebase/firebase.init";
+import useAuth from "../hooks/useAuth";
+import axios from "axios";
+import { imageUpload } from "../api/utilis";
 
 const SignUp = () => {
-  const { createUser, googleSignIn, provider, updateUser, setUser } =
-    use(AuthContext);
+  const { createUser, googleSignIn, provider, updateUser, setUser } = useAuth();
   const navigate = useNavigate();
   const from = location.state || "/";
   // const navigate = useNavigate();
   //   console.log(createUser);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const photo = form.photo.value;
+    const image = form?.image?.files[0];
+
+    const imageUrl = await imageUpload(image);
+    console.log(imageUrl);
 
     setSuccess(false);
     setErrorMessage("");
@@ -55,9 +60,9 @@ const SignUp = () => {
       .then((res) => {
         const user = res.user;
 
-        updateUser({ displayName: name, photoURL: photo })
+        updateUser({ displayName: name, photoURL: imageUrl })
           .then(() => {
-            setUser({ ...user, displayName: name, photoURL: photo });
+            setUser({ ...user, displayName: name, photoURL: imageUrl });
           })
           .catch((error) => {
             setUser(user);
@@ -73,6 +78,10 @@ const SignUp = () => {
       });
   };
 
+  useEffect(() => {
+    document.title = "FleetGo | Registration";
+  }, []);
+
   const handleGoogleSignIn = () => {
     googleSignIn(auth, provider)
       .then((result) => {
@@ -86,10 +95,11 @@ const SignUp = () => {
         setSuccess("");
       });
   };
+
   return (
-    <div className="card bg-base-100 m-5  border  mx-auto mt-10 max-w-sm shrink-0 shadow-2xl">
+    <div className="card bg-gray-100 m-5    mx-auto my-30    max-w-sm shrink-0 shadow-2xl  ">
       <div className="card-body">
-        <h1 className="text-5xl font-bold">Sign Up now!</h1>
+        <h1 className="text-5xl font-bold text-gray-700">Sign Up now!</h1>
         <form onSubmit={handleSignUp} className="fieldset">
           <label className="label">Name</label>
           <input type="text" name="name" className="input" placeholder="Name" />
@@ -107,12 +117,13 @@ const SignUp = () => {
             className="input"
             placeholder="Password"
           />
-          <label className="label">Photo URL</label>
+          <label className="label">Select Image</label>
           <input
-            type="text"
-            name="photo"
-            className="input"
-            placeholder="Photo URL"
+            className=" input cursor-pointer"
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
           />
           <div>
             <a className="link link-hover">Forgot password?</a>
@@ -125,14 +136,18 @@ const SignUp = () => {
           >
             <FcGoogle size={24} /> Login with Google
           </button>
-          <button className="btn btn-neutral mt-4">Sign Up</button>
+          <button className="btn     my-2 border-3 rounded-2xl border-gray-200 mt-4 mr-4">
+            Join Us
+          </button>
           <p className="font-semibold text-center pt-5">
             Already Have An Account ?
-            <NavLink className="text-secondary" to="/signin">
-              Sign In
+            <NavLink className=" text-amber-700" to="/signin">
+              Log In
             </NavLink>
           </p>
         </form>
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+        {success && <p className="text-green-500">User Log In Successfully</p>}
       </div>
     </div>
   );
