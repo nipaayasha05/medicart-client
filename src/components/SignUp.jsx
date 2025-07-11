@@ -26,12 +26,12 @@ const SignUp = () => {
     const password = form.password.value;
     const image = form?.image?.files[0];
     const role = form.role.value;
-    const userData = { name, email, password, image, role };
-    console.log(userData);
 
     const imageUrl = await imageUpload(image);
     console.log(imageUrl);
 
+    const userData = { name, email, password, image: imageUrl, role };
+    console.log(userData);
     setSuccess(false);
     setErrorMessage("");
 
