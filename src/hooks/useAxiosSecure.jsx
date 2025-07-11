@@ -11,15 +11,15 @@ const useAxiosSecure = () => {
   const { user, handleLogOut } = useAuth();
   const navigate = useNavigate();
   console.log(user);
-  axiosSecure.interceptors.request.use(
-    (config) => {
-      config.headers.Authorization = `Bearer ${user.accessToken}`;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+  // axiosSecure.interceptors.request.use(
+  //   (config) => {
+  //     config.headers.Authorization = `Bearer ${user.accessToken}`;
+  //     return config;
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
 
   axiosSecure.interceptors.response.use((res) => {
     return res;

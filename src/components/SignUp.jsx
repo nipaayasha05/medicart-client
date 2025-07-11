@@ -7,9 +7,11 @@ import { auth } from "../firebase/firebase.init";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import { imageUpload } from "../api/utilis";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const SignUp = () => {
   const { createUser, googleSignIn, provider, updateUser, setUser } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const from = location.state || "/";
   // const navigate = useNavigate();
@@ -23,6 +25,9 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const image = form?.image?.files[0];
+    const role = form.role.value;
+    const userData = { name, email, password, image, role };
+    console.log(userData);
 
     const imageUrl = await imageUpload(image);
     console.log(imageUrl);
@@ -76,11 +81,12 @@ const SignUp = () => {
       .catch((error) => {
         setErrorMessage(error.message);
       });
-  };
 
-  useEffect(() => {
-    document.title = "FleetGo | Registration";
-  }, []);
+    axiosSecure.post("/user", userData).then((res) => {
+      res.data;
+      console.log("user data", res.data);
+    });
+  };
 
   const handleGoogleSignIn = () => {
     googleSignIn(auth, provider)
@@ -119,12 +125,20 @@ const SignUp = () => {
           />
           <label className="label">Select Image</label>
           <input
-            className=" input cursor-pointer"
+            className="text-gray-400 input cursor-pointer"
             type="file"
             id="image"
             name="image"
             accept="image/*"
           />
+          <label className="label">Select Role</label>
+          <select
+            name="role"
+            className="mr-5 bg-white py-2 rounded-sm border border-gray-300 text-gray-400 pl-2"
+          >
+            <option value="User">User</option>
+            <option value="Seller">Seller</option>
+          </select>
           <div>
             <a className="link link-hover">Forgot password?</a>
           </div>

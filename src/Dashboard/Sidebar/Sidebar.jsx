@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../../Shared/Logo/Logo";
 import { AiOutlineBars } from "react-icons/ai";
-import { NavLink } from "react-router";
+import { NavLink, Outlet } from "react-router";
 
 const Sidebar = () => {
   return (
@@ -33,9 +33,9 @@ const Sidebar = () => {
           </div>
           <div className="mx-2 flex-1 px- lg:hidden">Dashboard</div>
         </div>
-        {/* page content here */}
-
-        {/* Page content here */}
+        <div className="container mx-auto">
+          <Outlet />
+        </div>
       </div>
       <div className="drawer-side">
         <label
@@ -51,7 +51,7 @@ const Sidebar = () => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/myParcels">My Parcels</NavLink>
+            <NavLink to="/dashboard/manage-medicine">Manage Medicine</NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>

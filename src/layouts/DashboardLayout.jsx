@@ -4,12 +4,8 @@ import { Outlet } from "react-router";
 
 const DashboardLayout = () => {
   return (
-    <div className="  flex min-h-screen">
+    <div className="   md:flex min-h-screen">
       <Sidebar />
-
-      <div>
-        <Outlet />
-      </div>
     </div>
   );
 };
