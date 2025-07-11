@@ -1,12 +1,6 @@
 import React from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../hooks/useAuth";
 
 const ManageMedicineTable = ({ addMedicine, isLoading }) => {
-  const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
-
   if (isLoading) {
     return (
       <div>

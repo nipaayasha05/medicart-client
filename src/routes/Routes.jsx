@@ -5,7 +5,8 @@ import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Home from "../Home/Home";
-import ManageMedicine from "../Dashboard/ManageMedicine/ManageMedicine";
+import ManageMedicine from "../Dashboard/seller/ManageMedicine/ManageMedicine";
+import AskForAdvertisement from "../Dashboard/seller/AskForAdvertisement/AskForAdvertisement";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "manage-medicine",
         element: <ManageMedicine />,
+      },
+      {
+        path: "ask-advertisement",
+        element: <AskForAdvertisement />,
       },
     ],
   },

@@ -9,7 +9,7 @@ const Sidebar = () => {
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col  ">
         {/* Navbar */}
-        <div className="navbar bg-base-300 w-full lg:hidden">
+        <div className="navbar bg-gray-200 w-full lg:hidden  ">
           <div className="flex-none ">
             <label
               htmlFor="my-drawer-2"
@@ -43,7 +43,7 @@ const Sidebar = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+        <ul className="menu bg-gray-200 text-base-content min-h-full w-80 p-4">
           {/* Sidebar content here */}
 
           <Logo />
@@ -54,50 +54,11 @@ const Sidebar = () => {
             <NavLink to="/dashboard/manage-medicine">Manage Medicine</NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/paymentHistory">Payment History</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/track/:id">Track a Package</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/profile">Update Profile</NavLink>
+            <NavLink to="/dashboard/ask-advertisement">
+              Ask For Advertisement
+            </NavLink>
           </li>
 
-          {/* rider link */}
-          {/* {!roleLoading && role === "rider" && ( */}
-          <>
-            <li>
-              <NavLink to="/dashboard/pending-deliveries">
-                Pending Deliveries
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/completed-deliveries">
-                Completed Deliveries
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/my-earnings">My Earnings</NavLink>
-            </li>
-          </>
-          {/* )} */}
-
-          {/* admin link */}
-          {/* {!roleLoading && role === "admin" && ( */}
-          <>
-            <li>
-              <NavLink to="/dashboard/assign-rider">Assign Rider</NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/activeRiders">Active Riders</NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/pendingRiders">Pending Riders</NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/makeAdmin">Make Admin</NavLink>
-            </li>
-          </>
           {/* )} */}
         </ul>
       </div>

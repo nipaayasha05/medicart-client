@@ -4,8 +4,8 @@ import { useState } from "react";
 import ManageMedicineForm from "./ManageMedicineForm";
 import ManageMedicineTable from "./ManageMedicineTable";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../hooks/useAuth";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageMedicine = () => {
   let [isOpen, setIsOpen] = useState(false);
