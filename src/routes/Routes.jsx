@@ -4,10 +4,12 @@ import React from "react";
 import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 import DashboardLayout from "../layouts/DashboardLayout";
-import Home from "../Home/Home";
+
 import ManageMedicine from "../Dashboard/seller/ManageMedicine/ManageMedicine";
 import AskForAdvertisement from "../Dashboard/seller/AskForAdvertisement/AskForAdvertisement";
 import ManageBannerAdvertise from "../Dashboard/admin/ManageBannerAdvertise/ManageBannerAdvertise";
+import Home from "../pages/Home/Home";
+import Shop from "../pages/Shop/Shop";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +19,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "shop",
+        element: <Shop />,
       },
     ],
   },

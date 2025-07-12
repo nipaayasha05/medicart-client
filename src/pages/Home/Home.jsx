@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect } from "react";
-import useAxiosSecure from "../hooks/useAxiosSecure";
-import Slider from "./Slider";
+import React from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Slider from "../../pages/Home/Slider";
 
 const Home = () => {
   const axiosSecure = useAxiosSecure();

@@ -1,0 +1,168 @@
+import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
+import React, { useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+
+import MedicineDetails from "./MedicineDetails";
+import { FiInfo, FiShoppingCart } from "react-icons/fi";
+import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+
+const Shop = () => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
+  let [isOpen, setIsOpen] = useState(false);
+
+  const { data: allMedicine = [], isLoading } = useQuery({
+    queryKey: ["addMedicine"],
+
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/getAllMedicine`);
+      console.log(data);
+      return data;
+    },
+  });
+
+  const handleModal = (_id) => {
+    document.getElementById("my_modal_2").showModal();
+    setIsOpen(_id);
+  };
+
+  const { data: cartItems = [] } = useQuery({
+    queryKey: ["cart", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`get-add-to-cart?email=${user?.email}`);
+      console.log(res.data);
+      return res.data;
+    },
+  });
+
+  const handleAddToCart = async (medicine) => {
+    const cartItem = {
+      medicineId: medicine._id,
+      userEmail: user.email,
+      itemName: medicine.itemName,
+      company: medicine.company,
+      price: medicine.price,
+      discount: medicine.discount,
+      quantity: 1,
+      status: "pending",
+      addedBy: medicine.email,
+      addedAt: new Date().toISOString(),
+    };
+    const res = await axiosSecure.post("/add-to-cart", cartItem);
+    console.log(res.data);
+
+    queryClient.invalidateQueries(["cart", user.email]);
+  };
+
+  return (
+    <div className="container mx-auto">
+      <p className="py-5 text-3xl font-bold ">shop</p>
+      <div className="flex justify-end">
+        <div className="  ">
+          <p className="relative text-white badge badge-sm  rounded-full  badge-error  ">
+            {cartItems.length ? cartItems.length : 0}
+          </p>
+          <p className="-mt-3 -mx-3">
+            {" "}
+            <FiShoppingCart size={26} />
+          </p>
+        </div>
+      </div>
+
+      <div className="overflow-x-auto py-5">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr className=" bg-gray-200  text-gray-800 sm:text-xl sm:h-24 h-16 ">
+              <th>
+                <label>
+                  <input type="checkbox" className="checkbox" />
+                </label>
+              </th>
+              <th>Medicine Image</th>
+
+              <th>Medicine Name</th>
+              <th>Company</th>
+              <th>Price</th>
+              <th>Unit</th>
+              <th> Details</th>
+              <th> Add to Cart</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {allMedicine.map((all, index) => (
+              <tr
+                all={all}
+                key={all._id}
+                className="lg:text-xl md:text-sm hover:bg-gray-100"
+              >
+                <th>{index + 1}</th>
+
+                <td>
+                  <img
+                    className="w-36 sm:h-24 h-14  rounded-xl"
+                    src={all?.image}
+                    alt=""
+                  />
+                </td>
+
+                <th>{all?.itemName}</th>
+
+                <td>{all.company}</td>
+                <td>{all.price}$</td>
+                <td>{all.massUnit}</td>
+                <td>
+                  {" "}
+                  <button
+                    onClick={() => {
+                      handleModal(all._id);
+                    }}
+                    className="btn   "
+                  >
+                    {" "}
+                    <FiInfo size={24} />
+                  </button>
+                </td>
+                <td>
+                  <button
+                    disabled={cartItems.find(
+                      (item) => item.medicineId === all._id
+                    )}
+                    onClick={() => {
+                      handleAddToCart(all);
+                    }}
+                    className="btn    py-6 sm:py-4 "
+                  >
+                    {/* <FiShoppingCart size={18} /> */}
+                    {cartItems.find((item) => item.medicineId === all._id)
+                      ? "Already Added"
+                      : "Add to Cart"}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <dialog id="my_modal_2" className="modal">
+        <div className="modal-box   overflow-auto">
+          {isOpen && (
+            <MedicineDetails
+              setIsOpen={setIsOpen}
+              isOpen={isOpen}
+              allMedicine={allMedicine}
+            ></MedicineDetails>
+          )}
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+    </div>
+  );
+};
+
+export default Shop;

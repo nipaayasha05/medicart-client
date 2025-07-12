@@ -22,7 +22,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/sds"
+          to="/shop"
           className={({ isActive }) =>
             isActive ? "border-b-2  border-b-sky-300" : ""
           }
