@@ -10,7 +10,6 @@ const AskForAdvertisementTable = ({ addAdvertisement, isLoading }) => {
   }
   return (
     <div>
-      {" "}
       {addAdvertisement.length > 0 ? (
         <div className="overflow-x-auto py-5">
           <table className="table">
@@ -51,7 +50,13 @@ const AskForAdvertisementTable = ({ addAdvertisement, isLoading }) => {
                   <th>{advertisement?.medicineName}</th>
 
                   <td>{advertisement.description}</td>
-                  <td>{advertisement.status}</td>
+                  <td>
+                    {advertisement.status === "Add to slide"
+                      ? "Not use"
+                      : advertisement.status === "Remove from slide"
+                      ? "Use in slider"
+                      : advertisement.status}
+                  </td>
                 </tr>
               ))}
             </tbody>

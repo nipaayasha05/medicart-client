@@ -58,6 +58,11 @@ const Sidebar = () => {
               Ask For Advertisement
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/dashboard/manage-banner-advertise">
+              Manage Banner Advertise
+            </NavLink>
+          </li>
 
           {/* )} */}
         </ul>

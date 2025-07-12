@@ -30,7 +30,7 @@ const AskForAdvertisement = () => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-between py-5">
-        <h3 className="font-bold text-3xl "> Add For Advertisement</h3>
+        <h3 className="font-bold text-3xl "> Ask For Advertisement</h3>
         <button
           onClick={() => {
             setIsOpen(true);

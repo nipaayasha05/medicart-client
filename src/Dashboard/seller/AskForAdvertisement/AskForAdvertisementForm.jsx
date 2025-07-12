@@ -26,7 +26,7 @@ const AskForAdvertisementForm = ({ refetch }) => {
       ...data,
 
       name: user.displayName,
-      status: data?.status || "Not In Slider ",
+      status: data?.status || "Add to slide",
       image: imageUrl,
       createdAt: new Date().toISOString(),
     };
@@ -34,11 +34,11 @@ const AskForAdvertisementForm = ({ refetch }) => {
 
     try {
       const res = await axiosSecure.post("/addAdvertisement", addAdvertisement);
-      reset();
-      refetch();
 
       console.log(res.data);
       if (res.data.insertedId) {
+        reset();
+        refetch();
         Swal.fire({
           icon: "success",
           title: "Application Submitted!",
@@ -88,7 +88,7 @@ const AskForAdvertisementForm = ({ refetch }) => {
             onClick={() => {
               document.getElementById("my_modal_2").close();
             }}
-            className="btn btn-primary mr-2"
+            className="btn btn-primary mr-2  "
           >
             Submit
           </button>

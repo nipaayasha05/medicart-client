@@ -1,21 +1,22 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
-
+import React from "react";
 import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Home from "../Home/Home";
 import ManageMedicine from "../Dashboard/seller/ManageMedicine/ManageMedicine";
 import AskForAdvertisement from "../Dashboard/seller/AskForAdvertisement/AskForAdvertisement";
+import ManageBannerAdvertise from "../Dashboard/admin/ManageBannerAdvertise/ManageBannerAdvertise";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: MainLayout,
+    element: <MainLayout />,
     children: [
       {
         index: true,
-        Component: Home,
+        element: <Home />,
       },
     ],
   },
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: "ask-advertisement",
         element: <AskForAdvertisement />,
+      },
+      {
+        path: "manage-banner-advertise",
+        element: <ManageBannerAdvertise />,
       },
     ],
   },
