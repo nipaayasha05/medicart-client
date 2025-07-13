@@ -10,6 +10,8 @@ import AskForAdvertisement from "../Dashboard/seller/AskForAdvertisement/AskForA
 import ManageBannerAdvertise from "../Dashboard/admin/ManageBannerAdvertise/ManageBannerAdvertise";
 import Home from "../pages/Home/Home";
 import Shop from "../pages/Shop/Shop";
+import Cart from "../pages/cart/Cart";
+import Checkout from "../pages/checkout/Checkout";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ export const router = createBrowserRouter([
       {
         path: "shop",
         element: <Shop />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "checkout/:id",
+        element: <Checkout />,
       },
     ],
   },
