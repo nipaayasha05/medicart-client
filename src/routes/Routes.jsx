@@ -12,6 +12,7 @@ import Home from "../pages/Home/Home";
 import Shop from "../pages/Shop/Shop";
 import Cart from "../pages/cart/Cart";
 import Checkout from "../pages/checkout/Checkout";
+import Invoice from "../pages/Invoice/Invoice";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "checkout/:id",
         element: <Checkout />,
+      },
+      {
+        path: "invoice/:id",
+        element: <Invoice />,
       },
     ],
   },

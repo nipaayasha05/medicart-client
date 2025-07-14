@@ -104,6 +104,10 @@ const Cart = () => {
     const selectedItems = cartItems.filter((item) =>
       selectedIds.includes(item._id)
     );
+    if (selectedIds.length === 0) {
+      Swal.fire("Warning!!", "please select at least one item", "warning");
+      return;
+    }
 
     const orderItems = selectedItems.map((item) => {
       const quantity = quantities[item._id] || item.quantity;
@@ -116,7 +120,7 @@ const Cart = () => {
         discount: item.discount,
         totalPrice: quantity * item.price * (1 - item.discount / 100),
         userEmail: user.email,
-        addedBy: item.email,
+        addedBy: item.addedBy,
       };
     });
     const grandTotal = orderItems.reduce(

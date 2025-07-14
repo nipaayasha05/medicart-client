@@ -1,29 +1,15 @@
 import React from "react";
 import CheckoutForm from "./CheckoutForm";
-// import useAuth from "../../hooks/useAuth";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
-// import { useQuery } from "@tanstack/react-query";
-// import { useParams } from "react-router";
-
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe(import.meta.env.VITE_payment_key);
 const Checkout = () => {
-  //   const { user } = useAuth();
-  //   const axiosSecure = useAxiosSecure();
-  //   const { medicineId } = useParams();
-  //   console.log(medicineId);
-
-  //   const { data: checkoutInfo = [], isLoading } = useQuery({
-  //     queryKey: ["checkout", medicineId],
-  //     queryFn: async () => {
-  //       const res = await axiosSecure.get(`/checkout/${medicineId}`);
-  //       console.log(res.data);
-  //       return res.data;
-  //     },
-  //   });
-
   return (
-    <div>
-      <CheckoutForm></CheckoutForm>
-    </div>
+    <Elements stripe={stripePromise}>
+      <div>
+        <CheckoutForm></CheckoutForm>
+      </div>
+    </Elements>
   );
 };
 
