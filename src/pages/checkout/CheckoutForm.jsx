@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const CheckoutForm = () => {
   const { user } = useAuth();
@@ -14,6 +15,24 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (id) {
+  //     axios
+  //       .get(`http://localhost:3000/invoice/${id}`)
+  //       .then((res) => {
+  //         console.log("Invoice data:", res.data);
+  //       })
+  //       .catch((err) => {
+  //         console.error("Invoice fetch error:", err);
+  //       });
+  //   }
+  // }, [id]);
+
+  // axios.get(`http://localhost:3000/invoice/${id}`).then((res) => {
+  //   console.log(res.data);
+  //   // setInvoice(res.data);
+  // });
 
   const { data: checkoutInfo = {}, isLoading } = useQuery({
     queryKey: ["checkout", id],

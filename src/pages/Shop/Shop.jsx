@@ -6,6 +6,7 @@ import MedicineDetails from "./MedicineDetails";
 import { FiInfo, FiShoppingCart } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Shop = () => {
   const { user } = useAuth();
@@ -31,13 +32,23 @@ const Shop = () => {
   const { data: cartItems = [] } = useQuery({
     queryKey: ["cart", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`get-add-to-cart?email=${user?.email}`);
+      const res = await axiosSecure.get(
+        `/get-add-to-cart?email=${user?.email}`
+      );
       console.log(res.data);
       return res.data;
     },
   });
 
   const handleAddToCart = async (medicine) => {
+    if (!user) {
+      Swal.fire({
+        icon: "warning",
+        title: "Please Login First",
+        text: "You need to be logged in to add items to cart.",
+      });
+      return;
+    }
     const cartItem = {
       medicineId: medicine._id,
       userEmail: user.email,
