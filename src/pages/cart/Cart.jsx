@@ -133,7 +133,7 @@ const Cart = () => {
     const orderData = {
       items: orderItems,
       grandTotal: grandTotal.toFixed(2),
-      status: "unpaid",
+      status: "pending",
       orderDate: new Date().toISOString(),
     };
     const res = await axiosSecure.post("/checkout", orderData);

@@ -4,7 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 
 const PaymentManagement = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: allPayment = [] } = useQuery({
+  const {
+    data: allPayment = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["allPayment"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payment-history-all`);
@@ -12,6 +16,20 @@ const PaymentManagement = () => {
       return res.data;
     },
   });
+
+  const handleAction = async (payment) => {
+    const newStatus = payment.status === "pending" ? "paid" : "pending";
+    const res = await axiosSecure.patch(
+      `/update-payment-status/${payment._id}`,
+      { status: newStatus }
+    );
+    if (res.data.modifiedCount > 0) {
+      refetch();
+    }
+    console.log(res.data);
+    console.log(payment);
+  };
+
   return (
     <div className="container mx-auto">
       {" "}
@@ -21,7 +39,7 @@ const PaymentManagement = () => {
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="bg-gray-200 text-gray-800 sm:text-xl sm:h-24 h-16 border-b border-gray-300 ">
+                <tr className="bg-gray-200 text-gray-800 sm:text-xl sm:h-24 h-16  ">
                   <th></th>
                   <th>#</th>
 
@@ -39,7 +57,11 @@ const PaymentManagement = () => {
               <tbody>
                 {/* row 1 */}
                 {allPayment.map((all, index) => (
-                  <tr all={all} key={all._id}>
+                  <tr
+                    className="hover:bg-gray-200 cursor-pointer lg:text-xl md:text-sm  "
+                    all={all}
+                    key={all._id}
+                  >
                     <td></td>
 
                     <td>{index + 1}</td>
@@ -52,8 +74,19 @@ const PaymentManagement = () => {
                     </td>
                     <td className="text-center">{all.status}</td>
                     <td className="text-center">{all.transaction}</td>
-                    <td className="text-center">
-                      <button className="btn">Accept</button>
+                    <td
+                      onClick={() => {
+                        handleAction(all);
+                      }}
+                      className="text-center"
+                    >
+                      <button
+                        className={`btn ${
+                          all.status === "paid" ? "bg-violet-500" : "bg-sky-500"
+                        }`}
+                      >
+                        Accept
+                      </button>
                     </td>
                   </tr>
                 ))}

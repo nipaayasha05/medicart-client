@@ -7,7 +7,11 @@ const Users = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const { data: users = [] } = useQuery({
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["cart", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -18,6 +22,7 @@ const Users = () => {
       return res.data;
     },
   });
+
   return (
     <div className="  mx-auto mt-5 m-10">
       <p className="ml-2">
