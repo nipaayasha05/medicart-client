@@ -9,7 +9,7 @@ const ManageMedicineTable = ({ addMedicine, isLoading }) => {
     );
   }
   return (
-    <div>
+    <div className="mx-auto mt-5 m-10">
       {addMedicine.length > 0 ? (
         <div className="overflow-x-auto py-5">
           <table className="table">

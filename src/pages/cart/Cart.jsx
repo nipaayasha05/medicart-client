@@ -18,7 +18,9 @@ const Cart = () => {
   const { data: cartItems = [] } = useQuery({
     queryKey: ["cart", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`get-add-to-cart?email=${user?.email}`);
+      const res = await axiosSecure.get(
+        `/get-add-to-cart?email=${user?.email}`
+      );
       console.log(res.data);
       return res.data;
     },
@@ -191,7 +193,7 @@ const Cart = () => {
                   <th>Item Name</th>
                   <th>Company</th>
                   <th>Price per Unit</th>
-                  <th>Quantity</th>
+                  <th className="text-center  ">Quantity</th>
                   <th>Discount</th>
                   <th>Total Price</th>
 
@@ -228,17 +230,42 @@ const Cart = () => {
                     <td>{cart?.itemName}</td>
                     <td>{cart.company} </td>
                     <td>{cart.price}$</td>
-                    <td>
-                      {" "}
-                      <input
-                        type="number"
-                        defaultValue={cart.quantity}
-                        min={1}
-                        className="w-20 input input-bordered"
-                        onChange={(e) => {
-                          handleQuantityChange(cart._id, e.target.value);
-                        }}
-                      />
+                    <td className="">
+                      <div className="flex justify-center items-center   gap-2">
+                        <button
+                          className="btn btn-sm"
+                          onClick={() =>
+                            handleQuantityChange(
+                              cart._id,
+                              quantities[cart._id] - 1
+                            )
+                          }
+                        >
+                          -
+                        </button>{" "}
+                        {/* <p>{quantities[cart._id] || 1}</p> */}
+                        <input
+                          type="number"
+                          value={quantities[cart._id] || 1}
+                          // defaultValue={cart.quantity}
+                          min={1}
+                          className="w-20 input input-bordered"
+                          onChange={(e) => {
+                            handleQuantityChange(cart._id, e.target.value);
+                          }}
+                        />
+                        <button
+                          className="btn btn-sm"
+                          onClick={() =>
+                            handleQuantityChange(
+                              cart._id,
+                              quantities[cart._id] + 1
+                            )
+                          }
+                        >
+                          +
+                        </button>
+                      </div>
                     </td>
                     <td>{cart.discount}%</td>
                     <td>

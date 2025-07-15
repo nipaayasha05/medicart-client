@@ -33,7 +33,7 @@ const Sidebar = () => {
           </div>
           <div className="mx-2 flex-1 px- lg:hidden">Dashboard</div>
         </div>
-        <div className="container mx-auto">
+        <div className="container mx-auto  ">
           <Outlet />
         </div>
       </div>
@@ -62,6 +62,9 @@ const Sidebar = () => {
             <NavLink to="/dashboard/manage-banner-advertise">
               Manage Banner Advertise
             </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/users">Users</NavLink>
           </li>
 
           {/* )} */}

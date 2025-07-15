@@ -15,6 +15,7 @@ import Checkout from "../pages/checkout/Checkout";
 // import Invoice from "../pages/Invoice/Invoice";
 import InvoicePdf from "../pages/Invoice/InvoicePdf";
 import InvoiceData from "../pages/Invoice/InvoiceData";
+import Users from "../pages/users/Users";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
       {
         path: "manage-banner-advertise",
         element: <ManageBannerAdvertise />,
+      },
+      {
+        path: "users",
+        element: <Users />,
       },
     ],
   },

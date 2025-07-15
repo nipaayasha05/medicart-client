@@ -45,8 +45,8 @@ const CheckoutForm = () => {
   });
 
   console.log(checkoutInfo);
-  const amount = checkoutInfo.grandTotal;
-  const amountInCents = amount * 100;
+  const amount = parseFloat(checkoutInfo.grandTotal);
+  const amountInCents = Math.round(amount * 100);
   console.log(amountInCents);
 
   const handleSubmit = async (e) => {
@@ -95,6 +95,7 @@ const CheckoutForm = () => {
         console.log("payment succeeded");
         console.log(result);
 
+        checkoutInfo.email = user?.email;
         checkoutInfo.transaction = result?.paymentIntent?.id;
         checkoutInfo.paymentMethod =
           result?.paymentIntent?.payment_method_types;
