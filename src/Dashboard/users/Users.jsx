@@ -50,45 +50,47 @@ const Users = () => {
               <tbody>
                 {/* row 1 */}
                 {users.map((user, index) =>
-                  user.items.map((item, i) => (
-                    <tr
-                      className={`hover:bg-gray-300 cursor-pointer ${
-                        i === user.items.length - 1
-                          ? "border-b border-gray-400"
-                          : ""
-                      }    `}
-                      item={item}
-                      key={`${item.medicineId}-${user._id}`}
-                    >
-                      <td></td>
-                      <td>{i === 0 ? index + 1 : ""}</td>
-                      <td></td>
-                      <td>{item.itemName}</td>
-                      <td className="text-center">{item.quantity}</td>
-                      <td className="text-center">
-                        {item.totalPrice.toFixed(2)}
-                      </td>
-                      <td className="text-center">
-                        {" "}
-                        {i === 0
-                          ? new Date(user.orderDate).toLocaleDateString()
-                          : ""}
-                      </td>
-                      <td className="text-center">
-                        {i === 0 ? user.grandTotal : ""}
-                      </td>
+                  Array.isArray(user.items)
+                    ? user?.items.map((item, i) => (
+                        <tr
+                          className={`hover:bg-gray-300 cursor-pointer ${
+                            i === user.items.length - 1
+                              ? "border-b border-gray-400"
+                              : ""
+                          }    `}
+                          item={item}
+                          key={`${item.medicineId}-${user._id}`}
+                        >
+                          <td></td>
+                          <td>{i === 0 ? index + 1 : ""}</td>
+                          <td></td>
+                          <td>{item.itemName}</td>
+                          <td className="text-center">{item.quantity}</td>
+                          <td className="text-center">
+                            {item.totalPrice.toFixed(2)}
+                          </td>
+                          <td className="text-center">
+                            {" "}
+                            {i === 0
+                              ? new Date(user.orderDate).toLocaleDateString()
+                              : ""}
+                          </td>
+                          <td className="text-center">
+                            {i === 0 ? user.grandTotal : ""}
+                          </td>
 
-                      <td className="text-center">
-                        {i === 0 ? user.transaction : ""}
-                      </td>
-                      <td className="text-center">
-                        {i === 0 ? user.paymentMethod : ""}
-                      </td>
-                      <td className="text-center">
-                        {i === 0 ? user.status : ""}
-                      </td>
-                    </tr>
-                  ))
+                          <td className="text-center">
+                            {i === 0 ? user.transaction : ""}
+                          </td>
+                          <td className="text-center">
+                            {i === 0 ? user.paymentMethod : ""}
+                          </td>
+                          <td className="text-center">
+                            {i === 0 ? user.status : ""}
+                          </td>
+                        </tr>
+                      ))
+                    : null
                 )}
               </tbody>
             </table>

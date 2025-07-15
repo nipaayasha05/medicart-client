@@ -15,7 +15,10 @@ import Checkout from "../pages/checkout/Checkout";
 // import Invoice from "../pages/Invoice/Invoice";
 import InvoicePdf from "../pages/Invoice/InvoicePdf";
 import InvoiceData from "../pages/Invoice/InvoiceData";
-import Users from "../pages/users/Users";
+
+import PaymentHistory from "../Dashboard/seller/paymentHistory/PaymentHistory";
+import PaymentManagement from "../Dashboard/admin/paymentManagement/PaymentManagement";
+import Users from "../Dashboard/users/Users";
 
 export const router = createBrowserRouter([
   {
@@ -72,8 +75,16 @@ export const router = createBrowserRouter([
         element: <ManageBannerAdvertise />,
       },
       {
+        path: "payment-management",
+        element: <PaymentManagement />,
+      },
+      {
         path: "users",
         element: <Users />,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory />,
       },
     ],
   },

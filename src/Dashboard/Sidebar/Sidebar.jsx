@@ -59,8 +59,16 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/dashboard/payment-history">Payment History</NavLink>
+          </li>
+          <li>
             <NavLink to="/dashboard/manage-banner-advertise">
               Manage Banner Advertise
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/payment-management">
+              Payment Management
             </NavLink>
           </li>
           <li>
