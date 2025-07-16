@@ -58,7 +58,7 @@ const PaymentManagement = () => {
                 {/* row 1 */}
                 {allPayment.map((all, index) => (
                   <tr
-                    className="hover:bg-gray-200 cursor-pointer lg:text-xl md:text-sm  "
+                    className="hover:bg-gray-100 cursor-pointer lg:text-xl md:text-sm  "
                     all={all}
                     key={all._id}
                   >
@@ -70,7 +70,7 @@ const PaymentManagement = () => {
                     <td className="text-center">{all?.items.length}</td>
                     <td className="text-center">{all.grandTotal}</td>
                     <td className="text-center">
-                      {new Date(all.orderDate).toLocaleDateString()}
+                      {new Date(all.orderDate).toLocaleString()}
                     </td>
                     <td className="text-center">{all.status}</td>
                     <td className="text-center">{all.transaction}</td>

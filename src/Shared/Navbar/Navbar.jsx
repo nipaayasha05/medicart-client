@@ -135,7 +135,7 @@ const Navbar = () => {
                     : "mr-4 "
                 }
               >
-                Log In
+                Join Us
               </NavLink>
             </div>
           )}

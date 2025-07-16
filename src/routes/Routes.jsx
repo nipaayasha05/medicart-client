@@ -19,6 +19,7 @@ import InvoiceData from "../pages/Invoice/InvoiceData";
 import PaymentHistory from "../Dashboard/seller/paymentHistory/PaymentHistory";
 import PaymentManagement from "../Dashboard/admin/paymentManagement/PaymentManagement";
 import Users from "../Dashboard/users/Users";
+import ManageUsers from "../Dashboard/admin/manageUsers/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ export const router = createBrowserRouter([
       {
         path: "payment-management",
         element: <PaymentManagement />,
+      },
+      {
+        path: "manage-users",
+        element: <ManageUsers />,
       },
       {
         path: "users",

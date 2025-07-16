@@ -86,7 +86,7 @@ const SignIn = () => {
             <FcGoogle size={24} /> Login with Google
           </button>
           <button className="btn     my-2 border-3 rounded-2xl border-gray-200 mt-4 mr-4">
-            Log In
+            Join Us
           </button>
           <p className="font-semibold text-center pt-5">
             Don’t Have An Account ?

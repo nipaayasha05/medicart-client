@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Logo from "../../Shared/Logo/Logo";
 import { AiOutlineBars } from "react-icons/ai";
 import { NavLink, Outlet } from "react-router";
+import Admin from "./Admin";
+import Seller from "./Seller";
+import User from "./User";
 
 const Sidebar = () => {
   return (
@@ -50,30 +53,9 @@ const Sidebar = () => {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          <li>
-            <NavLink to="/dashboard/manage-medicine">Manage Medicine</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/ask-advertisement">
-              Ask For Advertisement
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/payment-history">Payment History</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/manage-banner-advertise">
-              Manage Banner Advertise
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/payment-management">
-              Payment Management
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/users">Users</NavLink>
-          </li>
+          <Admin />
+          <Seller />
+          <User />
 
           {/* )} */}
         </ul>
