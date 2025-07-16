@@ -21,7 +21,7 @@ const SellerDashboard = () => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-center">
-        <div className="mt-10 shadow-md p-10 rounded-xl  w-10/12 flex justify-center items-center gap-5 ">
+        <div className="mt-10 shadow-md p-10 rounded-xl  w-10/12 flex justify-center items-center bg-gray-100 gap-5 ">
           {" "}
           <div
             className="bg-violet-200 p-8 h-[150px]  rounded-2xl flex-1 flex items-center

@@ -54,7 +54,7 @@ const PaymentHistory = () => {
                     <td>{history.item}</td>
                     <td>{history.quantity}</td>
                     <td>{history.totalPrice.toFixed(2)}</td>
-                    <td>{new Date(history.orderDate).toLocaleDateString()}</td>
+                    <td>{new Date(history.orderDate).toLocaleString()}</td>
                     <td>{history.transaction}</td>
                     <td>{history.status}</td>
                   </tr>
