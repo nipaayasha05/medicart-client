@@ -5,8 +5,13 @@ import { NavLink, Outlet } from "react-router";
 import Admin from "./Admin";
 import Seller from "./Seller";
 import User from "./User";
+import useRole from "../../hooks/useRole";
 
 const Sidebar = () => {
+  const [role, isLoading] = useRole();
+
+  if (isLoading) return <p>Loading....</p>;
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -50,12 +55,10 @@ const Sidebar = () => {
           {/* Sidebar content here */}
 
           <Logo />
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <Admin />
-          <Seller />
-          <User />
+
+          {role === "Admin" && <Admin />}
+          {role === "Seller" && <Seller />}
+          {role === "User" && <User />}
 
           {/* )} */}
         </ul>
