@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageBannerAdvertise = () => {
   const axiosSecure = useAxiosSecure();
@@ -34,6 +35,13 @@ const ManageBannerAdvertise = () => {
       status: newStatus,
     });
     if (res.data.modifiedCount > 0) {
+      Swal.fire({
+        icon: "success",
+        title: "Banner Updated!",
+        text: "Slider updated successfully.",
+        timer: 1500,
+        showConfirmButton: false,
+      });
       refetch();
     }
     console.log(res.data);

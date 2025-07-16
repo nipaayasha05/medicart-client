@@ -20,6 +20,7 @@ import PaymentHistory from "../Dashboard/seller/paymentHistory/PaymentHistory";
 import PaymentManagement from "../Dashboard/admin/paymentManagement/PaymentManagement";
 import Users from "../Dashboard/users/Users";
 import ManageUsers from "../Dashboard/admin/manageUsers/ManageUsers";
+import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <DashboardHome />,
       },
       {
         path: "manage-medicine",
