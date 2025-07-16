@@ -6,7 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { imageUpload } from "../../../api/utilis";
 
-const ManageMedicineForm = ({ refetch }) => {
+const ManageMedicineForm = ({ refetch, categories }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   // const [uploadedImage, setUploadedImage] = useState(null);
@@ -96,9 +96,11 @@ const ManageMedicineForm = ({ refetch }) => {
           className="select select-bordered w-full"
         >
           <option value="">Select Category</option>
-          <option value="Tablet">Tablet</option>
-          <option value="Syrup">Syrup</option>
-          <option value="Injection">Injection</option>
+          {categories.map((category) => (
+            <option category={category} key={category._id}>
+              {category.itemName}
+            </option>
+          ))}
         </select>
         <select
           name="company"

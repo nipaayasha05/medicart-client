@@ -64,6 +64,7 @@ const ManageBannerAdvertise = () => {
               <th>Medicine Name</th>
               <th>Description</th>
               <th>Email</th>
+              <th>Created At</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -90,6 +91,7 @@ const ManageBannerAdvertise = () => {
 
                 <td>{advertise.description}</td>
                 <td>{advertise.email}</td>
+                <td>{new Date(advertise.createdAt).toLocaleString()}</td>
                 <td>
                   {" "}
                   <button

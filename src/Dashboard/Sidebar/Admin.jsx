@@ -9,6 +9,9 @@ const Admin = () => {
         <NavLink to="/dashboard/manage-users">Manage Users</NavLink>
       </li>
       <li>
+        <NavLink to="/dashboard/manage-category">Manage Category</NavLink>
+      </li>
+      <li>
         <NavLink to="/dashboard/payment-management">Payment Management</NavLink>
       </li>
       <li>

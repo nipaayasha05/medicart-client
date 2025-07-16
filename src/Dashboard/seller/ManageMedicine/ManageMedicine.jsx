@@ -26,6 +26,20 @@ const ManageMedicine = () => {
     },
   });
 
+  const {
+    data: categories = [],
+    // isLoading,
+    // refetch,
+  } = useQuery({
+    queryKey: ["category"],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/manageCategory`);
+      console.log(data);
+      return data;
+    },
+  });
+
   return (
     <div>
       <div className="flex justify-between py-5">
@@ -50,6 +64,7 @@ const ManageMedicine = () => {
             <ManageMedicineForm
               isOpen={isOpen}
               refetch={refetch}
+              categories={categories}
             ></ManageMedicineForm>
           )}
         </div>

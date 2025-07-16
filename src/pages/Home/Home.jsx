@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Slider from "../../pages/Home/Slider";
+import CategoryCard from "./categoryCard/CategoryCard";
 
 const Home = () => {
   const axiosSecure = useAxiosSecure();
@@ -21,9 +22,13 @@ const Home = () => {
   });
 
   return (
-    <div>
+    <div className="container mx-auto">
       <div>
         <Slider slider={slider} />
+      </div>
+
+      <div>
+        <CategoryCard />
       </div>
     </div>
   );

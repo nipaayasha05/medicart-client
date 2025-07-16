@@ -21,6 +21,7 @@ import PaymentManagement from "../Dashboard/admin/paymentManagement/PaymentManag
 import Users from "../Dashboard/users/Users";
 import ManageUsers from "../Dashboard/admin/manageUsers/ManageUsers";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
+import ManageCategory from "../Dashboard/admin/ManageCategory/ManageCategory";
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
       {
         path: "ask-advertisement",
         element: <AskForAdvertisement />,
+      },
+      {
+        path: "manage-category",
+        element: <ManageCategory />,
       },
       {
         path: "manage-banner-advertise",
