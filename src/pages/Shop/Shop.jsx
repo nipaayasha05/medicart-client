@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 import MedicineDetails from "./MedicineDetails";
-import { FiInfo, FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { FaEye } from "react-icons/fa";
 
 const Shop = () => {
   const { user } = useAuth();
@@ -136,7 +137,7 @@ const Shop = () => {
                     className="btn   "
                   >
                     {" "}
-                    <FiInfo size={24} />
+                    <FaEye size={24} />
                   </button>
                 </td>
                 <td>

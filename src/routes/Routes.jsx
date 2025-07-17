@@ -22,6 +22,7 @@ import Users from "../Dashboard/users/Users";
 import ManageUsers from "../Dashboard/admin/manageUsers/ManageUsers";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import ManageCategory from "../Dashboard/admin/ManageCategory/ManageCategory";
+import CategoryDetails from "../pages/Home/categoryCard/CategoryDetails";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "invoice/:id",
         element: <InvoiceData />,
+      },
+      {
+        path: "category/:category",
+        element: <CategoryDetails />,
       },
     ],
   },

@@ -20,7 +20,7 @@ const MedicineDetails = ({ allMedicine, isOpen }) => {
   } = detailsMedicine;
   return (
     <div className="space-y-1">
-      <img className="rounded-xl" src={image} alt="" />
+      <img className="rounded-xl h-[320px] w-full" src={image} alt="" />
       <br />
 
       <p>
