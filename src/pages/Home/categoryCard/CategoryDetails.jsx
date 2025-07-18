@@ -35,7 +35,7 @@ const CategoryDetails = () => {
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/get-add-to-cart?email=${user?.email}`
+        `/get-add-to-cart-shop?email=${user?.email}`
       );
       console.log(res.data);
       return res.data;

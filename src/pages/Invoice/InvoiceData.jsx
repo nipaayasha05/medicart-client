@@ -13,20 +13,6 @@ const InvoiceData = () => {
   const { id } = useParams();
   const [invoice, setInvoice] = useState([]);
 
-  //   const { data: invoice, isLoading } = useQuery({
-  //     queryKey: ["invoice", _id],
-  //     queryFn: async () => {
-  //       await axios.get(`http://localhost:3000/invoice/${_id}`).then((res) => {
-  //         console.log(res.data);
-  //         return res.data;
-  //       });
-  //       //   console.log("roerieor", res.data);
-
-  //       //   return res.data;
-  //     },
-  //   });
-  //   if (isLoading) return <div>Loading....</div>;
-
   useEffect(() => {
     const fetchInvoice = async () => {
       try {

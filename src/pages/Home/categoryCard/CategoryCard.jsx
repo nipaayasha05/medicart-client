@@ -2,18 +2,22 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Category from "./Category";
+import axios from "axios";
 
 const CategoryCard = () => {
-  const axiosSecure = useAxiosSecure();
+  // const axiosSecure = useAxiosSecure();
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["category"],
 
     queryFn: async () => {
-      const { data } = await axiosSecure(`/manageCategoryCard`);
+      const { data } = await axios.get(
+        `http://localhost:3000/manageCategoryCard`
+      );
       // console.log(data);
       return data;
     },
   });
+  console.log(categories);
   return (
     <div className="py-10">
       <h3 className="text-3xl font-bold text-center py-5">

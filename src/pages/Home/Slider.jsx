@@ -9,15 +9,19 @@ const Slider = ({ slider }) => {
         interval={2000}
         infiniteLoop={true}
         showThumbs={false}
-        showStatus={false}
-        stopOnHover={false}
-        stopOnInteraction={false}
-        swipeable={true}
-        emulateTouch={true}
+        // showStatus={false}
+        // stopOnHover={false}
+        // stopOnInteraction={false}
+        // swipeable={true}
+        // emulateTouch={true}
       >
         {slider.map((item) => (
           <div key={item._id}>
-            <img className="w-full h-[80vh]" src={item.image} alt="" />
+            <img
+              className="w-full h-[80vh] rounded-xl"
+              src={item.image}
+              alt=""
+            />
           </div>
         ))}
       </Carousel>

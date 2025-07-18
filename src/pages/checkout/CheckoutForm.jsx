@@ -16,24 +16,6 @@ const CheckoutForm = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (id) {
-  //     axios
-  //       .get(`http://localhost:3000/invoice/${id}`)
-  //       .then((res) => {
-  //         console.log("Invoice data:", res.data);
-  //       })
-  //       .catch((err) => {
-  //         console.error("Invoice fetch error:", err);
-  //       });
-  //   }
-  // }, [id]);
-
-  // axios.get(`http://localhost:3000/invoice/${id}`).then((res) => {
-  //   console.log(res.data);
-  //   // setInvoice(res.data);
-  // });
-
   const { data: checkoutInfo = {}, isLoading } = useQuery({
     queryKey: ["checkout", id],
     enabled: !!id,

@@ -234,17 +234,18 @@ const Cart = () => {
                       <div className="flex justify-center items-center   gap-2">
                         <button
                           className="btn btn-sm"
-                          onClick={() =>
-                            handleQuantityChange(
-                              cart._id,
-                              quantities[cart._id] - 1
-                            )
-                          }
+                          onClick={() => {
+                            if (quantities[cart._id] > 1)
+                              handleQuantityChange(
+                                cart._id,
+                                quantities[cart._id] - 1
+                              );
+                          }}
                         >
                           -
                         </button>{" "}
                         {/* <p>{quantities[cart._id] || 1}</p> */}
-                        <input
+                        {/* <input
                           type="number"
                           value={quantities[cart._id] || 1}
                           // defaultValue={cart.quantity}
@@ -253,7 +254,10 @@ const Cart = () => {
                           onChange={(e) => {
                             handleQuantityChange(cart._id, e.target.value);
                           }}
-                        />
+                        /> */}
+                        <p className="border border-gray-300 py-1 px-2 rounded-sm">
+                          {cart.quantity}
+                        </p>
                         <button
                           className="btn btn-sm"
                           onClick={() =>

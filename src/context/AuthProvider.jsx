@@ -11,8 +11,11 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.init";
 import toast from "react-hot-toast";
+import axios from "axios";
+// import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AuthProvider = ({ children }) => {
+  // const axiosSecure = useAxiosSecure();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -54,8 +57,23 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user?.email) {
+        setUser(user);
+        await axios.post(
+          `http://localhost:3000/jwt`,
+          { email: user?.email },
+          {
+            withCredentials: true,
+          }
+        );
+      } else {
+        setUser(user);
+        await axios.get("http://localhost:3000/logout", {
+          withCredentials: true,
+        });
+      }
+
       setLoading(false);
       console.log(user);
     });

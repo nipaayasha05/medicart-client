@@ -11,6 +11,7 @@ const ManageMedicine = () => {
   let [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const token = localStorage.getItem("token");
 
   const {
     data: addMedicine = [],
@@ -34,7 +35,7 @@ const ManageMedicine = () => {
     queryKey: ["category"],
     enabled: !!user?.email,
     queryFn: async () => {
-      const { data } = await axiosSecure(`/manageCategory`);
+      const { data } = await axiosSecure(`/manageCategorySeller`);
       console.log(data);
       return data;
     },

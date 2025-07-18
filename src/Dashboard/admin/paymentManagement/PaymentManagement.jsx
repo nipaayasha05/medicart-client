@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const PaymentManagement = () => {
   const axiosSecure = useAxiosSecure();
+
   const {
     data: allPayment = [],
     isLoading,
