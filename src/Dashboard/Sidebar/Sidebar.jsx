@@ -8,7 +8,7 @@ import User from "./User";
 import useRole from "../../hooks/useRole";
 
 const Sidebar = () => {
-  const [role, isLoading] = useRole();
+  const { role, isLoading } = useRole();
 
   if (isLoading) return <p>Loading....</p>;
 

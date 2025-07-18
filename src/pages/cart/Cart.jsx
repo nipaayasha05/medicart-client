@@ -283,7 +283,7 @@ const Cart = () => {
                         onClick={() => {
                           handleDelete(cart._id);
                         }}
-                        className="btn  text-white btn-error"
+                        className="btn text-red-400       border-2 border-red-400"
                       >
                         <MdDeleteForever size={24} />
                         Delete

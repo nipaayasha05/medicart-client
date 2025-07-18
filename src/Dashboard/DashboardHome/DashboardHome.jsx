@@ -5,7 +5,7 @@ import SellerDashboard from "./SellerDashboard";
 import Users from "../users/Users";
 
 const DashboardHome = () => {
-  const [role, isLoading] = useRole();
+  const { role, isLoading } = useRole();
   if (isLoading) return <p>Loading....</p>;
 
   if (role === "Admin") {

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 
 const Category = ({ category }) => {
-  console.log(category);
+  // console.log(category);
   return (
     <Link to={`category/${category.itemName}`}>
       <div>

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { jsPDF } from "jspdf";
 import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 const InvoicePdf = ({ invoice }) => {
   console.log(invoice);
   const [pdfUrl, setPdfUrl] = useState("");
+  const { user } = useAuth();
 
   const generatePDF = () => {
     const doc = new jsPDF({ unit: "px" });
@@ -19,15 +21,16 @@ const InvoicePdf = ({ invoice }) => {
       doc.text("Invoice", 60, 40);
       doc.addImage(logo, "PNG", 10, 10, 40, 40);
       doc.setFontSize(16);
-      doc.text(`InvoiceId:${invoice._id}`, 50, 70);
+      doc.text(`${user?.email}`, 50, 60);
+      doc.text(`InvoiceId:${invoice._id}`, 50, 80);
       doc.text(
         `Date:${new Date(invoice.orderDate).toLocaleDateString()}`,
         50,
-        90
+        100
       );
 
       doc.setFontSize(20);
-      doc.text("Item", 50, (currentY += 30));
+      doc.text("Item", 50, (currentY += 40));
       doc.text("Qty", 200, currentY);
       doc.text("Price", 270, currentY);
       doc.text("Dis", 350, currentY);
@@ -35,7 +38,7 @@ const InvoicePdf = ({ invoice }) => {
 
       doc.setFontSize(15);
       invoice.items.forEach((item) => {
-        doc.text(item.itemName, 50, (currentY += 30));
+        doc.text(item.itemName, 50, (currentY += 40));
         doc.text(item.quantity.toString(), 200, currentY);
         doc.text(item.price.toString(), 250, currentY);
         doc.text(item.discount.toString() + "%", 300, currentY);
@@ -84,7 +87,7 @@ const InvoicePdf = ({ invoice }) => {
         className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded"
         disabled={!pdfUrl}
       >
-        Download PDF
+        Print PDF
       </button>
 
       {pdfUrl && (

@@ -37,7 +37,7 @@ const Navbar = () => {
             isActive ? "border-b-2  border-b-sky-300" : ""
           }
         >
-          Cart icon
+          Cart
         </NavLink>
       </li>
       <li>
@@ -111,7 +111,10 @@ const Navbar = () => {
                       Dashboard
                     </NavLink>
 
-                    <NavLink className="px-4 py-3  hover:bg-gray-200 block  font-semibold">
+                    <NavLink
+                      to="/update-profile"
+                      className="px-4 py-3  hover:bg-gray-200 block  font-semibold"
+                    >
                       Update Profile
                     </NavLink>
 

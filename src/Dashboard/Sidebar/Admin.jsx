@@ -15,6 +15,9 @@ const Admin = () => {
         <NavLink to="/dashboard/payment-management">Payment Management</NavLink>
       </li>
       <li>
+        <NavLink to="/dashboard/sales-report">Sales Report</NavLink>
+      </li>
+      <li>
         <NavLink to="/dashboard/manage-banner-advertise">
           Manage Banner Advertise
         </NavLink>

@@ -15,7 +15,7 @@ const Home = () => {
       const sliderImage = data.filter(
         (item) => item.status === "Remove from slide"
       );
-      console.log(sliderImage);
+      // console.log(sliderImage);
 
       return sliderImage;
     },

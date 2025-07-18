@@ -13,7 +13,7 @@ import Shop from "../pages/Shop/Shop";
 import Cart from "../pages/cart/Cart";
 import Checkout from "../pages/checkout/Checkout";
 // import Invoice from "../pages/Invoice/Invoice";
-import InvoicePdf from "../pages/Invoice/InvoicePdf";
+// import InvoicePdf from "../pages/Invoice/InvoicePdf";
 import InvoiceData from "../pages/Invoice/InvoiceData";
 
 import PaymentHistory from "../Dashboard/seller/paymentHistory/PaymentHistory";
@@ -23,6 +23,11 @@ import ManageUsers from "../Dashboard/admin/manageUsers/ManageUsers";
 import DashboardHome from "../Dashboard/DashboardHome/DashboardHome";
 import ManageCategory from "../Dashboard/admin/ManageCategory/ManageCategory";
 import CategoryDetails from "../pages/Home/categoryCard/CategoryDetails";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import SellerRoute from "./SellerRoute";
+import SalesReport from "../Dashboard/admin/salesReport/SalesReport";
+import UpdateProfile from "../Dashboard/updateProfile/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -39,19 +44,39 @@ export const router = createBrowserRouter([
       },
       {
         path: "cart",
-        element: <Cart />,
+        element: (
+          <PrivateRoute>
+            <Cart />
+          </PrivateRoute>
+        ),
       },
       {
         path: "checkout/:id",
-        element: <Checkout />,
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
       },
       {
         path: "invoice/:id",
-        element: <InvoiceData />,
+        element: (
+          <PrivateRoute>
+            <InvoiceData />
+          </PrivateRoute>
+        ),
       },
       {
         path: "category/:category",
         element: <CategoryDetails />,
+      },
+      {
+        path: "update-profile",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile />
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -65,43 +90,110 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
-        element: <DashboardHome />,
+        element: (
+          <PrivateRoute>
+            <DashboardHome />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-medicine",
-        element: <ManageMedicine />,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              {" "}
+              <ManageMedicine />
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "ask-advertisement",
-        element: <AskForAdvertisement />,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              {" "}
+              <AskForAdvertisement />
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-category",
-        element: <ManageCategory />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageCategory />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-banner-advertise",
-        element: <ManageBannerAdvertise />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageBannerAdvertise />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment-management",
-        element: <PaymentManagement />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              {" "}
+              <PaymentManagement />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-users",
-        element: <ManageUsers />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "sales-report",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <SalesReport />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "users",
-        element: <Users />,
+        element: (
+          <PrivateRoute>
+            <Users />
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment-history",
-        element: <PaymentHistory />,
+        element: (
+          <PrivateRoute>
+            <SellerRoute>
+              <PaymentHistory />
+            </SellerRoute>
+          </PrivateRoute>
+        ),
       },
     ],
   },

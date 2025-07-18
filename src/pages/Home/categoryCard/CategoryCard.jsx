@@ -10,7 +10,7 @@ const CategoryCard = () => {
 
     queryFn: async () => {
       const { data } = await axiosSecure(`/manageCategoryCard`);
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
