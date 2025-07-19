@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
+
 import ManageUserModal from "./ManageUserModal";
+import Loader from "../../../components/Loader";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const { user } = useAuth();
 
   const {
     data: users = [],
@@ -22,14 +22,17 @@ const ManageUsers = () => {
       return res.data;
     },
   });
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
-    <div>
-      {" "}
+    <div className="pb-5">
+      <h3 className="font-bold text-3xl p-2 mt-5 text-sky-600">Manage Users</h3>{" "}
       <div className="overflow-x-auto py-5">
         <table className="table">
           {/* head */}
           <thead>
-            <tr className="bg-gray-200 text-gray-800 sm:text-xl sm:h-24 h-16">
+            <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16">
               <th></th>
               <th>#</th>
 
@@ -60,7 +63,7 @@ const ManageUsers = () => {
                       setIsOpen(true);
                       document.getElementById("my_modal_2").showModal();
                     }}
-                    className="btn"
+                    className="btn bg-sky-500 text-white"
                   >
                     Update Role
                   </button>{" "}

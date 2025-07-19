@@ -57,7 +57,7 @@ const SignIn = () => {
   return (
     <div className="card bg-gray-100 m-5    mx-auto my-30 max-w-sm shrink-0 shadow-2xl">
       <div className="card-body">
-        <h1 className="text-5xl font-bold text-gray-700">Log In now!</h1>
+        <h1 className="text-5xl font-bold text-sky-600">Log In now!</h1>
         <form onSubmit={handleSignIn} className="fieldset">
           <label className="label">Email</label>
           <input
@@ -85,12 +85,12 @@ const SignIn = () => {
           >
             <FcGoogle size={24} /> Login with Google
           </button>
-          <button className="btn     my-2 border-3 rounded-2xl border-gray-200 mt-4 mr-4">
+          <button className="btn     my-2  bg-sky-500 text-white rounded-2xl   mt-4 mr-4">
             Join Us
           </button>
           <p className="font-semibold text-center pt-5">
             Don’t Have An Account ?
-            <NavLink className="text-amber-700 " to="/signup">
+            <NavLink className="text-sky-600 " to="/signup">
               Registration
             </NavLink>
           </p>

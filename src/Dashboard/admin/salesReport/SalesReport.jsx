@@ -9,6 +9,7 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { DownloadTableExcel } from "react-export-table-to-excel";
+import Loader from "../../../components/Loader";
 
 const SalesReport = () => {
   const axiosSecure = useAxiosSecure();
@@ -77,17 +78,19 @@ const SalesReport = () => {
     getCoreRowModel: getCoreRowModel(),
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) {
+    return <Loader />;
+  }
 
   if (!reports.length) return <div>No sales report</div>;
 
   return (
-    <div className="container mx-auto">
-      <p className="text-3xl font-bold">Sales Report</p>
+    <div className="container mx-auto pb-5">
+      <p className="text-3xl font-bold pt-4 text-sky-600 p-2">Sales Report</p>
 
-      <div className="pt-5 flex gap-5">
+      <div className="pt-5 flex items-center  gap-5 p-2">
         <label>
-          <strong> Start Date :</strong>{" "}
+          <strong className="text-sky-600"> Start Date :</strong>{" "}
           <input
             type="date"
             value={startDate}
@@ -96,7 +99,7 @@ const SalesReport = () => {
           />
         </label>
         <label>
-          <strong> End Date :</strong>{" "}
+          <strong className="text-sky-600"> End Date :</strong>{" "}
           <input
             type="date"
             value={endDate}
@@ -104,19 +107,24 @@ const SalesReport = () => {
             className="border border-gray-300 rounded-sm py-1 px-2"
           />
         </label>
-        {tableRef.current ? (
-          <DownloadTableExcel
-            filename="users table"
-            sheet="users"
-            currentTableRef={tableRef.current}
-          >
-            <button className="btn"> Export excel </button>
-          </DownloadTableExcel>
-        ) : (
-          <p className="text-blue-500 font-semibold">
-            Please select start and end dates to enable export.
-          </p>
-        )}
+        <div>
+          {tableRef.current ? (
+            <DownloadTableExcel
+              filename="users table"
+              sheet="users"
+              currentTableRef={tableRef.current}
+            >
+              <button className="btn bg-sky-500  text-white">
+                {" "}
+                Export excel{" "}
+              </button>
+            </DownloadTableExcel>
+          ) : (
+            <p className="text-blue-500 font-semibold">
+              Please select start and end dates to enable export.
+            </p>
+          )}
+        </div>
       </div>
       <div className="py-5 overflow-x-auto">
         <table ref={tableRef}>
@@ -126,7 +134,7 @@ const SalesReport = () => {
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="border border-gray-300 p-5 bg-gray-200"
+                    className="border border-sky-300 p-5 bg-sky-200"
                   >
                     {flexRender(
                       header.column.columnDef.header,

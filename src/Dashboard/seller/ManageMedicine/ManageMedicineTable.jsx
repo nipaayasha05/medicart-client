@@ -1,12 +1,9 @@
 import React from "react";
+import Loader from "../../../components/Loader";
 
 const ManageMedicineTable = ({ addMedicine, isLoading }) => {
   if (isLoading) {
-    return (
-      <div>
-        <span className="loading loading-dots loading-xl"></span>;
-      </div>
-    );
+    return <Loader />;
   }
   return (
     <div className="mx-auto mt-5 m-10">
@@ -15,7 +12,7 @@ const ManageMedicineTable = ({ addMedicine, isLoading }) => {
           <table className="table">
             {/* head */}
             <thead>
-              <tr className="bg-gray-200 text-gray-800 sm:text-xl sm:h-24 h-16">
+              <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16">
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />

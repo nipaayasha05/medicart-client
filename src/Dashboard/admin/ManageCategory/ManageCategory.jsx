@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import ManageMedicineForm from "../../seller/ManageMedicine/ManageMedicineForm";
 import ManageCategoryForm from "./manageCategoryForm";
 import ManageCategoryTable from "./ManageCategoryTable";
+import Loader from "../../../components/Loader";
 
 const ManageCategory = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,18 +25,21 @@ const ManageCategory = () => {
       return data;
     },
   });
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div>
       {" "}
       <div>
-        <div className="flex justify-between py-5">
-          <h3 className="text-bold text-3xl ">Manage Category</h3>
+        <div className="flex justify-between p-2 items-center ">
+          <h3 className="font-bold text-3xl text-sky-600">Manage Category</h3>
           <button
             onClick={() => {
               setIsOpen(true);
               document.getElementById("my_modal_2").showModal();
             }}
-            className="btn      my-2 border-3 rounded-2xl border-gray-300 "
+            className="btn  bg-sky-500 text-white    my-2  "
           >
             Add Category
           </button>

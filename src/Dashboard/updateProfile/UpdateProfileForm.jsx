@@ -56,7 +56,7 @@ const UpdateProfileForm = ({ isOpen, setUser, updateUser }) => {
         <div className=" ">
           <button
             type="submit"
-            className="btn mt-2 text-xl bg-gray-500 text-white "
+            className="btn mt-2 text-xl bg-sky-500 text-white "
           >
             Update
           </button>

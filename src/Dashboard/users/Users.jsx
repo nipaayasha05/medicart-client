@@ -2,16 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Loader from "../../components/Loader";
 
 const Users = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const {
-    data: users = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: users = [], isLoading } = useQuery({
     queryKey: ["cart", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -22,11 +19,17 @@ const Users = () => {
       return res.data;
     },
   });
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="  mx-auto mt-5 m-10">
-      <p className="ml-2">
-        <strong>user:</strong>
+      <p className="p-2 py-3 text-3xl font-bold text-sky-600">
+        Payment History{" "}
+      </p>
+      <p className="ml-2 text-xl text-sky-500">
+        <strong>User:</strong>
         {user?.email}
       </p>
       {users.length > 0 ? (
@@ -35,7 +38,7 @@ const Users = () => {
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="bg-gray-200 text-gray-800 sm:text-xl sm:h-24 h-16 border-b border-gray-300 ">
+                <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16 border-b border-gray-300 ">
                   <th></th>
                   <th>#</th>
 

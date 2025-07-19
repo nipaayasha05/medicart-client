@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
+import Loader from "../../components/Loader";
 
 const Shop = () => {
   const { user } = useAuth();
@@ -69,16 +70,19 @@ const Shop = () => {
 
     queryClient.invalidateQueries(["cart", user.email]);
   };
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="container mx-auto">
-      <p className="py-5 text-3xl font-bold ">shop</p>
+      <p className="py-2 text-3xl font-bold text-center text-sky-600 ">shop</p>
       <div className="flex justify-end">
-        <div className="  ">
+        <div className=" p-2 ">
           <p className="relative text-white badge badge-sm  rounded-full  badge-error  ">
             {cartItems.length ? cartItems.length : 0}
           </p>
-          <p className="-mt-3 -mx-3">
+          <p className="-mt-3 -mx-3 ">
             {" "}
             <FiShoppingCart size={26} />
           </p>
@@ -134,10 +138,10 @@ const Shop = () => {
                     onClick={() => {
                       handleModal(all._id);
                     }}
-                    className="btn   "
+                    className="btn bg-sky-600  "
                   >
                     {" "}
-                    <FaEye size={24} />
+                    <FaEye size={24} color="white" />
                   </button>
                 </td>
                 <td>
@@ -148,7 +152,7 @@ const Shop = () => {
                     onClick={() => {
                       handleAddToCart(all);
                     }}
-                    className="btn    py-6 sm:py-4 "
+                    className="btn  bg-sky-600 text-white  py-6 sm:py-4 "
                   >
                     {/* <FiShoppingCart size={18} /> */}
                     {cartItems.find((item) => item.medicineId === all._id)

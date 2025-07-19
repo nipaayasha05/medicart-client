@@ -28,6 +28,7 @@ import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
 import SalesReport from "../Dashboard/admin/salesReport/SalesReport";
 import UpdateProfile from "../Dashboard/updateProfile/UpdateProfile";
+import ErrorPage from "../components/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -196,5 +197,9 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/*",
+    element: <ErrorPage />,
   },
 ]);

@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import Logo from "../Logo/Logo";
 import useAuth from "../../hooks/useAuth";
-import { CgProfile } from "react-icons/cg";
+import { FiEdit } from "react-icons/fi";
 import { Link, NavLink, useLocation } from "react-router";
+import { FaShop } from "react-icons/fa6";
+import { IoHome } from "react-icons/io5";
+import { FaGlobe } from "react-icons/fa";
+import { HiShoppingCart } from "react-icons/hi2";
+import { MdDashboard } from "react-icons/md";
+import { TbLogout } from "react-icons/tb";
 
 const Navbar = () => {
   const { user, handleLogOut } = useAuth();
@@ -14,41 +20,51 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "border-b-2  border-b-sky-300  " : ""
+            `text-md font-bold ${isActive ? "border-b-2 border-b-sky-300" : ""}`
           }
         >
-          Home
+          <IoHome size={20} /> Home
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/shop"
           className={({ isActive }) =>
-            isActive ? "border-b-2  border-b-sky-300" : ""
+            `text-md font-bold ${isActive ? "border-b-2 border-b-sky-300" : ""}`
           }
         >
-          Shop
+          <FaShop size={20} color="black" /> Shop
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/cart"
           className={({ isActive }) =>
-            isActive ? "border-b-2  border-b-sky-300" : ""
+            `text-md font-bold ${isActive ? "border-b-2 border-b-sky-300" : ""}`
           }
         >
-          Cart
+          <HiShoppingCart size={20} color="black" /> Cart
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/sdsh"
-          className={({ isActive }) =>
-            isActive ? "border-b-2  border-b-sky-300" : ""
-          }
+      <li className="dropdown dropdown-hover dropdown-bottom">
+        <label
+          tabIndex={0}
+          className="text-md font-bold m-1 flex items-center gap-1 cursor-pointer"
         >
-          Languages dropdown
-        </NavLink>
+          <FaGlobe size={20} />
+          Languages
+        </label>
+        <ul
+          tabIndex={0}
+          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40"
+        >
+          <li>
+            <a>English</a>
+          </li>
+          <li>
+            <a>বাংলা</a>
+          </li>
+        </ul>
       </li>
     </>
   );
@@ -57,7 +73,7 @@ const Navbar = () => {
     return <Navigate to="/signin" state={pathname}></Navigate>;
   };
   return (
-    <div className="navbar top-0 fixed bg-gray-50 shadow-sm  border-b-2 border-gray-300 z-10 ">
+    <div className="navbar top-0 fixed bg-gray-200 shadow-sm  border-b-2 border-gray-100 z-10 ">
       <div className="flex  container mx-auto ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -96,33 +112,34 @@ const Navbar = () => {
               <div onClick={() => setIsOpen(!isOpen)} className="">
                 <img
                   src={user && user.photoURL}
-                  className="rounded-xl w-12 h-12"
+                  className="rounded-full w-12 h-12"
                   alt=""
                 />
                 {isOpen && (
                   <div
-                    className="absolute  px- -mx-24 my-1 bg-base-100 rounded-xl shadow-md overflow-hidden 
+                    className="absolute  px- -mx-24 my-1 bg-base-100 rounded-xl shadow-2xl overflow-hidden 
               text-sm "
                   >
                     <NavLink
                       to="/dashboard"
-                      className="px-4 py-3 block hover:bg-gray-200 transition font-semibold"
+                      className="px-4 py-3  flex gap-2  hover:bg-gray-100 transition font-semibold "
                     >
-                      Dashboard
+                      <MdDashboard size={20} /> Dashboard
                     </NavLink>
 
                     <NavLink
                       to="/update-profile"
-                      className="px-4 py-3  hover:bg-gray-200 block  font-semibold"
+                      className="px-4 py-3  hover:bg-gray-100  flex gap-2  font-semibold"
                     >
+                      <FiEdit size={20} />
                       Update Profile
                     </NavLink>
 
                     <NavLink
                       onClick={handleUserLogOut}
-                      className="px-4 block py-3  hover:bg-gray-200  font-semibold"
+                      className="px-4  flex gap-2 py-3  hover:bg-gray-100     font-semibold"
                     >
-                      LogOut
+                      <TbLogout size={20} /> LogOut
                     </NavLink>
                   </div>
                 )}
@@ -130,14 +147,7 @@ const Navbar = () => {
             </div>
           ) : (
             <div>
-              <NavLink
-                to="/signin"
-                className={({ isActive }) =>
-                  isActive
-                    ? "border-2 rounded-2xl border-gray-300 btn mr-2 "
-                    : "mr-4 "
-                }
-              >
+              <NavLink to="/signin" className="btn bg-sky-500 text-white">
                 Join Us
               </NavLink>
             </div>

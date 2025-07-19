@@ -6,18 +6,19 @@ import Admin from "./Admin";
 import Seller from "./Seller";
 import User from "./User";
 import useRole from "../../hooks/useRole";
+import Loader from "../../components/Loader";
 
 const Sidebar = () => {
   const { role, isLoading } = useRole();
 
-  if (isLoading) return <p>Loading....</p>;
+  if (isLoading) return <Loader />;
 
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col  ">
         {/* Navbar */}
-        <div className="navbar bg-gray-200 w-full lg:hidden  ">
+        <div className="navbar bg-sky-300 w-full lg:hidden  ">
           <div className="flex-none ">
             <label
               htmlFor="my-drawer-2"
@@ -39,7 +40,9 @@ const Sidebar = () => {
               </svg>
             </label>
           </div>
-          <div className="mx-2 flex-1 px- lg:hidden">Dashboard</div>
+          <div className="mx-2 text-gray-800 flex-1 px- lg:hidden text-md font-bold">
+            Dashboard
+          </div>
         </div>
         <div className="container mx-auto  ">
           <Outlet />
@@ -53,12 +56,15 @@ const Sidebar = () => {
         ></label>
         <ul className="menu bg-gray-200 text-base-content min-h-full w-80 p-4">
           {/* Sidebar content here */}
+          <div className="border-b-2 border-gray-500  ">
+            <Logo />
+          </div>
 
-          <Logo />
-
-          {role === "Admin" && <Admin />}
-          {role === "Seller" && <Seller />}
-          {role === "User" && <User />}
+          <div className="py-3">
+            {role === "Admin" && <Admin />}
+            {role === "Seller" && <Seller />}
+            {role === "User" && <User />}
+          </div>
 
           {/* )} */}
         </ul>

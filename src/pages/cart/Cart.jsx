@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { MdDeleteForever, MdOutlineShoppingCartCheckout } from "react-icons/md";
+import Loader from "../../components/Loader";
 
 const Cart = () => {
   const { user } = useAuth();
@@ -15,7 +16,7 @@ const Cart = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { data: cartItems = [] } = useQuery({
+  const { data: cartItems = [], isLoading } = useQuery({
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -177,11 +178,15 @@ const Cart = () => {
     });
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto py-5">
       {cartItems.length > 0 ? (
         <div>
-          <div className="overflow-x-auto py-5">
+          <div className="overflow-x-auto py-5 ">
             <table className="table">
               {/* head */}
               <thead>
@@ -233,7 +238,7 @@ const Cart = () => {
                     <td className="">
                       <div className="flex justify-center items-center   gap-2">
                         <button
-                          className="btn btn-sm"
+                          className="btn btn-sm bg-sky-500 text-white font-extrabold"
                           onClick={() => {
                             if (quantities[cart._id] > 1)
                               handleQuantityChange(
@@ -244,22 +249,11 @@ const Cart = () => {
                         >
                           -
                         </button>{" "}
-                        {/* <p>{quantities[cart._id] || 1}</p> */}
-                        {/* <input
-                          type="number"
-                          value={quantities[cart._id] || 1}
-                          // defaultValue={cart.quantity}
-                          min={1}
-                          className="w-20 input input-bordered"
-                          onChange={(e) => {
-                            handleQuantityChange(cart._id, e.target.value);
-                          }}
-                        /> */}
                         <p className="border border-gray-300 py-1 px-2 rounded-sm">
                           {cart.quantity}
                         </p>
                         <button
-                          className="btn btn-sm"
+                          className="btn btn-sm bg-sky-500 text-white font-extrabold"
                           onClick={() =>
                             handleQuantityChange(
                               cart._id,

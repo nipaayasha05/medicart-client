@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Loader from "../../../components/Loader";
 
 const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
   const { user } = useAuth();
@@ -12,11 +13,7 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   if (isLoading) {
-    return (
-      <div>
-        <span className="loading loading-dots loading-xl"></span>;
-      </div>
-    );
+    return <Loader />;
   }
 
   const handleDelete = async (_id) => {
@@ -52,7 +49,7 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
           <table className="table">
             {/* head */}
             <thead>
-              <tr className="bg-gray-200 text-gray-800 sm:text-xl sm:h-24 h-16">
+              <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16">
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />
@@ -94,7 +91,7 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
                         setIsOpen(true);
                         document.getElementById("my_modal_1").showModal();
                       }}
-                      className="btn      my-2 border-3 rounded-2xl border-gray-300 "
+                      className="btn  bg-sky-500 text-white    my-2    "
                     >
                       Edit
                     </button>
@@ -105,7 +102,7 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
                       onClick={() => {
                         handleDelete(category._id);
                       }}
-                      className="btn"
+                      className="btn bg-sky-500 text-white"
                     >
                       Delete
                     </button>

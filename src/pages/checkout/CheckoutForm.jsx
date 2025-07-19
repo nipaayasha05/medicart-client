@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Swal from "sweetalert2";
 import axios from "axios";
+import Loader from "../../components/Loader";
 
 const CheckoutForm = () => {
   const { user } = useAuth();
@@ -99,6 +100,9 @@ const CheckoutForm = () => {
       }
     }
   };
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="container mx-auto mt-5">

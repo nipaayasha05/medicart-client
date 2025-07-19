@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/medicine.png";
+import logo from "../../assets/shop.png";
 import { Link } from "react-router";
 
 const Logo = () => {
@@ -10,8 +10,8 @@ const Logo = () => {
           className="flex items-center gap-2  
     "
         >
-          <img className="mb-2 w-12 h-12" src={logo} alt="" />
-          <p className="text-3xl text-sky-600 -ml-2 font-bold">MediCart</p>
+          <img className="mb-2 w-14 h-12" src={logo} alt="" />
+          <p className="text-3xl text-sky-600 -ml-2 font-extrabold">MediCart</p>
         </div>
       </Link>
     </div>

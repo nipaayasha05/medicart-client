@@ -2,12 +2,13 @@ import React from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Loader from "../../../components/Loader";
 
 const PaymentHistory = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const { data: paymentHistory = [] } = useQuery({
+  const { data: paymentHistory = [], isLoading } = useQuery({
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -18,15 +19,21 @@ const PaymentHistory = () => {
       return res.data;
     },
   });
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div>
+      <h3 className="font-bold p-2 text-3xl text-sky-600 pt-5">
+        Payment History
+      </h3>
       {paymentHistory.length > 0 ? (
         <div>
-          <div className="overflow-x-auto py-5">
+          <div className="overflow-x-auto py-5 mb-5 ">
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="bg-gray-200 text-gray-800 sm:text-xl sm:h-24 h-16">
+                <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16">
                   <th></th>
                   <th>#</th>
 

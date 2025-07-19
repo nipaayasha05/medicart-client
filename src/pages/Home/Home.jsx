@@ -7,6 +7,8 @@ import CategoryCard from "./categoryCard/CategoryCard";
 // import DiscountCard from "./discountProducts/DiscountCard";
 import DiscountProduct from "./discountProducts/DiscountProduct";
 import axios from "axios";
+import Article from "./article/Article";
+import Service from "./service/Service";
 
 const Home = () => {
   // const axiosSecure = useAxiosSecure();
@@ -15,7 +17,7 @@ const Home = () => {
     queryKey: ["slider"],
     queryFn: async () => {
       const { data } = await axios.get(
-        "http://localhost:3000/getHomeAdvertise"
+        "https://assignment-12-server-nine-hazel.vercel.app/getHomeAdvertise"
       );
 
       const sliderImage = data.filter(
@@ -39,6 +41,12 @@ const Home = () => {
 
       <div className="py-10">
         <DiscountProduct />
+      </div>
+      <div>
+        <Service />
+      </div>
+      <div>
+        <Article />
       </div>
     </div>
   );

@@ -75,8 +75,8 @@ const CategoryDetails = () => {
 
   return (
     <div>
-      <div className="container mx-auto">
-        <p className="py-5 text-3xl font-bold "> {category}</p>
+      <div className="container mx-auto py-5">
+        <p className="py- text-3xl font-bold p-2 text-sky-600"> {category}</p>
         <div className="flex justify-end">
           <div className="  ">
             <p className="relative text-white badge badge-sm  rounded-full  badge-error  ">
@@ -138,7 +138,7 @@ const CategoryDetails = () => {
                       onClick={() => {
                         handleModal(all._id);
                       }}
-                      className="btn   "
+                      className="btn bg-sky-500 text-white  "
                     >
                       {" "}
                       <FaEye size={24} />
@@ -152,7 +152,7 @@ const CategoryDetails = () => {
                       onClick={() => {
                         handleAddToCart(all);
                       }}
-                      className="btn    py-6 sm:py-4 "
+                      className="btn bg-gray-500 text-white   py-6 sm:py-4 "
                     >
                       {/* <FiShoppingCart size={18} /> */}
                       {cartItems.find((item) => item.medicineId === all._id)

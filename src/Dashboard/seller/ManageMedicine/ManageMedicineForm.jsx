@@ -140,7 +140,7 @@ const ManageMedicineForm = ({ refetch, categories }) => {
             onClick={() => {
               document.getElementById("my_modal_2").close();
             }}
-            className="btn btn-primary mr-2"
+            className="btn bg-sky-600 text-white mr-2"
           >
             Submit
           </button>
@@ -149,7 +149,7 @@ const ManageMedicineForm = ({ refetch, categories }) => {
             onClick={() => {
               document.getElementById("my_modal_2").close();
             }}
-            className="btn btn-secondary"
+            className="btn bg-red-500 text-white"
           >
             Cancel
           </button>

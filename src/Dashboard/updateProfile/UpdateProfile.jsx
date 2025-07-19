@@ -10,24 +10,25 @@ const UpdateProfile = () => {
 
   return (
     <div>
-      <div className="mt-10 mb-10 mx-auto rounded-box shadow-md shadow-gray-500 w-[350px] m-3 py-5">
+      <div className="mt-10 bg-gray-200 mb-10 mx-auto rounded-box shadow-md shadow-gray-500 w-[350px] m-3 py-5">
         <div className="relative">
           <img
-            className="mx-auto w-[250px]  rounded-full  "
+            className="mx-auto w-[250px] h-[250px] border-2 border-sky-300 rounded-full p-2 "
             src={user?.photoURL}
             alt=""
           />
+
           <p className="absolute -mt-4 badge badge-success   left-1/2 -ml-8 font-semibold">
             {role}
           </p>
         </div>
 
-        <p className="text-center mt-5">
+        <p className="text-center mt-5 text-gray-700">
           <strong>Name : </strong>
           {user?.displayName}
         </p>
 
-        <p className="text-center">
+        <p className="text-center text-gray-700">
           <strong>Email :</strong> {user?.email}
         </p>
 
@@ -37,7 +38,7 @@ const UpdateProfile = () => {
               setIsOpen(true);
               document.getElementById("my_modal_2").showModal();
             }}
-            className="btn w-"
+            className="btn bg-sky-500 text-white"
           >
             Update
           </button>

@@ -1,6 +1,7 @@
 import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Loader from "../../../components/Loader";
 
 const PaymentManagement = () => {
   const axiosSecure = useAxiosSecure();
@@ -31,16 +32,23 @@ const PaymentManagement = () => {
     console.log(payment);
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto pb-5">
       {" "}
+      <h3 className="font-bold text-3xl text-sky-600 mt-5 p-2">
+        Payment Management
+      </h3>
       {allPayment.length > 0 ? (
         <div>
           <div className="overflow-x-auto py-5">
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="bg-gray-200 text-gray-800 sm:text-xl sm:h-24 h-16  ">
+                <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16  ">
                   <th></th>
                   <th>#</th>
 

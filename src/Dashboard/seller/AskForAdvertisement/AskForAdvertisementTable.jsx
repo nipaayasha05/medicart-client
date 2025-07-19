@@ -1,17 +1,14 @@
 import React from "react";
+import Loader from "../../../components/Loader";
 
 const AskForAdvertisementTable = ({ addAdvertisement, isLoading }) => {
   if (isLoading) {
-    return (
-      <div>
-        <span className="loading loading-dots loading-xl"></span>;
-      </div>
-    );
+    return <Loader />;
   }
   return (
     <div>
       {addAdvertisement.length > 0 ? (
-        <div className="overflow-x-auto py-5">
+        <div className="overflow-x-auto py-5 mb-5">
           <table className="table">
             {/* head */}
             <thead>

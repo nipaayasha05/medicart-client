@@ -23,7 +23,9 @@ const DiscountProduct = () => {
     queryKey: ["categoryDetails"],
     // enabled: !!user?.email,
     queryFn: async () => {
-      const { data } = await axios.get("http://localhost:3000/discount");
+      const { data } = await axios.get(
+        "https://assignment-12-server-nine-hazel.vercel.app/discount"
+      );
       console.log(data);
       return data;
     },
@@ -31,7 +33,9 @@ const DiscountProduct = () => {
   console.log(discount);
   return (
     <div>
-      <p className="pb-5 text-center text-3xl font-bold">Discount Products</p>
+      <p className="pb-5 text-center text-sky-600 text-3xl font-bold">
+        Discount Products
+      </p>
       <Swiper
         grabCursor={true}
         effect={"creative"}

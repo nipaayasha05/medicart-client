@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import Loader from "../../../components/Loader";
 
 const ManageBannerAdvertise = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,11 +20,7 @@ const ManageBannerAdvertise = () => {
     },
   });
   if (isLoading) {
-    return (
-      <div>
-        <span className="loading loading-dots loading-xl"></span>;
-      </div>
-    );
+    return <Loader />;
   }
 
   const handleToggleSlide = async (advertise) => {
@@ -48,12 +45,15 @@ const ManageBannerAdvertise = () => {
   };
 
   return (
-    <div className="mx-auto mt-5  ">
+    <div className="mx-auto mt-5 pb-5 ">
+      <h3 className="font-bold p-2 text-3xl text-sky-600">
+        Manage Banner Advertise
+      </h3>
       <div className="overflow-x-auto py-5">
         <table className="table">
           {/* head */}
           <thead>
-            <tr className=" bg-gray-200  text-gray-800 sm:text-xl sm:h-24 h-16 ">
+            <tr className=" bg-sky-200  text-gray-800 sm:text-xl sm:h-24 h-16 ">
               <th>
                 <label>
                   <input type="checkbox" className="checkbox" />
@@ -100,8 +100,8 @@ const ManageBannerAdvertise = () => {
                     }}
                     className={`btn w-[150px] py-4 p-1 lg:py-6   ${
                       advertise.status === "Add to slide"
-                        ? "btn-success"
-                        : "btn-error"
+                        ? " bg-sky-500 text-white"
+                        : "btn-error text-white"
                     }`}
                   >
                     {advertise.status}

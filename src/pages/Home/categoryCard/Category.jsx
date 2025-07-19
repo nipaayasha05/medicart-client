@@ -6,11 +6,11 @@ const Category = ({ category }) => {
   return (
     <Link to={`category/${category.itemName}`}>
       <div>
-        <div className="card bg-base-100   shadow-sm">
+        <div className="card  hover:shadow-2xl border border-gray-100  shadow-md  ">
           <figure>
             <img className="w-full h-[320px]" src={category.image} />
           </figure>
-          <div className="card-body">
+          <div className="  card-body bg-gradient-to-r from-sky-200    to-lime-100 text-gray-800">
             <h2 className="card-title">{category.itemName}</h2>
             <h2 className="card-title">
               Number of Medicine :{category.medicineCount}
