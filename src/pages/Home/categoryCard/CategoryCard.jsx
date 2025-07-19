@@ -3,6 +3,7 @@ import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Category from "./Category";
 import axios from "axios";
+import Loader from "../../../components/Loader";
 
 const CategoryCard = () => {
   // const axiosSecure = useAxiosSecure();
@@ -17,6 +18,8 @@ const CategoryCard = () => {
       return data;
     },
   });
+  if (isLoading) return <Loader />;
+
   console.log(categories);
   return (
     <div className="py-10 ">

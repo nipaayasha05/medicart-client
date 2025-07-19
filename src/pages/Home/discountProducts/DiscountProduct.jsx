@@ -32,10 +32,11 @@ const DiscountProduct = () => {
   });
   console.log(discount);
   return (
-    <div>
-      <p className="pb-5 text-center text-sky-600 text-3xl font-bold">
+    <div className="bg-gradient-to-r from-sky-200    to-lime-50 border-l-sky-300 border-t-sky-200 border-t-2 border-l-2 py-5 rounded-xl">
+      <p className="pb-5  text-center text-sky-600 text-3xl font-bold">
         Discount Products
       </p>
+
       <Swiper
         grabCursor={true}
         effect={"creative"}

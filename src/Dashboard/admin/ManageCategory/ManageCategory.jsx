@@ -6,6 +6,7 @@ import ManageMedicineForm from "../../seller/ManageMedicine/ManageMedicineForm";
 import ManageCategoryForm from "./manageCategoryForm";
 import ManageCategoryTable from "./ManageCategoryTable";
 import Loader from "../../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const ManageCategory = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,10 @@ const ManageCategory = () => {
   }
   return (
     <div>
-      {" "}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Manage Category</title>
+      </Helmet>{" "}
       <div>
         <div className="flex justify-between p-2 items-center ">
           <h3 className="font-bold text-3xl text-sky-600">Manage Category</h3>

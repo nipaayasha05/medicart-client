@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loader from "../../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const ManageMedicine = () => {
   let [isOpen, setIsOpen] = useState(false);
@@ -48,6 +49,10 @@ const ManageMedicine = () => {
   return (
     <div>
       <div className="flex p-2 justify-between items-center py-5">
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Manage Medicines</title>
+        </Helmet>
         <h3 className="font-bold text-3xl text-sky-600">Manage Medicine</h3>
         <button
           onClick={() => {

@@ -9,6 +9,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 import Loader from "../../components/Loader";
+import { ReTitle } from "re-title";
+import { Helmet } from "react-helmet";
 
 const Shop = () => {
   const { user } = useAuth();
@@ -76,6 +78,10 @@ const Shop = () => {
 
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Shop</title>
+      </Helmet>
       <p className="py-2 text-3xl font-bold text-center text-sky-600 ">shop</p>
       <div className="flex justify-end">
         <div className=" p-2 ">

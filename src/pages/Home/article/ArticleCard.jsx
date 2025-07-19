@@ -6,41 +6,47 @@ const ArticleCard = ({ art }) => {
   return (
     <div>
       {" "}
-      <div className="card   bg-base-200  m-5 shadow-sm">
-        <figure className="px-8 pt-8">
-          <img src={art.image} alt="Shoes" className="rounded-xl h-[240px]" />
+      <div className="card border-2 card-md flex flex-col border-gray-200   bg-gray-100  m-5 shadow-sm">
+        <figure className=" ">
+          <img
+            src={art.image}
+            alt="Shoes"
+            className="rounded-xl p-2 w-full h-[250px]"
+          />
         </figure>
-        <div className="card-body flex-grow flex flex-col h-   ">
-          <div className="flex gap-5    ">
-            <h2 className="card-title  sm:text-xl font-bold text-gray-800    ">
-              {art.title}
-            </h2>
-            <p className="badge bg-green-100 text-green-800 font-semibold px-3 py-6  mr-3">
+        <div className="card-body text-gray-700">
+          <div className=" space-y-2">
+            <p className="  text-center  -mt-6 bg-green-200 p-2 rounded-full font-bold ">
               {art.category}
             </p>
-          </div>
-          <p className="  sm:text-xl text-gray-700">{art.summary}</p>
-          <div className="flex   flew-wrap gap-2">
-            <BsPersonCircle size={28} />
-            <div className="text-gray-600">
-              <p>{art.author}</p>
-              <p>{art.date}</p>
+            <h2 className="card-title sm:text-xl">{art.title}</h2>
+
+            <p className="sm:text-xl">{art.summary}</p>
+            <div className="flex items-center gap-2">
+              <BsPersonCircle size={28} />
+              <div>
+                <p>{art.author}</p>
+                <p>{art.date}</p>
+              </div>
+            </div>
+
+            <div className="  justify-start ">
+              {art.tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className=" text-white badge bg-emerald-500    mr-2 "
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
-          <p>
-            {art.tags.map((tag, index) => (
-              <span
-                key={index}
-                className=" text-white badge bg-emerald-500   flex-col mr-3 "
-              >
-                {tag}
-              </span>
-            ))}
-          </p>
         </div>
       </div>
     </div>
   );
 };
+
+//
 
 export default ArticleCard;

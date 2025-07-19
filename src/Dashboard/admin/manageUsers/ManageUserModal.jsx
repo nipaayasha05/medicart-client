@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const ManageUserModal = ({ selectedUser, refetch, isOpen }) => {
   const axiosSecure = useAxiosSecure();
@@ -60,7 +61,7 @@ const ManageUserModal = ({ selectedUser, refetch, isOpen }) => {
             onClick={() => {
               document.getElementById("my_modal_2").close();
             }}
-            className="btn bg-sky-500 text-white"
+            className="btn bg-red-500 text-white"
           >
             Cancel
           </button>

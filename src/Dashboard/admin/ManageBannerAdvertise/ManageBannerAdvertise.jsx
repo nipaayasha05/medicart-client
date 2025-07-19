@@ -3,6 +3,7 @@ import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import Loader from "../../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const ManageBannerAdvertise = () => {
   const axiosSecure = useAxiosSecure();
@@ -46,6 +47,10 @@ const ManageBannerAdvertise = () => {
 
   return (
     <div className="mx-auto mt-5 pb-5 ">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Manage Banner Advertise</title>
+      </Helmet>
       <h3 className="font-bold p-2 text-3xl text-sky-600">
         Manage Banner Advertise
       </h3>

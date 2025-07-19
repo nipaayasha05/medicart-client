@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import UpdateProfileForm from "./UpdateProfileForm";
 import useRole from "../../hooks/useRole";
+import { Helmet } from "react-helmet";
 
 const UpdateProfile = () => {
   const { user, setUser, updateUser } = useAuth();
@@ -10,6 +11,10 @@ const UpdateProfile = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Update Profile</title>
+      </Helmet>
       <div className="mt-10 bg-gray-200 mb-10 mx-auto rounded-box shadow-md shadow-gray-500 w-[350px] m-3 py-5">
         <div className="relative">
           <img

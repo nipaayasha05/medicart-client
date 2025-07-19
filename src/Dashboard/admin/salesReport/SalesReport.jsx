@@ -10,6 +10,7 @@ import {
 } from "@tanstack/react-table";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import Loader from "../../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const SalesReport = () => {
   const axiosSecure = useAxiosSecure();
@@ -86,6 +87,10 @@ const SalesReport = () => {
 
   return (
     <div className="container mx-auto pb-5">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Sales Report</title>
+      </Helmet>
       <p className="text-3xl font-bold pt-4 text-sky-600 p-2">Sales Report</p>
 
       <div className="pt-5 flex items-center  gap-5 p-2">

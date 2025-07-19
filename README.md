@@ -1,12 +1,22 @@
-# React + Vite
+## Medicart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Admin
 
-Currently, two official plugins are available:
+- username :admin
+- email:admin@gmail.com
+- password:ABC123abc@
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Live site URL : https://illustrious-pudding-bb0b01.netlify.app/
 
-## Expanding the ESLint configuration
+# features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Firebase Authentication using email/password and social login(google)
+- ole-based access control (admin, seller, user).
+- Responsive design for all screen sizes.
+- Separate dashboards for admin, seller, and user.
+- Cart page: adjust quantity, remove items, clear cart.
+- Checkout via Stripe with live payment integration.
+- After successful payment, user sees an invoice page with print/download (PDF) feature.
+- Manage Users: change roles, promote/demote users.
+- Manage Categories: add/update/delete categories with image upload.
+- Payment Management: approve pending payments.

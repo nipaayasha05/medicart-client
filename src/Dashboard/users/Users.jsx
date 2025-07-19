@@ -3,6 +3,7 @@ import React from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const Users = () => {
   const { user } = useAuth();
@@ -25,6 +26,10 @@ const Users = () => {
 
   return (
     <div className="  mx-auto mt-5 m-10">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Payment History</title>
+      </Helmet>
       <p className="p-2 py-3 text-3xl font-bold text-sky-600">
         Payment History{" "}
       </p>

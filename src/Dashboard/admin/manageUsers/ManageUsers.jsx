@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import ManageUserModal from "./ManageUserModal";
 import Loader from "../../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -27,6 +28,10 @@ const ManageUsers = () => {
   }
   return (
     <div className="pb-5">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Manage Users</title>
+      </Helmet>
       <h3 className="font-bold text-3xl p-2 mt-5 text-sky-600">Manage Users</h3>{" "}
       <div className="overflow-x-auto py-5">
         <table className="table">

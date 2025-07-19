@@ -2,7 +2,7 @@ import React from "react";
 
 const ServiceCard = ({ service }) => {
   return (
-    <div className="card sm:card-xs bg-gradient-to-r from-sky-200    to-gray-200   m-5 shadow-sm">
+    <div className="card   bg-gradient-to-r from-sky-200    to-gray-200   m-5 shadow-sm">
       <div className=" m-1 border-l-5 border-t-5 border-t-gray-200  rounded-xl border-l-indigo-100">
         <figure className="px-10 pt-10 ">
           <img

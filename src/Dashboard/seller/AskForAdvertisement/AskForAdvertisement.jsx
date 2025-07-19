@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loader from "../../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const AskForAdvertisement = () => {
   let [isOpen, setIsOpen] = useState(false);
@@ -33,6 +34,10 @@ const AskForAdvertisement = () => {
 
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Ask for Advertise</title>
+      </Helmet>
       <div className="flex p-2 justify-between items-center py-5">
         <h3 className="font-bold text-3xl text-sky-600">
           {" "}

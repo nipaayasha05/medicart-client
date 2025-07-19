@@ -5,11 +5,19 @@ import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(import.meta.env.VITE_payment_key);
 const Checkout = () => {
   return (
-    <Elements stripe={stripePromise}>
+    <div>
       <div>
-        <CheckoutForm></CheckoutForm>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Checkout</title>
+        </Helmet>
       </div>
-    </Elements>
+      <Elements stripe={stripePromise}>
+        <div>
+          <CheckoutForm></CheckoutForm>
+        </div>
+      </Elements>
+    </div>
   );
 };
 

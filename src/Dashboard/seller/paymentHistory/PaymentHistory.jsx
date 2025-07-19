@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const PaymentHistory = () => {
   const { user } = useAuth();
@@ -24,6 +25,10 @@ const PaymentHistory = () => {
   }
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Payment History</title>
+      </Helmet>
       <h3 className="font-bold p-2 text-3xl text-sky-600 pt-5">
         Payment History
       </h3>

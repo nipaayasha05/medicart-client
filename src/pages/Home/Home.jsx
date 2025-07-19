@@ -9,6 +9,7 @@ import DiscountProduct from "./discountProducts/DiscountProduct";
 import axios from "axios";
 import Article from "./article/Article";
 import Service from "./service/Service";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   // const axiosSecure = useAxiosSecure();
@@ -31,6 +32,10 @@ const Home = () => {
 
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home</title>
+      </Helmet>
       <div>
         <Slider slider={slider} />
       </div>

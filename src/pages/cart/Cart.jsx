@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { MdDeleteForever, MdOutlineShoppingCartCheckout } from "react-icons/md";
 import Loader from "../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const Cart = () => {
   const { user } = useAuth();
@@ -184,6 +185,10 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto py-5">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Cart</title>
+      </Helmet>
       {cartItems.length > 0 ? (
         <div>
           <div className="overflow-x-auto py-5 ">

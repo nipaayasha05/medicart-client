@@ -2,6 +2,7 @@ import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../components/Loader";
+import { Helmet } from "react-helmet";
 
 const PaymentManagement = () => {
   const axiosSecure = useAxiosSecure();
@@ -38,7 +39,10 @@ const PaymentManagement = () => {
 
   return (
     <div className="container mx-auto pb-5">
-      {" "}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Payment Management</title>
+      </Helmet>{" "}
       <h3 className="font-bold text-3xl text-sky-600 mt-5 p-2">
         Payment Management
       </h3>

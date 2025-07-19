@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 // import Invoice from "./Invoice";
-import useAuth from "../../hooks/useAuth";
+
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+
 import { useParams } from "react-router";
-import axios from "axios";
+
 import InvoicePdf from "./InvoicePdf";
+import { Helmet } from "react-helmet";
 
 const InvoiceData = () => {
-  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const [invoice, setInvoice] = useState([]);
@@ -26,6 +26,10 @@ const InvoiceData = () => {
   }, [id, axiosSecure]);
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Invoice</title>
+      </Helmet>
       {/* <Invoice invoice={invoice}></Invoice> */}
       <InvoicePdf invoice={invoice} />
     </div>
