@@ -51,10 +51,6 @@ const SignIn = () => {
       });
   };
 
-  useEffect(() => {
-    document.title = "FleetGo | Log In";
-  }, []);
-
   return (
     <div>
       <Helmet>
