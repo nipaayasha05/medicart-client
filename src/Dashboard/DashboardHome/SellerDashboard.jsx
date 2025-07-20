@@ -36,7 +36,7 @@ const SellerDashboard = () => {
           "
           >
             <p className="text-xl">
-              <strong>Paid Total :</strong> {revenue.paidTotal}
+              <strong>Paid Total :</strong> {revenue.paidTotal}$
             </p>
           </div>
           <div
@@ -45,7 +45,7 @@ const SellerDashboard = () => {
           >
             <p className="text-xl">
               <strong>Pending Total : </strong>
-              {revenue.pendingTotal}
+              {revenue.pendingTotal}$
             </p>
           </div>
         </div>

@@ -34,7 +34,7 @@ const AdminDashboard = () => {
           "
           >
             <p className="text-xl">
-              <strong>Paid Total :</strong> {totalRevenue.paidTotal}
+              <strong>Paid Total :</strong> {totalRevenue.paidTotal}$
             </p>
           </div>
           <div
@@ -43,7 +43,7 @@ const AdminDashboard = () => {
           >
             <p className="text-xl">
               <strong>Pending Total : </strong>
-              {totalRevenue.pendingTotal}
+              {totalRevenue.pendingTotal}$
             </p>
           </div>
         </div>
