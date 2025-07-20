@@ -113,8 +113,6 @@ const ManageMedicineForm = ({ refetch, categories }) => {
           <option value="Beximco">Beximco</option>
           <option value="Beximco">Incepta</option>
           <option value="Beximco">Renata</option>
-          <option value="Beximco">Beximco</option>
-          <option value="Beximco">Beximco</option>
         </select>
         {/* <select
           name="massUnit"
