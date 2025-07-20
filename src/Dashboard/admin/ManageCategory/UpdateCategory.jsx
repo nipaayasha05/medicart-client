@@ -39,7 +39,7 @@ const UpdateCategory = ({ refetch, selectedCategory, setSelectedCategory }) => {
       email: user.email,
       image: imageUrl,
     };
-    console.log(category);
+    // console.log(category);
 
     try {
       const res = await axiosSecure.put(
@@ -50,7 +50,7 @@ const UpdateCategory = ({ refetch, selectedCategory, setSelectedCategory }) => {
       refetch();
       setSelectedCategory(null);
 
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.modifiedCount > 0) {
         Swal.fire({
           icon: "success",
@@ -98,7 +98,7 @@ const UpdateCategory = ({ refetch, selectedCategory, setSelectedCategory }) => {
               onClick={() => {
                 document.getElementById("my_modal_1").close();
               }}
-              className="btn btn-primary mr-2"
+              className="btn bg-sky-500 text-white mr-2"
             >
               Submit
             </button>
@@ -107,7 +107,7 @@ const UpdateCategory = ({ refetch, selectedCategory, setSelectedCategory }) => {
               onClick={() => {
                 document.getElementById("my_modal_1").close();
               }}
-              className="btn btn-secondary"
+              className="btn bg-red-500 text-white"
             >
               Cancel
             </button>

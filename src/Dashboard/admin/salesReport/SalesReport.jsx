@@ -17,14 +17,19 @@ const SalesReport = () => {
 
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState("Low to High");
+
   const tableRef = useRef(null);
 
   const { data: reports = [], isLoading } = useQuery({
-    queryKey: ["reports"],
+    queryKey: ["reports", search, sortOrder],
 
     queryFn: async () => {
-      const { data } = await axiosSecure(`/admin-sales-report`);
-      console.log(data);
+      const { data } = await axiosSecure(
+        `/admin-sales-report?search=${search}&sort=${sortOrder}`
+      );
+      // console.log(data);
 
       return data;
     },
@@ -89,7 +94,7 @@ const SalesReport = () => {
     <div className="container mx-auto pb-5">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Sales Report</title>
+        <title>MediCart|Sales Report</title>
       </Helmet>
       <p className="text-3xl font-bold pt-4 text-sky-600 p-2">Sales Report</p>
 
@@ -112,6 +117,7 @@ const SalesReport = () => {
             className="border border-gray-300 rounded-sm py-1 px-2"
           />
         </label>
+
         <div>
           {tableRef.current ? (
             <DownloadTableExcel
@@ -130,6 +136,45 @@ const SalesReport = () => {
             </p>
           )}
         </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row   items-center justify-start gap-2">
+        <button
+          onClick={() =>
+            setSortOrder(
+              sortOrder === "Low to High" ? "High to Low" : "Low to High"
+            )
+          }
+          className="btn text-white bg-sky-500"
+        >
+          Sort by price(
+          {sortOrder})
+        </button>
+
+        <label className="input m-1  ">
+          <svg
+            className="h-[1em] opacity-50"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input
+            type="text"
+            onBlur={(e) => setSearch(e.target.value)}
+            className="grow  "
+            placeholder="Search"
+          />
+        </label>
       </div>
       <div className="py-5 overflow-x-auto">
         <table ref={tableRef}>

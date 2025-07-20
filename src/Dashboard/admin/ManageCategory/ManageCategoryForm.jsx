@@ -28,14 +28,14 @@ const ManageCategoryForm = ({ refetch, setIsOpen }) => {
       image: imageUrl,
       createdAt: new Date().toISOString(),
     };
-    console.log(category);
+    // console.log(category);
 
     try {
       const res = await axiosSecure.post("/manageCategory", category);
       reset();
       refetch();
 
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.insertedId) {
         Swal.fire({
           icon: "success",

@@ -47,13 +47,13 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className="dropdown dropdown-hover dropdown-bottom">
-        <label
+        <div
           tabIndex={0}
           className="text-md font-bold m-1 flex items-center gap-1 cursor-pointer"
         >
           <FaGlobe size={20} />
           Languages
-        </label>
+        </div>
         <ul
           tabIndex={0}
           className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40"
@@ -104,7 +104,9 @@ const Navbar = () => {
           <Logo />
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{links}</ul>
+          <ul className="menu menu-horizontal px-1 flex items-center">
+            {links}
+          </ul>
         </div>
         <div className="navbar-end">
           {user ? (

@@ -1,5 +1,5 @@
 import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 import MedicineDetails from "./MedicineDetails";
@@ -17,13 +17,17 @@ const Shop = () => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   let [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState("Low to High");
 
   const { data: allMedicine = [], isLoading } = useQuery({
-    queryKey: ["addMedicine"],
+    queryKey: ["addMedicine", search, sortOrder],
 
     queryFn: async () => {
-      const { data } = await axiosSecure(`/getAllMedicine`);
-      console.log(data);
+      const { data } = await axiosSecure(
+        `/getAllMedicine?search=${search}&sort=${sortOrder}`
+      );
+      // console.log(data);
       return data;
     },
   });
@@ -39,10 +43,18 @@ const Shop = () => {
       const res = await axiosSecure.get(
         `/get-add-to-cart-shop?email=${user?.email}`
       );
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
+
+  // const handleSort = () => {
+  //   const sort = [...sortData].sort((a, b) => {
+  //     return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
+  //   });
+  //   setSortData(sort);
+  //   setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  // };
 
   const handleAddToCart = async (medicine) => {
     if (!user) {
@@ -58,6 +70,7 @@ const Shop = () => {
       userEmail: user.email,
       itemName: medicine.itemName,
       image: medicine.image,
+      category: medicine.category,
       company: medicine.company,
       price: medicine.price,
       discount: medicine.discount,
@@ -68,7 +81,7 @@ const Shop = () => {
       addedAt: new Date().toISOString(),
     };
     const res = await axiosSecure.post("/add-to-cart", cartItem);
-    console.log(res.data);
+    // console.log(res.data);
 
     queryClient.invalidateQueries(["cart", user.email]);
   };
@@ -77,13 +90,52 @@ const Shop = () => {
   }
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto pb-5">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Shop</title>
+        <title>MediCart|Shop</title>
       </Helmet>
       <p className="py-2 text-3xl font-bold text-center text-sky-600 ">shop</p>
-      <div className="flex justify-end">
+
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row   items-center">
+          <button
+            onClick={() =>
+              setSortOrder(
+                sortOrder === "Low to High" ? "High to Low" : "Low to High"
+              )
+            }
+            className="btn text-white bg-sky-500"
+          >
+            Sort by price(
+            {sortOrder})
+          </button>
+
+          <label className="input m-1  ">
+            <svg
+              className="h-[1em] opacity-50"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2.5"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </g>
+            </svg>
+            <input
+              type="text"
+              onBlur={(e) => setSearch(e.target.value)}
+              className="grow  "
+              placeholder="Search"
+            />
+          </label>
+        </div>
         <div className=" p-2 ">
           <p className="relative text-white badge badge-sm  rounded-full  badge-error  ">
             {cartItems.length ? cartItems.length : 0}
@@ -108,8 +160,10 @@ const Shop = () => {
               <th>Medicine Image</th>
 
               <th>Medicine Name</th>
+              <th>Category</th>
               <th>Company</th>
               <th>Price</th>
+              <th>Discount</th>
               <th>Unit</th>
               <th> Details</th>
               <th> Add to Cart</th>
@@ -133,10 +187,12 @@ const Shop = () => {
                   />
                 </td>
 
-                <th>{all?.itemName}</th>
+                <td>{all?.itemName}</td>
+                <td>{all?.category}</td>
 
                 <td>{all.company}</td>
                 <td>{all.price}$</td>
+                <td>{all.discount}%</td>
                 <td>{all.massUnit}</td>
                 <td>
                   {" "}
@@ -144,7 +200,7 @@ const Shop = () => {
                     onClick={() => {
                       handleModal(all._id);
                     }}
-                    className="btn bg-sky-600  "
+                    className="btn bg-sky-500  "
                   >
                     {" "}
                     <FaEye size={24} color="white" />
@@ -158,7 +214,7 @@ const Shop = () => {
                     onClick={() => {
                       handleAddToCart(all);
                     }}
-                    className="btn  bg-sky-600 text-white  py-6 sm:py-4 "
+                    className="btn  bg-sky-500 text-white  py-6 sm:py-4 "
                   >
                     {/* <FiShoppingCart size={18} /> */}
                     {cartItems.find((item) => item.medicineId === all._id)

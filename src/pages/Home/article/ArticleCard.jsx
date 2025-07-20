@@ -2,7 +2,7 @@ import React from "react";
 import { BsPersonCircle } from "react-icons/bs";
 
 const ArticleCard = ({ art }) => {
-  console.log(art);
+  // console.log(art);
   return (
     <div>
       {" "}

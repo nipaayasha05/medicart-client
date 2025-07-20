@@ -22,15 +22,15 @@ const CheckoutForm = () => {
     enabled: !!id,
     queryFn: async () => {
       const res = await axiosSecure.get(`/checkout/${id}`);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
 
-  console.log(checkoutInfo);
+  // console.log(checkoutInfo);
   const amount = parseFloat(checkoutInfo.grandTotal);
   const amountInCents = Math.round(amount * 100);
-  console.log(amountInCents);
+  // console.log(amountInCents);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,11 +46,11 @@ const CheckoutForm = () => {
       card,
     });
     if (error) {
-      console.log("error", error);
+      // console.log("error", error);
       setError(error.message);
     } else {
       setError("");
-      console.log("payment method", paymentMethod);
+      // console.log("payment method", paymentMethod);
     }
 
     // create-payment-intent
@@ -58,7 +58,7 @@ const CheckoutForm = () => {
       amountInCents,
       id,
     });
-    console.log("payment-intent", res.data);
+    // console.log("payment-intent", res.data);
 
     const clientSecret = res.data.clientSecret;
     const result = await stripe.confirmCardPayment(clientSecret, {
@@ -75,8 +75,8 @@ const CheckoutForm = () => {
       setError(result.error.message);
     } else {
       if (result.paymentIntent.status === "succeeded") {
-        console.log("payment succeeded");
-        console.log(result);
+        // console.log("payment succeeded");
+        // console.log(result);
 
         checkoutInfo.email = user?.email;
         checkoutInfo.transaction = result?.paymentIntent?.id;
@@ -85,7 +85,7 @@ const CheckoutForm = () => {
         checkoutInfo.amount = result?.payment_method?.amount;
 
         const res = await axiosSecure.post("/payments-complete", checkoutInfo);
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.insertedId) {
           await Swal.fire({
             icon: "success",

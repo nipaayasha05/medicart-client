@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../components/Loader";
@@ -9,14 +9,17 @@ const Users = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
+  const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState("Low to High");
+
   const { data: users = [], isLoading } = useQuery({
-    queryKey: ["cart", user?.email],
+    queryKey: ["cart", user?.email, search, sortOrder],
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/payment-history?email=${user?.email}`
+        `/payment-history?email=${user?.email}&search=${search}&sort=${sortOrder}`
       );
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -28,7 +31,7 @@ const Users = () => {
     <div className="  mx-auto mt-5 m-10">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Payment History</title>
+        <title>MediCart|Payment History</title>
       </Helmet>
       <p className="p-2 py-3 text-3xl font-bold text-sky-600">
         Payment History{" "}
@@ -39,6 +42,45 @@ const Users = () => {
       </p>
       {users.length > 0 ? (
         <div>
+          <div className="flex flex-col sm:flex-row   items-center justify-start">
+            <button
+              onClick={() =>
+                setSortOrder(
+                  sortOrder === "Low to High" ? "High to Low" : "Low to High"
+                )
+              }
+              className="btn text-white bg-sky-500"
+            >
+              Sort by price(
+              {sortOrder})
+            </button>
+
+            <label className="input m-1  ">
+              <svg
+                className="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input
+                type="text"
+                onBlur={(e) => setSearch(e.target.value)}
+                className="grow  "
+                placeholder="Search"
+              />
+            </label>
+          </div>
+
           <div className="overflow-x-auto py-5">
             <table className="table">
               {/* head */}

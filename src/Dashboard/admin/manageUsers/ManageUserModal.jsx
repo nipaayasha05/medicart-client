@@ -18,7 +18,7 @@ const ManageUserModal = ({ selectedUser, refetch, isOpen }) => {
       `/update-user-role/${selectedUser._id}`,
       { role: data.role }
     );
-    console.log(res.data);
+    // console.log(res.data);
 
     if (res.data.modifiedCount > 0) {
       Swal.fire({

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../components/Loader";
@@ -7,15 +7,20 @@ import { Helmet } from "react-helmet";
 const PaymentManagement = () => {
   const axiosSecure = useAxiosSecure();
 
+  const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState("Low to High");
+
   const {
     data: allPayment = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["allPayment"],
+    queryKey: ["allPayment", search, sortOrder],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/payment-history-all`);
-      console.log(res.data);
+      const res = await axiosSecure.get(
+        `/payment-history-all?search=${search}&sort=${sortOrder}`
+      );
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -29,8 +34,8 @@ const PaymentManagement = () => {
     if (res.data.modifiedCount > 0) {
       refetch();
     }
-    console.log(res.data);
-    console.log(payment);
+    // console.log(res.data);
+    // console.log(payment);
   };
 
   if (isLoading) {
@@ -41,13 +46,51 @@ const PaymentManagement = () => {
     <div className="container mx-auto pb-5">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Payment Management</title>
+        <title>MediCart|Payment Management</title>
       </Helmet>{" "}
       <h3 className="font-bold text-3xl text-sky-600 mt-5 p-2">
         Payment Management
       </h3>
       {allPayment.length > 0 ? (
         <div>
+          <div className="flex flex-col sm:flex-row   items-center justify-start gap-2">
+            <button
+              onClick={() =>
+                setSortOrder(
+                  sortOrder === "Low to High" ? "High to Low" : "Low to High"
+                )
+              }
+              className="btn text-white bg-sky-500"
+            >
+              Sort by price(
+              {sortOrder})
+            </button>
+
+            <label className="input m-1  ">
+              <svg
+                className="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input
+                type="text"
+                onBlur={(e) => setSearch(e.target.value)}
+                className="grow  "
+                placeholder="Search"
+              />
+            </label>
+          </div>
           <div className="overflow-x-auto py-5">
             <table className="table">
               {/* head */}
@@ -95,7 +138,9 @@ const PaymentManagement = () => {
                     >
                       <button
                         className={`btn ${
-                          all.status === "paid" ? "bg-violet-500" : "bg-sky-500"
+                          all.status === "paid"
+                            ? "bg-violet-200 text-gray-500"
+                            : "bg-sky-500 text-white"
                         }`}
                       >
                         Accept

@@ -28,7 +28,7 @@ const InvoiceData = () => {
     <div>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Invoice</title>
+        <title>MediCart|Invoice</title>
       </Helmet>
       {/* <Invoice invoice={invoice}></Invoice> */}
       <InvoicePdf invoice={invoice} />

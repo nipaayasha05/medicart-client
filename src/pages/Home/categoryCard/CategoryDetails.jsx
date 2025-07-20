@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -15,16 +15,30 @@ const CategoryDetails = () => {
   const { user } = useAuth();
 
   let [isOpen, setIsOpen] = useState(false);
+  const [sortData, setSortData] = useState([]);
+  const [sortOrder, setSortOrder] = useState([]);
 
   const { data: categoryDetails = [], isLoading } = useQuery({
     queryKey: ["categoryDetails"],
     // enabled: !!user?.email,
     queryFn: async () => {
       const { data } = await axiosSecure(`category/${category}`);
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
+
+  useEffect(() => {
+    setSortData(categoryDetails);
+  }, [categoryDetails]);
+
+  const handleSort = () => {
+    const sort = [...sortData].sort((a, b) => {
+      return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
+    });
+    setSortData(sort);
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
 
   const handleModal = (_id) => {
     document.getElementById("my_modal_2").showModal();
@@ -37,7 +51,7 @@ const CategoryDetails = () => {
       const res = await axiosSecure.get(
         `/get-add-to-cart-shop?email=${user?.email}`
       );
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -66,18 +80,21 @@ const CategoryDetails = () => {
       addedAt: new Date().toISOString(),
     };
     const res = await axiosSecure.post("/add-to-cart", cartItem);
-    console.log(res.data);
+    // console.log(res.data);
 
     queryClient.invalidateQueries(["cart", user.email]);
   };
 
-  console.log(category);
+  // console.log(category);
 
   return (
     <div>
       <div className="container mx-auto py-5">
         <p className="py- text-3xl font-bold p-2 text-sky-600"> {category}</p>
-        <div className="flex justify-end">
+        <div className="flex justify-between items-center">
+          <button onClick={handleSort} className="btn text-white bg-sky-500">
+            Sort by price({sortOrder === "asc" ? "High to Low" : "Low to High"})
+          </button>
           <div className="  ">
             <p className="relative text-white badge badge-sm  rounded-full  badge-error  ">
               {cartItems.length ? cartItems.length : 0}
@@ -111,7 +128,7 @@ const CategoryDetails = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-              {categoryDetails.map((all, index) => (
+              {sortData.map((all, index) => (
                 <tr
                   all={all}
                   key={all._id}
@@ -152,7 +169,7 @@ const CategoryDetails = () => {
                       onClick={() => {
                         handleAddToCart(all);
                       }}
-                      className="btn bg-gray-500 text-white   py-6 sm:py-4 "
+                      className="btn bg-sky-500 text-white   py-6 sm:py-4 "
                     >
                       {/* <FiShoppingCart size={18} /> */}
                       {cartItems.find((item) => item.medicineId === all._id)

@@ -13,7 +13,7 @@ const UpdateProfile = () => {
     <div>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Update Profile</title>
+        <title>MediCart|Update Profile</title>
       </Helmet>
       <div className="mt-10 bg-gray-200 mb-10 mx-auto rounded-box shadow-md shadow-gray-500 w-[350px] m-3 py-5">
         <div className="relative">

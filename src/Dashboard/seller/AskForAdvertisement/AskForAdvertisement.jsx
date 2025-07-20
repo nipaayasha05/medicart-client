@@ -24,7 +24,7 @@ const AskForAdvertisement = () => {
       const { data } = await axiosSecure(
         `/getAdvertisement?email=${user?.email}`
       );
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
@@ -36,7 +36,7 @@ const AskForAdvertisement = () => {
     <div className="container mx-auto">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Ask for Advertise</title>
+        <title>MediCart|Ask for Advertise</title>
       </Helmet>
       <div className="flex p-2 justify-between items-center py-5">
         <h3 className="font-bold text-3xl text-sky-600">

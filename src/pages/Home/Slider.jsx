@@ -18,7 +18,7 @@ const Slider = ({ slider }) => {
         {slider.map((item) => (
           <div key={item._id}>
             <img
-              className="w-full h-[80vh] rounded-xl"
+              className="w-full h-[70vh] rounded-xl"
               src={item.image}
               alt=""
             />

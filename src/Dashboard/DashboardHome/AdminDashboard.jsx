@@ -2,6 +2,7 @@ import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
+import Loader from "../../components/Loader";
 
 const AdminDashboard = () => {
   const axiosSecure = useAxiosSecure();
@@ -10,16 +11,21 @@ const AdminDashboard = () => {
     // enabled: !!user?.email,
     queryFn: async () => {
       const { data } = await axiosSecure("/admin-sales-revenue");
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
+
+  if (isLoading) return <Loader />;
   return (
     <div className="container mx-auto">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Admin Dashboard</title>
+        <title>MediCart|Admin Dashboard</title>
       </Helmet>
+      <p className="text-3xl font-bold  text-center text-sky-600 pt-5">
+        Total Revenue
+      </p>
       <div className="flex justify-center">
         <div className="mt-10 shadow-md p-10 rounded-xl  w-10/12 flex justify-center items-center bg-gray-100 gap-5 ">
           {" "}

@@ -12,7 +12,7 @@ const AskForAdvertisementTable = ({ addAdvertisement, isLoading }) => {
           <table className="table">
             {/* head */}
             <thead>
-              <tr className=" bg-gray-200  text-gray-800 sm:text-xl sm:h-24 h-16 ">
+              <tr className=" bg-sky-200  text-gray-800 sm:text-xl sm:h-24 h-16 ">
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />
@@ -47,7 +47,15 @@ const AskForAdvertisementTable = ({ addAdvertisement, isLoading }) => {
                   <th>{advertisement?.medicineName}</th>
 
                   <td>{advertisement.description}</td>
-                  <td>
+                  <td
+                    className={`font-bold ${
+                      advertisement.status === "Add to slide"
+                        ? "text-red-500"
+                        : advertisement.status === "Remove from slide"
+                        ? "text-green-500"
+                        : "text-green-500"
+                    }`}
+                  >
                     {advertisement.status === "Add to slide"
                       ? "Not use"
                       : advertisement.status === "Remove from slide"

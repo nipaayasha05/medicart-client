@@ -6,9 +6,9 @@ import Loader from "../components/Loader";
 const AdminRoute = ({ children }) => {
   const { role, isLoading } = useRole();
   const location = useLocation();
-  console.log(location);
-  console.log("admin wdwsedw");
-  console.log(role);
+  // console.log(location);
+  // console.log("admin wdwsedw");
+  // console.log(role);
 
   if (isLoading) return <Loader />;
 

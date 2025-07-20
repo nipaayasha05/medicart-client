@@ -8,6 +8,7 @@ import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import { imageUpload } from "../api/utilis";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const SignUp = () => {
   const { createUser, googleSignIn, provider, updateUser, setUser } = useAuth();
@@ -28,10 +29,10 @@ const SignUp = () => {
     const role = form.role.value;
 
     const imageUrl = await imageUpload(image);
-    console.log(imageUrl);
+    // console.log(imageUrl);
 
     const userData = { name, email, password, image: imageUrl, role };
-    console.log(userData);
+    // console.log(userData);
     setSuccess(false);
     setErrorMessage("");
 
@@ -84,7 +85,7 @@ const SignUp = () => {
 
     axiosSecure.post("/user", userData).then((res) => {
       res.data;
-      console.log("user data", res.data);
+      // console.log("user data", res.data);
     });
   };
 
@@ -103,65 +104,78 @@ const SignUp = () => {
   };
 
   return (
-    <div className="card bg-gray-100 m-5    mx-auto my-30    max-w-sm shrink-0 shadow-2xl  ">
-      <div className="card-body">
-        <h1 className="text-5xl font-bold text-sky-600">Sign Up now!</h1>
-        <form onSubmit={handleSignUp} className="fieldset">
-          <label className="label">Name</label>
-          <input type="text" name="name" className="input" placeholder="Name" />
-          <label className="label">Email</label>
-          <input
-            type="email"
-            name="email"
-            className="input"
-            placeholder="Email"
-          />
-          <label className="label">Password</label>
-          <input
-            type="password"
-            name="password"
-            className="input"
-            placeholder="Password"
-          />
-          <label className="label">Select Image</label>
-          <input
-            className="text-gray-400 input cursor-pointer"
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-          />
-          <label className="label">Select Role</label>
-          <select
-            name="role"
-            className="mr-5 bg-white py-2 rounded-sm border border-gray-300 text-gray-400 pl-2"
-          >
-            <option value="User">User</option>
-            <option value="Seller">Seller</option>
-          </select>
-          <div>
-            <a className="link link-hover">Forgot password?</a>
-          </div>
+    <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>MediCart|Registration</title>
+      </Helmet>
+      <div className="card bg-gray-100 m-5    mx-auto my-30    max-w-sm shrink-0 shadow-2xl  ">
+        <div className="card-body">
+          <h1 className="text-5xl font-bold text-sky-600">Sign Up now!</h1>
+          <form onSubmit={handleSignUp} className="fieldset">
+            <label className="label">Name</label>
+            <input
+              type="text"
+              name="name"
+              className="input"
+              placeholder="Name"
+            />
+            <label className="label">Email</label>
+            <input
+              type="email"
+              name="email"
+              className="input"
+              placeholder="Email"
+            />
+            <label className="label">Password</label>
+            <input
+              type="password"
+              name="password"
+              className="input"
+              placeholder="Password"
+            />
+            <label className="label">Select Image</label>
+            <input
+              className="text-gray-400 input cursor-pointer"
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+            />
+            <label className="label">Select Role</label>
+            <select
+              name="role"
+              className="mr-5 bg-white py-2 rounded-sm border border-gray-300 text-gray-400 pl-2"
+            >
+              <option value="User">User</option>
+              <option value="Seller">Seller</option>
+            </select>
+            <div>
+              <a className="link link-hover">Forgot password?</a>
+            </div>
 
-          <button
-            onClick={handleGoogleSignIn}
-            className="btn mt-2 w-[320px] mr-5  mx-auto
+            <button
+              onClick={handleGoogleSignIn}
+              className="btn mt-2 w-[320px] mr-5  mx-auto
              "
-          >
-            <FcGoogle size={24} /> Login with Google
-          </button>
-          <button className="btn     my-2 bg-sky-500 text-white rounded-2xl   mt-4 mr-4">
-            Registration
-          </button>
-          <p className="font-semibold text-center pt-5">
-            Already Have An Account ?
-            <NavLink className=" text-sky-600" to="/signin">
-              Log In
-            </NavLink>
-          </p>
-        </form>
-        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-        {success && <p className="text-green-500">User Log In Successfully</p>}
+            >
+              <FcGoogle size={24} /> Login with Google
+            </button>
+            <button className="btn     my-2 bg-sky-500 text-white rounded-2xl   mt-4 mr-4">
+              Registration
+            </button>
+            <p className="font-semibold text-center pt-5">
+              Already Have An Account ?
+              <NavLink className=" text-sky-600" to="/signin">
+                Log In
+              </NavLink>
+            </p>
+          </form>
+          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          {success && (
+            <p className="text-green-500">User Log In Successfully</p>
+          )}
+        </div>
       </div>
     </div>
   );

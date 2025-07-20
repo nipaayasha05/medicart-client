@@ -28,7 +28,7 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
     });
     if (result.isConfirmed) {
       const res = await axiosSecure.delete(`/category-delete/${_id}`);
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.deletedCount > 0) {
         Swal.fire({
           title: "Deleted!",
@@ -82,7 +82,7 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
                     />
                   </td>
                   <th>{category?.itemName}</th>
-                  <td>{category.description} $</td>
+                  <td>{category.description} </td>
                   <td>{new Date(category.createdAt).toLocaleString()}</td>
                   <td>
                     <button

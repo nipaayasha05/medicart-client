@@ -33,7 +33,7 @@ const ManageCategory = () => {
     <div>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Manage Category</title>
+        <title>MediCart|Manage Category</title>
       </Helmet>{" "}
       <div>
         <div className="flex justify-between p-2 items-center ">

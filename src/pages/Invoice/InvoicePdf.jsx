@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 
 const InvoicePdf = ({ invoice }) => {
-  console.log(invoice);
+  // console.log(invoice);
   const [pdfUrl, setPdfUrl] = useState("");
   const { user } = useAuth();
 

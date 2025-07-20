@@ -4,12 +4,12 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router";
 
 const axiosSecure = axios.create({
-  baseURL: `https://assignment-12-server-nine-hazel.vercel.app`,
+  baseURL: `http://localhost:3000`,
   withCredentials: true,
 });
 
 const useAxiosSecure = () => {
-  const { user, handleLogOut } = useAuth();
+  const { handleLogOut } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const useAxiosSecure = () => {
         return res;
       },
       async (err) => {
-        console.log("error", err.response);
+        // console.log("error", err.response);
         if (err.response.status === 401 || err.response.status === 403) {
           handleLogOut();
           navigate("/signin");

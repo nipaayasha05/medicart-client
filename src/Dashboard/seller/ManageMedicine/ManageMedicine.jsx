@@ -15,15 +15,20 @@ const ManageMedicine = () => {
   const axiosSecure = useAxiosSecure();
   const token = localStorage.getItem("token");
 
+  const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState("Low to High");
+
   const {
     data: addMedicine = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["addMedicine"],
+    queryKey: ["addMedicine", user?.email, search, sortOrder],
     enabled: !!user?.email,
     queryFn: async () => {
-      const { data } = await axiosSecure(`/getMedicine?email=${user?.email}`);
+      const { data } = await axiosSecure(
+        `/getMedicine?email=${user?.email}&search=${search}&sort=${sortOrder}`
+      );
 
       return data;
     },
@@ -38,7 +43,7 @@ const ManageMedicine = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const { data } = await axiosSecure(`/manageCategorySeller`);
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
@@ -51,7 +56,7 @@ const ManageMedicine = () => {
       <div className="flex p-2 justify-between items-center py-5">
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Manage Medicines</title>
+          <title>MediCart|Manage Medicines</title>
         </Helmet>
         <h3 className="font-bold text-3xl text-sky-600">Manage Medicine</h3>
         <button
@@ -66,7 +71,14 @@ const ManageMedicine = () => {
       </div>
 
       <div>
-        <ManageMedicineTable addMedicine={addMedicine} isLoading={isLoading} />
+        <ManageMedicineTable
+          search={search}
+          setSearch={setSearch}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+          addMedicine={addMedicine}
+          isLoading={isLoading}
+        />
       </div>
       <dialog id="my_modal_2" className="modal">
         <div className="modal-box   overflow-auto">

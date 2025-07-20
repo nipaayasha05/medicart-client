@@ -4,7 +4,7 @@ const MedicineDetails = ({ allMedicine, isOpen }) => {
   const detailsMedicine = allMedicine.find(
     (medicine) => medicine._id === isOpen
   );
-  console.log(detailsMedicine);
+  // console.log(detailsMedicine);
   const {
     itemName,
     genericName,

@@ -30,12 +30,12 @@ const AskForAdvertisementForm = ({ refetch }) => {
       image: imageUrl,
       createdAt: new Date().toISOString(),
     };
-    console.log(addAdvertisement);
+    // console.log(addAdvertisement);
 
     try {
       const res = await axiosSecure.post("/addAdvertisement", addAdvertisement);
 
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.insertedId) {
         reset();
         refetch();

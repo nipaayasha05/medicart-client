@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -8,18 +8,22 @@ import { Helmet } from "react-helmet";
 const PaymentHistory = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  // const [sortData, setSortData] = useState([]);
+  const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState("Low to High");
 
   const { data: paymentHistory = [], isLoading } = useQuery({
-    queryKey: ["cart", user?.email],
+    queryKey: ["cart", user?.email, search, sortOrder],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/seller-payment-history?email=${user?.email}`
+        `/seller-payment-history?email=${user?.email}&search=${search}&sort=${sortOrder}`
       );
-      console.log(res.data);
+      // console.log(res.data);
 
       return res.data;
     },
   });
+
   if (isLoading) {
     return <Loader />;
   }
@@ -27,13 +31,48 @@ const PaymentHistory = () => {
     <div>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Payment History</title>
+        <title>MediCart|Payment History</title>
       </Helmet>
       <h3 className="font-bold p-2 text-3xl text-sky-600 pt-5">
         Payment History
       </h3>
       {paymentHistory.length > 0 ? (
         <div>
+          <button
+            onClick={() =>
+              setSortOrder(
+                sortOrder === "Low to High" ? "High to Low" : "Low to High"
+              )
+            }
+            className="btn text-white bg-sky-500"
+          >
+            Sort by Price({sortOrder})
+          </button>
+          <label className="input m-1">
+            <svg
+              className="h-[1em] opacity-50"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2.5"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </g>
+            </svg>
+            <input
+              type="text"
+              onBlur={(e) => setSearch(e.target.value)}
+              className="grow"
+              placeholder="Search"
+            />
+          </label>
+
           <div className="overflow-x-auto py-5 mb-5 ">
             <table className="table">
               {/* head */}

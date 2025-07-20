@@ -30,14 +30,14 @@ const ManageMedicineForm = ({ refetch, categories }) => {
       image: imageUrl,
       createdAt: new Date().toISOString(),
     };
-    console.log(addMedicine);
+    // console.log(addMedicine);
 
     try {
       const res = await axiosSecure.post("/addMedicine", addMedicine);
       reset();
       refetch();
 
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.insertedId) {
         Swal.fire({
           icon: "success",

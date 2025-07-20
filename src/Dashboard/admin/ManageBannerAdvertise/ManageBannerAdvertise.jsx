@@ -16,7 +16,7 @@ const ManageBannerAdvertise = () => {
     // enabled: !!user?.email,
     queryFn: async () => {
       const { data } = await axiosSecure("/getAdminAdvertise");
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
@@ -42,14 +42,14 @@ const ManageBannerAdvertise = () => {
       });
       refetch();
     }
-    console.log(res.data);
+    // console.log(res.data);
   };
 
   return (
     <div className="mx-auto mt-5 pb-5 ">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Manage Banner Advertise</title>
+        <title>MediCart|Manage Banner Advertise</title>
       </Helmet>
       <h3 className="font-bold p-2 text-3xl text-sky-600">
         Manage Banner Advertise

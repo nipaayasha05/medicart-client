@@ -18,7 +18,7 @@ const Home = () => {
     queryKey: ["slider"],
     queryFn: async () => {
       const { data } = await axios.get(
-        "https://assignment-12-server-nine-hazel.vercel.app/getHomeAdvertise"
+        "http://localhost:3000/getHomeAdvertise"
       );
 
       const sliderImage = data.filter(
@@ -34,7 +34,7 @@ const Home = () => {
     <div className="container mx-auto">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Home</title>
+        <title>MediCart|Home</title>
       </Helmet>
       <div>
         <Slider slider={slider} />

@@ -15,7 +15,7 @@ const SellerDashboard = () => {
       const res = await axiosSecure(
         `/seller-sales-revenue?email=${user.email}`
       );
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -23,8 +23,11 @@ const SellerDashboard = () => {
     <div className="container mx-auto">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Seller Dashboard</title>
+        <title>MediCart|Seller Dashboard</title>
       </Helmet>
+      <p className="text-3xl font-bold  text-center text-sky-600 pt-5">
+        Total Revenue
+      </p>
       <div className="flex justify-center">
         <div className="mt-10 shadow-md p-10 rounded-xl  w-10/12 flex justify-center items-center bg-gray-100 gap-5 ">
           {" "}

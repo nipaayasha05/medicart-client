@@ -1,14 +1,14 @@
 ## Medicart
 
-# Admin
+## Admin
 
 - username :admin
 - email:admin@gmail.com
 - password:ABC123abc@
 
-# Live site URL : https://illustrious-pudding-bb0b01.netlify.app/
+## Live site URL : https://illustrious-pudding-bb0b01.netlify.app/
 
-# features
+## features
 
 - Firebase Authentication using email/password and social login(google)
 - ole-based access control (admin, seller, user).

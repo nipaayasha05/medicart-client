@@ -6,8 +6,8 @@ import Loader from "../components/Loader";
 const SellerRoute = ({ children }) => {
   const { role, isLoading } = useRole();
   const location = useLocation();
-  console.log(location);
-  console.log("seller");
+  // console.log(location);
+  // console.log("seller");
 
   if (isLoading) return <Loader />;
 

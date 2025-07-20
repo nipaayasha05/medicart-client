@@ -19,7 +19,7 @@ const ManageUsers = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure("/all-users");
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -30,7 +30,7 @@ const ManageUsers = () => {
     <div className="pb-5">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Manage Users</title>
+        <title>MediCart|Manage Users</title>
       </Helmet>
       <h3 className="font-bold text-3xl p-2 mt-5 text-sky-600">Manage Users</h3>{" "}
       <div className="overflow-x-auto py-5">

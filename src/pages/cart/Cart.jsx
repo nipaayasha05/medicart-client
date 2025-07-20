@@ -13,17 +13,19 @@ const Cart = () => {
   const axiosSecure = useAxiosSecure();
   const [quantities, setQuantities] = useState({});
   const [selectedIds, setSelectedIds] = useState([]);
+  const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState("Low to High");
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { data: cartItems = [], isLoading } = useQuery({
-    queryKey: ["cart", user?.email],
+    queryKey: ["cart", user?.email, search, sortOrder],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/get-add-to-cart?email=${user?.email}`
+        `/get-add-to-cart?email=${user?.email}&search=${search}&sort=${sortOrder}`
       );
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -31,7 +33,7 @@ const Cart = () => {
   const deleteCartMutation = useMutation({
     mutationFn: async (_id) => {
       const res = await axiosSecure.delete(`/cart-delete/${_id}`);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {
@@ -51,7 +53,7 @@ const Cart = () => {
       const res = await axiosSecure.delete(
         `/all-cart-delete?email=${user.email}`
       );
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {
@@ -99,7 +101,7 @@ const Cart = () => {
         discount: cartItem.discount,
         price: cartItem.price,
       });
-      console.log(res.data);
+      // console.log(res.data);
       queryClient.invalidateQueries(["cart", user?.email]);
     }
   };
@@ -119,6 +121,7 @@ const Cart = () => {
         medicineId: item._id,
         itemName: item.itemName,
         image: item.image,
+        category: item.category,
         quantity,
         price: item.price,
         discount: item.discount,
@@ -134,12 +137,12 @@ const Cart = () => {
 
     const orderData = {
       items: orderItems,
-      grandTotal: grandTotal.toFixed(2),
+      grandTotal: parseFloat(grandTotal.toFixed(2)),
       status: "pending",
       orderDate: new Date().toISOString(),
     };
     const res = await axiosSecure.post("/checkout", orderData);
-    console.log(res.data);
+    // console.log(res.data);
 
     queryClient.invalidateQueries(["cart", user.email]);
     // setSelectedIds([]);
@@ -187,10 +190,54 @@ const Cart = () => {
     <div className="container mx-auto py-5">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Cart</title>
+        <title>MediCart|Cart</title>
       </Helmet>
+      <p
+        className="text-3xl font-bold text-center py-3 text-sky-500
+      "
+      >
+        Cart
+      </p>
       {cartItems.length > 0 ? (
         <div>
+          <div className="flex flex-col sm:flex-row   items-center justify-start">
+            <button
+              onClick={() =>
+                setSortOrder(
+                  sortOrder === "Low to High" ? "High to Low" : "Low to High"
+                )
+              }
+              className="btn text-white bg-sky-500"
+            >
+              Sort by price(
+              {sortOrder})
+            </button>
+
+            <label className="input m-1  ">
+              <svg
+                className="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input
+                type="text"
+                onBlur={(e) => setSearch(e.target.value)}
+                className="grow  "
+                placeholder="Search"
+              />
+            </label>
+          </div>
           <div className="overflow-x-auto py-5 ">
             <table className="table">
               {/* head */}
@@ -201,6 +248,7 @@ const Cart = () => {
 
                   <th>Medicine Image</th>
                   <th>Item Name</th>
+                  <th>Category</th>
                   <th>Company</th>
                   <th>Price per Unit</th>
                   <th className="text-center  ">Quantity</th>
@@ -238,6 +286,7 @@ const Cart = () => {
                       />
                     </td>
                     <td>{cart?.itemName}</td>
+                    <td>{cart?.category}</td>
                     <td>{cart.company} </td>
                     <td>{cart.price}$</td>
                     <td className="">

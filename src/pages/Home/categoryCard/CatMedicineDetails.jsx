@@ -4,7 +4,7 @@ const CatMedicineDetails = ({ categoryDetails, isOpen }) => {
   const detailsMedicine = categoryDetails.find(
     (medicine) => medicine._id === isOpen
   );
-  console.log(categoryDetails);
+  // console.log(categoryDetails);
   const {
     itemName,
     genericName,

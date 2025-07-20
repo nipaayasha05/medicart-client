@@ -12,7 +12,7 @@ const CategoryCard = () => {
 
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://assignment-12-server-nine-hazel.vercel.app/manageCategoryCard`
+        `http://localhost:3000/manageCategoryCard`
       );
       // console.log(data);
       return data;
@@ -20,7 +20,7 @@ const CategoryCard = () => {
   });
   if (isLoading) return <Loader />;
 
-  console.log(categories);
+  // console.log(categories);
   return (
     <div className="py-10 ">
       <h3 className="text-3xl text-sky-600 font-bold text-center py-5">
