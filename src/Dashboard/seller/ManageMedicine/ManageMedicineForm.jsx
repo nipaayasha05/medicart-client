@@ -112,14 +112,21 @@ const ManageMedicineForm = ({ refetch, categories }) => {
           <option value="ACI">ACI</option>
           <option value="Beximco">Beximco</option>
         </select>
-        <select
+        {/* <select
           name="massUnit"
           {...register("massUnit", { required: true })}
           className="select select-bordered w-full"
         >
           <option value="mg">Mg</option>
           <option value="ml">ML</option>
-        </select>
+        </select> */}
+        <input
+          type="text"
+          name="massUnit"
+          placeholder="Mg/ML"
+          {...register("massUnit", { required: true })}
+          className="input input-bordered w-full"
+        />
         <input
           type="number"
           name="price"
