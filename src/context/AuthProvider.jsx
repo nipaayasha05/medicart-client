@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
       if (user?.email) {
         setUser(user);
         await axios.post(
-          `https://assignment-12-server-nine-hazel.vercel.app/jwt`,
+          `http://localhost:3000/jwt`,
           { email: user?.email },
           {
             withCredentials: true,
@@ -69,12 +69,9 @@ const AuthProvider = ({ children }) => {
         );
       } else {
         setUser(user);
-        await axios.get(
-          "https://assignment-12-server-nine-hazel.vercel.app/logout",
-          {
-            withCredentials: true,
-          }
-        );
+        await axios.get("http://localhost:3000/logout", {
+          withCredentials: true,
+        });
       }
 
       setLoading(false);

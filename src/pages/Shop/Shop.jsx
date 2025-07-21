@@ -32,6 +32,29 @@ const Shop = () => {
     },
   });
 
+  const { data: allMedicineCount = {} } = useQuery({
+    queryKey: ["allMedicineCount"],
+    queryFn: async () => {
+      const { data } = await axiosSecure("/getAllMedicineCount");
+      console.log(data.count);
+      return data;
+    },
+  });
+
+  // const itemsPerPage = 10;
+  // const numberOfPages = allMedicineCount?.count
+  //   ? Math.ceil(allMedicineCount?.count / itemsPerPage)
+  //   : 0;
+  // console.log(numberOfPages);
+
+  // const pages = [];
+  // for (let i = 0; i < numberOfPages; i++) {
+  //   pages.push(i);
+  // }
+
+  // const pages = [...Array(numberOfPages).keys()];
+  // console.log(pages);
+
   const handleModal = (_id) => {
     document.getElementById("my_modal_2").showModal();
     setIsOpen(_id);
@@ -47,14 +70,6 @@ const Shop = () => {
       return res.data;
     },
   });
-
-  // const handleSort = () => {
-  //   const sort = [...sortData].sort((a, b) => {
-  //     return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
-  //   });
-  //   setSortData(sort);
-  //   setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-  // };
 
   const handleAddToCart = async (medicine) => {
     if (!user) {
@@ -227,6 +242,13 @@ const Shop = () => {
           </tbody>
         </table>
       </div>
+      {/* <div className="py-5  ">
+        {pages.map((page) => (
+          <button key={page} className="btn">
+            {page}
+          </button>
+        ))}
+      </div> */}
       <dialog id="my_modal_2" className="modal">
         <div className="modal-box   overflow-auto">
           {isOpen && (

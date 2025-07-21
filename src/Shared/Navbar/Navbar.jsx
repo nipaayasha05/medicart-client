@@ -9,6 +9,7 @@ import { FaGlobe } from "react-icons/fa";
 import { HiShoppingCart } from "react-icons/hi2";
 import { MdDashboard } from "react-icons/md";
 import { TbLogout } from "react-icons/tb";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, handleLogOut } = useAuth();
@@ -70,6 +71,7 @@ const Navbar = () => {
   );
   const handleUserLogOut = () => {
     handleLogOut();
+    toast.success("User logout successfully");
     return <Navigate to="/signin" state={pathname}></Navigate>;
   };
   return (

@@ -12,7 +12,7 @@ const CategoryCard = () => {
 
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://assignment-12-server-nine-hazel.vercel.app/manageCategoryCard`
+        `http://localhost:3000/manageCategoryCard`
       );
       // console.log(data);
       return data;
