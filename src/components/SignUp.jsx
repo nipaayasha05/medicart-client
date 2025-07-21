@@ -89,17 +89,27 @@ const SignUp = () => {
     });
   };
 
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = async () => {
     googleSignIn(auth, provider)
       .then((result) => {
-        toast.success("User LogIn Successfully");
+        const loggedUser = result.user;
+        const userInfo = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+          image: loggedUser.photoURL,
+          role: "User",
+        };
+        return axiosSecure.post("/userSocial", userInfo);
+      })
+      .then((res) => {
+        toast.success("user login successfully");
         setSuccess(true);
         setErrorMessage("");
         navigate(from ? from : "/");
       })
       .catch((error) => {
         setErrorMessage(error.message);
-        setSuccess("");
+        setSuccess(false);
       });
   };
 

@@ -5,9 +5,11 @@ import { AuthContext } from "../context/AuthContext";
 import { auth } from "../firebase/firebase.init";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const SignIn = () => {
   const { signInUser, googleSignIn, provider } = use(AuthContext);
+  const axiosSecure = useAxiosSecure();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state || "/";
@@ -36,18 +38,27 @@ const SignIn = () => {
       });
   };
 
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = async () => {
     googleSignIn(auth, provider)
       .then((result) => {
-        const currentUser = result.user;
-        toast.success("User LogIn Successfully");
+        const loggedUser = result.user;
+        const userInfo = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+          image: loggedUser.photoURL,
+          role: "User",
+        };
+        return axiosSecure.post("/userSocial", userInfo);
+      })
+      .then((res) => {
+        toast.success("user login successfully");
         setSuccess(true);
         setErrorMessage("");
         navigate(from ? from : "/");
       })
       .catch((error) => {
         setErrorMessage(error.message);
-        setSuccess("");
+        setSuccess(false);
       });
   };
 
