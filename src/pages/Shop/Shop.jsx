@@ -36,7 +36,7 @@ const Shop = () => {
     queryKey: ["allMedicineCount"],
     queryFn: async () => {
       const { data } = await axiosSecure("/getAllMedicineCount");
-      console.log(data.count);
+      // console.log(data.count);
       return data;
     },
   });

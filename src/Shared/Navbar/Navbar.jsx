@@ -71,7 +71,7 @@ const Navbar = () => {
   );
   const handleUserLogOut = () => {
     handleLogOut();
-    toast.success("User logout successfully");
+    // toast.success("User logout successfully");
     return <Navigate to="/signin" state={pathname}></Navigate>;
   };
   return (

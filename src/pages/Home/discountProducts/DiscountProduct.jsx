@@ -22,7 +22,9 @@ const DiscountProduct = () => {
     queryKey: ["categoryDetails"],
     // enabled: !!user?.email,
     queryFn: async () => {
-      const { data } = await axios.get("http://localhost:3000/discount");
+      const { data } = await axios.get(
+        "https://assignment-12-server-nine-hazel.vercel.app/discount"
+      );
       // console.log(data);
       return data;
     },
