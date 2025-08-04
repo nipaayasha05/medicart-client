@@ -5,9 +5,9 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import MedicineDetails from "./MedicineDetails";
 import { FiShoppingCart } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
-import axios from "axios";
+// import axios from "axios";
 import Swal from "sweetalert2";
-import { FaEye } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaEye } from "react-icons/fa";
 import Loader from "../../components/Loader";
 import { ReTitle } from "re-title";
 import { Helmet } from "react-helmet";
@@ -20,12 +20,18 @@ const Shop = () => {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("Low to High");
 
+  // const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [lastClicked, setLastClicked] = useState("");
+
+  const itemsPerPage = 10;
+
   const { data: allMedicine = [], isLoading } = useQuery({
-    queryKey: ["addMedicine", search, sortOrder],
+    queryKey: ["addMedicine", search, sortOrder, currentPage, itemsPerPage],
 
     queryFn: async () => {
       const { data } = await axiosSecure(
-        `/getAllMedicine?search=${search}&sort=${sortOrder}`
+        `/getAllMedicine?search=${search}&sort=${sortOrder}&page=${currentPage}&size=${itemsPerPage}`
       );
       // console.log(data);
       return data;
@@ -35,16 +41,19 @@ const Shop = () => {
   const { data: allMedicineCount = {} } = useQuery({
     queryKey: ["allMedicineCount"],
     queryFn: async () => {
-      const { data } = await axiosSecure("/getAllMedicineCount");
+      const { data } = await axiosSecure(`/getAllMedicineCount`);
       // console.log(data.count);
       return data;
     },
   });
 
-  // const itemsPerPage = 10;
-  // const numberOfPages = allMedicineCount?.count
-  //   ? Math.ceil(allMedicineCount?.count / itemsPerPage)
-  //   : 0;
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [search, sortOrder]);
+
+  const numberOfPages = allMedicineCount?.count
+    ? Math.ceil(allMedicineCount?.count / itemsPerPage)
+    : 0;
   // console.log(numberOfPages);
 
   // const pages = [];
@@ -52,8 +61,29 @@ const Shop = () => {
   //   pages.push(i);
   // }
 
-  // const pages = [...Array(numberOfPages).keys()];
+  const pages = [...Array(numberOfPages).keys()];
   // console.log(pages);
+
+  // const handleItemsPerPage = (e) => {
+  //   // console.log(e.target.value);
+  //   const val = parseInt(e.target.value);
+  //   setItemsPerPage(val);
+  //   setCurrentPage(0);
+  // };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+      setLastClicked("previous");
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+      setLastClicked("next");
+    }
+  };
 
   const handleModal = (_id) => {
     document.getElementById("my_modal_2").showModal();
@@ -166,7 +196,7 @@ const Shop = () => {
         <table className="table">
           {/* head */}
           <thead>
-            <tr className=" bg-gray-200  text-gray-800 sm:text-xl sm:h-24 h-16 ">
+            <tr className=" bg-gray-200  text-gray-800 lg:text-xl md:text-sm sm:h-24 h-16 ">
               <th>
                 <label>
                   <input type="checkbox" className="checkbox" />
@@ -242,13 +272,81 @@ const Shop = () => {
           </tbody>
         </table>
       </div>
-      {/* <div className="py-5  ">
-        {pages.map((page) => (
-          <button key={page} className="btn">
+
+      {/* p */}
+      <div className="py-5 text-center space-x-3  ">
+        <p>{currentPage}</p>
+        {currentPage > 0 && (
+          <button
+            onClick={handlePreviousPage}
+            className={`btn ${
+              lastClicked === "previous"
+                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                : "bg-sky-500 text-white"
+            }`}
+          >
+            <FaArrowLeft /> Previous
+          </button>
+        )}
+        {/* {pages.map((page) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            key={page}
+            className={`btn ${
+              currentPage === page
+                ? "bg-sky-200 text-blue-600 border-2 border-blue-300"
+                : "bg-sky-500 text-white"
+            }`}
+          >
             {page}
           </button>
-        ))}
-      </div> */}
+        ))} */}
+        {/* <select
+          value={itemsPerPage}
+          onChange={handleItemsPerPage}
+          name=""
+          id=""
+        >
+          <option
+            value="
+          "
+          >
+            10
+          </option>
+          <option
+            value="5
+          "
+          >
+            5
+          </option>
+          <option
+            value="10
+          "
+          >
+            10
+          </option>
+          <option
+            value="15
+          "
+          >
+            15
+          </option>
+        </select> */}
+        {currentPage < pages.length - 1 && (
+          <button
+            onClick={handleNextPage}
+            className={`btn ${
+              lastClicked === "next"
+                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                : "bg-sky-500 text-white"
+            }`}
+          >
+            Next <FaArrowRight />
+          </button>
+        )}
+      </div>
+      {/* p */}
+
       <dialog id="my_modal_2" className="modal">
         <div className="modal-box   overflow-auto">
           {isOpen && (
