@@ -12,7 +12,11 @@ Medicart is a multi-vendor e-commerce platform specializing in medicine sales
 
 ## Screenshots
 
-![Medicine Screenshot](https://i.ibb.co.com/qL7nMxY3/Screenshot-2025-08-08-125107.png)
+![Medicine Screenshot](https://i.ibb.co/qL7nMxY3/Screenshot-2025-08-08-125107.png)
+
+## Description
+
+Medicart is a multi-vendor e-commerce platform for selling medicines. The project features role-based access where sellers can add medicines categorized by type. Users can browse products, add them to their cart, and make payments securely via Stripe.
 
 ## features
 
