@@ -6,7 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { FiShoppingCart } from "react-icons/fi";
 import CatMedicineDetails from "./CatMedicineDetails";
-import { FaEye } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaEye } from "react-icons/fa";
 
 const CategoryDetails = () => {
   const { category } = useParams();
@@ -17,16 +17,54 @@ const CategoryDetails = () => {
   let [isOpen, setIsOpen] = useState(false);
   const [sortData, setSortData] = useState([]);
   const [sortOrder, setSortOrder] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [lastClicked, setLastClicked] = useState("");
+
+  const itemsPerPage = 10;
 
   const { data: categoryDetails = [], isLoading } = useQuery({
-    queryKey: ["categoryDetails"],
+    queryKey: ["categoryDetails", currentPage, itemsPerPage],
     // enabled: !!user?.email,
     queryFn: async () => {
-      const { data } = await axiosSecure(`category/${category}`);
+      const { data } = await axiosSecure(
+        `/category/${category}?page=${currentPage}&size=${itemsPerPage}`
+      );
       // console.log(data);
       return data;
     },
   });
+
+  const { data: categoryDetail = {} } = useQuery({
+    queryKey: ["categoryDetail", category],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/category-count/${category}`);
+      console.log(data.count);
+      return data;
+    },
+  });
+
+  // useEffect(() => {
+  //   setCurrentPage(0);
+  // }, [search, sortOrder]);
+
+  const numberOfPages = categoryDetail?.count
+    ? Math.ceil(categoryDetail?.count / itemsPerPage)
+    : 0;
+  const pages = [...Array(numberOfPages).keys()];
+
+  const handlePreviousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+      setLastClicked("previous");
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+      setLastClicked("next");
+    }
+  };
 
   useEffect(() => {
     setSortData(categoryDetails);
@@ -185,6 +223,36 @@ const CategoryDetails = () => {
             </tbody>
           </table>
         </div>
+
+        <div className="py-5 text-center space-x-3  ">
+          {/* <p>{currentPage}</p> */}
+          {currentPage > 0 && (
+            <button
+              onClick={handlePreviousPage}
+              className={`btn ${
+                lastClicked === "previous"
+                  ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                  : "bg-sky-500 text-white"
+              }`}
+            >
+              <FaArrowLeft /> Previous
+            </button>
+          )}
+
+          {currentPage < pages.length - 1 && (
+            <button
+              onClick={handleNextPage}
+              className={`btn ${
+                lastClicked === "next"
+                  ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                  : "bg-sky-500 text-white"
+              }`}
+            >
+              Next <FaArrowRight />
+            </button>
+          )}
+        </div>
+
         <dialog id="my_modal_2" className="modal">
           <div className="modal-box   overflow-auto">
             {isOpen && (

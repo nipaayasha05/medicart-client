@@ -3,6 +3,7 @@ import useRole from "../../hooks/useRole";
 import AdminDashboard from "./AdminDashboard";
 import SellerDashboard from "./SellerDashboard";
 import Users from "../users/Users";
+import UserDashboard from "./UserDashboard";
 
 const DashboardHome = () => {
   const { role, isLoading } = useRole();
@@ -16,7 +17,7 @@ const DashboardHome = () => {
   }
 
   if (role === "User") {
-    return <Users />;
+    return <UserDashboard />;
   }
 };
 

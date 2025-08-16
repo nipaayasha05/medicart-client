@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../components/Loader";
 import { Helmet } from "react-helmet";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const Users = () => {
   const { user } = useAuth();
@@ -11,18 +12,64 @@ const Users = () => {
 
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("Low to High");
+  const [currentPage, setCurrentPage] = useState(0);
+  const [lastClicked, setLastClicked] = useState("");
+
+  const itemsPerPage = 10;
 
   const { data: users = [], isLoading } = useQuery({
-    queryKey: ["cart", user?.email, search, sortOrder],
+    queryKey: [
+      "cart",
+      user?.email,
+      search,
+      sortOrder,
+      currentPage,
+      itemsPerPage,
+    ],
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/payment-history?email=${user?.email}&search=${search}&sort=${sortOrder}`
+        `/payment-history?email=${user?.email}&search=${search}&sort=${sortOrder}&page=${currentPage}&size=${itemsPerPage}`
       );
       // console.log(res.data);
       return res.data;
     },
   });
+
+  const { data: paymentHistory = {} } = useQuery({
+    queryKey: ["paymentHistory"],
+    queryFn: async () => {
+      const { data } = await axiosSecure(
+        `/payment-history-count?email=${user?.email}`
+      );
+      console.log(data.count);
+      return data;
+    },
+  });
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [search, sortOrder]);
+
+  const numberOfPages = paymentHistory?.count
+    ? Math.ceil(paymentHistory?.count / itemsPerPage)
+    : 0;
+  const pages = [...Array(numberOfPages).keys()];
+
+  const handlePreviousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+      setLastClicked("previous");
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+      setLastClicked("next");
+    }
+  };
+
   if (isLoading) {
     return <Loader />;
   }
@@ -156,6 +203,34 @@ const Users = () => {
           <p>No Medicine Found</p>
         </div>
       )}{" "}
+      <div className="py-5 text-center space-x-3  ">
+        {/* <p>{currentPage}</p> */}
+        {currentPage > 0 && (
+          <button
+            onClick={handlePreviousPage}
+            className={`btn ${
+              lastClicked === "previous"
+                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                : "bg-sky-500 text-white"
+            }`}
+          >
+            <FaArrowLeft /> Previous
+          </button>
+        )}
+
+        {currentPage < pages.length - 1 && (
+          <button
+            onClick={handleNextPage}
+            className={`btn ${
+              lastClicked === "next"
+                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                : "bg-sky-500 text-white"
+            }`}
+          >
+            Next <FaArrowRight />
+          </button>
+        )}
+      </div>
     </div>
   );
 };

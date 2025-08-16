@@ -75,7 +75,7 @@ const Navbar = () => {
     return <Navigate to="/signin" state={pathname}></Navigate>;
   };
   return (
-    <div className="navbar font-open-sans top-0 fixed bg-sky-100 shadow-sm  border-b-2 border-gray-100 z-10 ">
+    <div className="navbar font-open-sans top-0 fixed bg-gray-100 shadow-sm h-20 border-b-2 border-gray-100 z-10 ">
       <div className="flex  container mx-auto ">
         <div className="navbar-start">
           <div className="dropdown">

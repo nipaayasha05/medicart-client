@@ -7,28 +7,74 @@ import Swal from "sweetalert2";
 import { MdDeleteForever, MdOutlineShoppingCartCheckout } from "react-icons/md";
 import Loader from "../../components/Loader";
 import { Helmet } from "react-helmet";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const Cart = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [quantities, setQuantities] = useState({});
   const [selectedIds, setSelectedIds] = useState([]);
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("Low to High");
 
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [lastClicked, setLastClicked] = useState("");
+
+  const itemsPerPage = 10;
 
   const { data: cartItems = [], isLoading } = useQuery({
-    queryKey: ["cart", user?.email, search, sortOrder],
+    queryKey: [
+      "cart",
+      user?.email,
+      search,
+      sortOrder,
+      currentPage,
+      itemsPerPage,
+    ],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/get-add-to-cart?email=${user?.email}&search=${search}&sort=${sortOrder}`
+        `/get-add-to-cart?email=${user?.email}&search=${search}&sort=${sortOrder}&page=${currentPage}&size=${itemsPerPage}`
       );
       // console.log(res.data);
       return res.data;
     },
   });
+
+  const { data: getAddToCart = {} } = useQuery({
+    queryKey: ["getAddToCart"],
+    queryFn: async () => {
+      const { data } = await axiosSecure(
+        `/get-add-to-cart-count?email=${user?.email}`
+      );
+      console.log(data.count);
+      return data;
+    },
+  });
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [search, sortOrder]);
+
+  const numberOfPages = getAddToCart?.count
+    ? Math.ceil(getAddToCart?.count / itemsPerPage)
+    : 0;
+  const pages = [...Array(numberOfPages).keys()];
+
+  const handlePreviousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+      setLastClicked("previous");
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+      setLastClicked("next");
+    }
+  };
 
   const deleteCartMutation = useMutation({
     mutationFn: async (_id) => {
@@ -374,6 +420,35 @@ const Cart = () => {
           <p>No Medicine Found</p>
         </div>
       )}{" "}
+      {/* pagination */}
+      <div className="py-5 text-center space-x-3  ">
+        {/* <p>{currentPage}</p> */}
+        {currentPage > 0 && (
+          <button
+            onClick={handlePreviousPage}
+            className={`btn ${
+              lastClicked === "previous"
+                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                : "bg-sky-500 text-white"
+            }`}
+          >
+            <FaArrowLeft /> Previous
+          </button>
+        )}
+
+        {currentPage < pages.length - 1 && (
+          <button
+            onClick={handleNextPage}
+            className={`btn ${
+              lastClicked === "next"
+                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                : "bg-sky-500 text-white"
+            }`}
+          >
+            Next <FaArrowRight />
+          </button>
+        )}
+      </div>
     </div>
   );
 };

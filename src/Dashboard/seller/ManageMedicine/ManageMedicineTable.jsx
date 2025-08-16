@@ -9,27 +9,6 @@ const ManageMedicineTable = ({
   addMedicine,
   isLoading,
 }) => {
-  // const [input, setInput] = useState(search);
-
-  // useEffect(() => {
-  //   const handler = setTimeout(() => {
-  //     if (input !== search) {
-  //       setSearch(input);
-  //     }
-  //   }, 500);
-  //   return () => {
-  //     clearTimeout(handler);
-  //   };
-  // }, [input, setSearch, search]);
-
-  // const handleSort = () => {
-  //   const sort = [...sortData].sort((a, b) => {
-  //     return sortOrder === "asc" ? a.price - b.price : b.price - a.price;
-  //   });
-  //   setSortData(sort);
-  //   setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-  // };
-
   if (isLoading) {
     return <Loader />;
   }

@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../components/Loader";
 import { Helmet } from "react-helmet";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const PaymentManagement = () => {
   const axiosSecure = useAxiosSecure();
@@ -10,20 +11,55 @@ const PaymentManagement = () => {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("Low to High");
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [lastClicked, setLastClicked] = useState("");
+
+  const itemsPerPage = 10;
+
   const {
     data: allPayment = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["allPayment", search, sortOrder],
+    queryKey: ["allPayment", search, sortOrder, currentPage, itemsPerPage],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/payment-history-all?search=${search}&sort=${sortOrder}`
+        `/payment-history-all?search=${search}&sort=${sortOrder}&page=${currentPage}&size=${itemsPerPage}`
       );
       // console.log(res.data);
       return res.data;
     },
   });
+
+  const { data: allPaymentCount = {} } = useQuery({
+    queryKey: ["allPaymentCount", search],
+    queryFn: async () => {
+      const { data } = await axiosSecure(
+        `/payment-history-all-count?search${search}`
+      );
+      console.log(data.count);
+      return data;
+    },
+  });
+
+  const numberOfPages = allPaymentCount?.count
+    ? Math.ceil(allPaymentCount?.count / itemsPerPage)
+    : 0;
+  const pages = [...Array(numberOfPages).keys()];
+
+  const handlePreviousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+      setLastClicked("previous");
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+      setLastClicked("next");
+    }
+  };
 
   const handleAction = async (payment) => {
     const newStatus = payment.status === "pending" ? "paid" : "pending";
@@ -157,6 +193,34 @@ const PaymentManagement = () => {
           <p>No Medicine Found</p>
         </div>
       )}{" "}
+      <div className="py-5 text-center space-x-3  ">
+        {/* <p>{currentPage}</p> */}
+        {currentPage > 0 && (
+          <button
+            onClick={handlePreviousPage}
+            className={`btn ${
+              lastClicked === "previous"
+                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                : "bg-sky-500 text-white"
+            }`}
+          >
+            <FaArrowLeft /> Previous
+          </button>
+        )}
+
+        {currentPage < pages.length - 1 && (
+          <button
+            onClick={handleNextPage}
+            className={`btn ${
+              lastClicked === "next"
+                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                : "bg-sky-500 text-white"
+            }`}
+          >
+            Next <FaArrowRight />
+          </button>
+        )}
+      </div>
     </div>
   );
 };

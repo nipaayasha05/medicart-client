@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 // import MUIDataTable from "mui-datatables";
@@ -11,6 +11,7 @@ import {
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import Loader from "../../../components/Loader";
 import { Helmet } from "react-helmet";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const SalesReport = () => {
   const axiosSecure = useAxiosSecure();
@@ -20,20 +21,58 @@ const SalesReport = () => {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("Low to High");
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [lastClicked, setLastClicked] = useState("");
+  const itemsPerPage = 10;
+
   const tableRef = useRef(null);
 
   const { data: reports = [], isLoading } = useQuery({
-    queryKey: ["reports", search, sortOrder],
+    queryKey: ["reports", search, sortOrder, currentPage, itemsPerPage],
 
     queryFn: async () => {
       const { data } = await axiosSecure(
-        `/admin-sales-report?search=${search}&sort=${sortOrder}`
+        `/admin-sales-report?search=${search}&sort=${sortOrder}&page=${currentPage}&size=${itemsPerPage}`
       );
       // console.log(data);
 
       return data;
     },
   });
+
+  const { data: adminSalesReportCount = {} } = useQuery({
+    queryKey: ["adminSalesReportCount", search],
+    queryFn: async () => {
+      const { data } = await axiosSecure(
+        `/admin-sales-report-count?search=${search}`
+      );
+      console.log(data.count);
+      return data;
+    },
+  });
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [search, sortOrder]);
+
+  const numberOfPages = adminSalesReportCount?.count
+    ? Math.ceil(adminSalesReportCount?.count / itemsPerPage)
+    : 0;
+  const pages = [...Array(numberOfPages).keys()];
+
+  const handlePreviousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+      setLastClicked("previous");
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+      setLastClicked("next");
+    }
+  };
 
   const dateRange = useMemo(() => {
     return reports.filter((report) => {
@@ -210,6 +249,34 @@ const SalesReport = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="py-5 text-center space-x-3  ">
+        {/* <p>{currentPage}</p> */}
+        {currentPage > 0 && (
+          <button
+            onClick={handlePreviousPage}
+            className={`btn ${
+              lastClicked === "previous"
+                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                : "bg-sky-500 text-white"
+            }`}
+          >
+            <FaArrowLeft /> Previous
+          </button>
+        )}
+
+        {currentPage < pages.length - 1 && (
+          <button
+            onClick={handleNextPage}
+            className={`btn ${
+              lastClicked === "next"
+                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                : "bg-sky-500 text-white"
+            }`}
+          >
+            Next <FaArrowRight />
+          </button>
+        )}
       </div>
     </div>
   );

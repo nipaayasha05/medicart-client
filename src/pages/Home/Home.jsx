@@ -18,7 +18,7 @@ const Home = () => {
     queryKey: ["slider"],
     queryFn: async () => {
       const { data } = await axios.get(
-        "https://assignment-12-server-nine-hazel.vercel.app/getHomeAdvertise"
+        "http://localhost:3000/getHomeAdvertise"
       );
 
       const sliderImage = data.filter(

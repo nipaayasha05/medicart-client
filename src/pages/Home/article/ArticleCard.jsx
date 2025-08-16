@@ -18,10 +18,7 @@ const ArticleCard = ({ art }) => {
             <h2 className=" sm:text-xl sm:font-bold card-title">{art.title}</h2>
           </div>
           <div className="text-start">
-            <p>
-              {" "}
-              <span className="font-semibold">Description</span> : {art.summary}
-            </p>
+            <p> {art.summary}</p>
           </div>
         </div>
 
