@@ -14,10 +14,10 @@ const Article = () => {
 
   return (
     <div>
-      <p className="text-3xl text-sky-600 font-bold text-center py-5">
+      <p className="text-3xl font-montserrat text-sky-500 font-bold text-center py-5">
         Health Tips & Wellness Articles
       </p>
-      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5  py-3">
+      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5  py-3">
         {article.map((art) => (
           <ArticleCard art={art} key={art._id} />
         ))}

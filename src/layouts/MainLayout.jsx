@@ -7,7 +7,7 @@ import Loader from "../components/Loader";
 const MainLayout = () => {
   const { state } = useNavigate();
   return (
-    <div>
+    <div className="font-alata-regular">
       <Navbar></Navbar>
       <div className="pt-20 min-h-[calc(100vh-288px)] ">
         {state == "loading" ? <Loader /> : <Outlet></Outlet>}

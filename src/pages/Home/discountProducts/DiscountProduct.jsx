@@ -31,8 +31,8 @@ const DiscountProduct = () => {
   });
   // console.log(discount);
   return (
-    <div className="bg-gradient-to-r from-sky-200    to-lime-50 border-l-sky-300 border-t-sky-200 border-t-2 border-l-2 py-5 rounded-xl">
-      <p className="pb-5  text-center text-sky-600 text-3xl font-bold">
+    <div className="bg-gradient-to-r from-sky-20  m-5  to-lime-5 border-l-sky-100 bg-orange-50 border-t-sky-100 border-t-4 border-l-4 py-5 rounded-xl transform transition duration-300 hover:scale-105 ">
+      <p className="pb-5 font-montserrat   text-center text-sky-500 text-3xl font-bold">
         Discount Products
       </p>
 
@@ -52,15 +52,21 @@ const DiscountProduct = () => {
           clickable: "fraction",
         }}
         modules={[EffectCreative, Pagination]}
-        className="mySwiper"
+        className="mySwiper shadow-md"
       >
         {discount.map((dis) => (
-          <SwiperSlide dis={dis} key={dis._id}>
+          <SwiperSlide dis={dis} key={dis._id} className="relative ">
             <img
               src={dis.image}
               alt={dis.itemName}
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
+            <p className="absolute font-open-sans top-2 left-2  bg-orange-300 text-white rounded-full p-2 sm:p- text-sm sm:text-xl ">
+              {dis.discount}%
+            </p>
+            <p className="absolute font-open-sans  top-2 right-2 bg-gray-50  text-gray-700 rounded-full p-1 sm:p- text-sm sm:text-xl ">
+              {dis.itemName}
+            </p>
           </SwiperSlide>
         ))}
       </Swiper>

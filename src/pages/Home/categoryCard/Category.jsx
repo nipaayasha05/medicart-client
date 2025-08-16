@@ -6,12 +6,15 @@ const Category = ({ category }) => {
   return (
     <Link to={`category/${category.itemName}`}>
       <div>
-        <div className="card border-2 border-gray-200  hover:shadow-2xl   shadow-md  ">
+        <div className="card     transform transition duration-300 hover:scale-105   shadow-md  ">
           <figure>
             <img className="w-full h-[320px]" src={category.image} />
           </figure>
-          <div className=" card-body bg-gradient-to-r from-sky-200    to-gray-100 text-gray-800">
-            <h2 className="card-title">{category.itemName}</h2>
+          <div className="font-open-sans card-body bg-gradient-to-r from-sky-10    to-orange-5 bg-gray-100 text-gray-800">
+            <p className="card-title">
+              <strong>Category Name : </strong>
+              {category.itemName}
+            </p>
             <h2 className="card-title">
               Number of Medicine :{category.medicineCount}
             </h2>

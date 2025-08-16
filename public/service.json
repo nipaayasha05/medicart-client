@@ -34,5 +34,17 @@
     "icon": "https://cdn.pixabay.com/photo/2025/07/01/16/11/ai-generated-9690909_1280.png",
     "title": "24/7 Support",
     "description": "Our customer support team is available around the clock, 7 days a week, to resolve any issues you face promptly. Reach out via phone, chat, or email and experience fast and effective assistance."
+  },
+  {
+    "id": 7,
+    "icon": "https://cdn-icons-png.flaticon.com/512/10620/10620303.png",
+    "title": "Affordable Prices",
+    "description": "We offer competitive pricing on all medicines and healthcare products. Take advantage of discounts, seasonal offers, and bulk purchase deals to make your healthcare more affordable."
+  },
+  {
+    "id": 8,
+    "icon": "https://cdn-icons-png.flaticon.com/512/2622/2622004.png",
+    "title": "Easy Refills",
+    "description": "Never miss a dose again! Our refill reminder and auto-reorder options ensure that you always have your essential medicines in stock without the hassle of placing repeat orders manually."
   }
 ]

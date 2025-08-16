@@ -2,12 +2,12 @@ import React from "react";
 
 const ServiceCard = ({ service }) => {
   return (
-    <div className="card   bg-gradient-to-r from-sky-200    to-gray-200   m-5 shadow-sm">
-      <div className=" m-1 border-l-5 border-t-5 border-t-gray-200  rounded-xl border-l-indigo-100">
+    <div className="card  font-open-sans transform transition duration-300 hover:scale-105 border-l-5 border-t-5 border-t-gray-100  rounded-xl border-l-gray-100  bg-orange-50  m-5 shadow-md">
+      <div className=" m-1 ">
         <figure className="px-10 pt-10 ">
           <img
             src={service.icon}
-            className="w-[150px] h-[120px] rounded-xl p-2 bg-gray-200"
+            className="w-full h-[150px] rounded-xl p-2 bg-gray-100"
           />
         </figure>
         <div className="card-body h-1/12 items-center text-center">

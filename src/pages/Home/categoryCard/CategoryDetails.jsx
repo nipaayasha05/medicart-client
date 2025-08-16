@@ -90,12 +90,15 @@ const CategoryDetails = () => {
   return (
     <div>
       <div className="container mx-auto py-5">
-        <p className="py- text-3xl font-bold p-2 text-sky-600"> {category}</p>
-        <div className="flex justify-between items-center">
+        <p className="py- text-3xl font-bold p-2 font-montserrat text-sky-500">
+          {" "}
+          {category}
+        </p>
+        <div className="flex justify-between items-center font-open-sans">
           <button onClick={handleSort} className="btn text-white bg-sky-500">
             Sort by price({sortOrder === "asc" ? "High to Low" : "Low to High"})
           </button>
-          <div className="  ">
+          <div className="   ">
             <p className="relative text-white badge badge-sm  rounded-full  badge-error  ">
               {cartItems.length ? cartItems.length : 0}
             </p>
@@ -106,11 +109,11 @@ const CategoryDetails = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto py-5">
+        <div className="overflow-x-auto py-5 font-open-sans">
           <table className="table">
             {/* head */}
             <thead>
-              <tr className=" bg-gray-200  text-gray-800 sm:text-xl sm:h-24 h-16 ">
+              <tr className=" bg-gray-200  text-gray-800   lg:text-xl  h-16 sm:h-24  ">
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />
@@ -169,7 +172,7 @@ const CategoryDetails = () => {
                       onClick={() => {
                         handleAddToCart(all);
                       }}
-                      className="btn bg-sky-500 text-white   py-6 sm:py-4 "
+                      className="btn bg-sky-500 text-white   py-6 lg:py-4 "
                     >
                       {/* <FiShoppingCart size={18} /> */}
                       {cartItems.find((item) => item.medicineId === all._id)

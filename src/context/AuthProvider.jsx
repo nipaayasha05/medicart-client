@@ -69,8 +69,9 @@ const AuthProvider = ({ children }) => {
         );
       } else {
         setUser(user);
-        await axios.get(
+        await axios.post(
           "https://assignment-12-server-nine-hazel.vercel.app/logout",
+          {},
           {
             withCredentials: true,
           }

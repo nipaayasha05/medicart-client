@@ -22,7 +22,7 @@
   {
     "_id": "3",
     "title": "Safe Use and Dosage of Paracetamol",
-    "summary": "Paracetamol is effective for pain and fever relief, but overdose may harm your liver. Follow instructions and avoid frequent unsupervised use.",
+    "summary": "Paracetamol is effective for pain and fever relief, but overdose may harm your liver. Follow instructions carefully and avoid frequent unsupervised use.",
     "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500",
     "author": "Dr. Ahsan Kabir",
     "date": "2025-06-29",
@@ -58,5 +58,25 @@
     "date": "2025-07-15",
     "category": "Respiratory Health",
     "tags": ["asthma", "inhaler", "lung"]
+  },
+  {
+    "_id": "7",
+    "title": "Tips to Improve Sleep Quality Naturally",
+    "summary": "Maintain a regular sleep schedule, reduce screen time before bed, avoid heavy meals late at night, and create a calm environment for deep, restful sleep.",
+    "image": "https://images.pexels.com/photos/6941126/pexels-photo-6941126.jpeg?_gl=1*1k5or9n*_ga*MTQyMTg2Nzc3MC4xNzM2MDg4OTk1*_ga_8JE65Q40S6*czE3NTUzMTM4MDEkbzQ5JGcxJHQxNzU1MzE0MTI1JGozNCRsMCRoMA..",
+    "author": "Dr. Shirin Akter",
+    "date": "2025-07-18",
+    "category": "Lifestyle",
+    "tags": ["sleep", "relaxation", "healthy living"]
+  },
+  {
+    "_id": "8",
+    "title": "Hydration: Why Drinking Water is Essential",
+    "summary": "Proper hydration improves digestion, boosts energy, and maintains healthy skin. Aim for at least 8 glasses of clean water daily to keep your body active and balanced.",
+    "image": "https://images.pexels.com/photos/3776811/pexels-photo-3776811.jpeg?_gl=1*1m4frs1*_ga*MTQyMTg2Nzc3MC4xNzM2MDg4OTk1*_ga_8JE65Q40S6*czE3NTUzMTM4MDEkbzQ5JGcxJHQxNzU1MzEzODkzJGo0MSRsMCRoMA..",
+    "author": "Nutritionist Arif Chowdhury",
+    "date": "2025-07-20",
+    "category": "Nutrition",
+    "tags": ["hydration", "water", "health"]
   }
 ]
