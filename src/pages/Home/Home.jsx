@@ -10,6 +10,8 @@ import axios from "axios";
 import Article from "./article/Article";
 import Service from "./service/Service";
 import { Helmet } from "react-helmet";
+import TopProducts from "./recentProduts/RecentProducts";
+import RecentProducts from "./recentProduts/RecentProducts";
 
 const Home = () => {
   // const axiosSecure = useAxiosSecure();
@@ -44,8 +46,11 @@ const Home = () => {
         <CategoryCard />
       </div>
 
-      <div className="py-10">
+      <div className="py-">
         <DiscountProduct />
+      </div>
+      <div>
+        <RecentProducts />
       </div>
       <div>
         <Service />

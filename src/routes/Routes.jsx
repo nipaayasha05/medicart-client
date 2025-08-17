@@ -29,6 +29,7 @@ import SellerRoute from "./SellerRoute";
 import SalesReport from "../Dashboard/admin/salesReport/SalesReport";
 import UpdateProfile from "../Dashboard/updateProfile/UpdateProfile";
 import ErrorPage from "../components/ErrorPage";
+import AllCategory from "../pages/allCategory/AllCategory";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "shop",
         element: <Shop />,
+      },
+      {
+        path: "category",
+        element: <AllCategory />,
       },
       {
         path: "cart",
@@ -69,8 +74,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "category/:category",
-        element: <CategoryDetails />,
+        element: <CategoryDetails></CategoryDetails>,
       },
+      // {
+      //   path: "/:category",
+      //   element: <CategoryDetails />,
+      // },
       {
         path: "update-profile",
         element: (

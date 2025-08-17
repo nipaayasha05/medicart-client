@@ -119,6 +119,7 @@ const Shop = () => {
       company: medicine.company,
       price: medicine.price,
       discount: medicine.discount,
+      description: medicine.description,
       totalPrice: 1 * medicine.price * (1 - medicine.discount / 100),
       quantity: 1,
       status: "pending",

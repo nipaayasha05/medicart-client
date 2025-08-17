@@ -171,6 +171,7 @@ const Cart = () => {
         quantity,
         price: item.price,
         discount: item.discount,
+        description: item.description,
         totalPrice: quantity * item.price * (1 - item.discount / 100),
         userEmail: user.email,
         addedBy: item.addedBy,

@@ -29,7 +29,7 @@ const DiscountProduct = () => {
   });
   // console.log(discount);
   return (
-    <div className="bg-gradient-to-r from-sky-20  m-5  to-lime-5 border-l-sky-100 bg-orange-50 border-t-sky-100 border-t-4 border-l-4 py-5 rounded-xl transform transition duration-300 hover:scale-105 ">
+    <div className="   m-5    border-l-sky-100 bg-orange-50 border-t-sky-100 border-t-4 border-l-4 py-5 rounded-xl transform transition duration-300 hover:scale-105 ">
       <p className="pb-5 font-montserrat   text-center text-sky-500 text-3xl font-bold">
         Discount Products
       </p>

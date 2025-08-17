@@ -5,10 +5,11 @@ import { FiEdit } from "react-icons/fi";
 import { Link, NavLink, useLocation } from "react-router";
 import { FaShop } from "react-icons/fa6";
 import { IoHome } from "react-icons/io5";
-import { FaGlobe } from "react-icons/fa";
+import { FaGlobe, FaThList } from "react-icons/fa";
 import { HiShoppingCart } from "react-icons/hi2";
-import { MdDashboard } from "react-icons/md";
+import { MdCategory, MdDashboard } from "react-icons/md";
 import { TbLogout } from "react-icons/tb";
+import { HiOutlineViewGrid } from "react-icons/hi";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
@@ -37,9 +38,10 @@ const Navbar = () => {
           <FaShop size={20} color="black" /> Shop
         </NavLink>
       </li>
+
       <li>
         <NavLink
-          to="/cart"
+          to="fererere"
           className={({ isActive }) =>
             `text-md font-bold ${isActive ? "border-b-2 border-b-sky-300" : ""}`
           }
@@ -47,26 +49,36 @@ const Navbar = () => {
           <HiShoppingCart size={20} color="black" /> Cart
         </NavLink>
       </li>
-      <li className="dropdown dropdown-hover dropdown-bottom">
-        <div
-          tabIndex={0}
-          className="text-md font-bold m-1 flex items-center gap-1 cursor-pointer"
-        >
-          <FaGlobe size={20} />
-          Languages
-        </div>
-        <ul
-          tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40"
-        >
+
+      {user && (
+        <>
+          {" "}
           <li>
-            <a>English</a>
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                `text-md font-bold ${
+                  isActive ? "border-b-2 border-b-sky-300" : ""
+                }`
+              }
+            >
+              <HiShoppingCart size={20} color="black" /> Cart
+            </NavLink>
           </li>
           <li>
-            <a>বাংলা</a>
+            <NavLink
+              to="/category"
+              className={({ isActive }) =>
+                `text-md font-bold ${
+                  isActive ? "border-b-2 border-b-sky-300" : ""
+                }`
+              }
+            >
+              <HiOutlineViewGrid size={20} color="black" /> All Category
+            </NavLink>
           </li>
-        </ul>
-      </li>
+        </>
+      )}
     </>
   );
   const handleUserLogOut = () => {
