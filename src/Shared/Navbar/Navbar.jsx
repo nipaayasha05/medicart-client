@@ -5,7 +5,7 @@ import { FiEdit } from "react-icons/fi";
 import { Link, NavLink, useLocation } from "react-router";
 import { FaShop } from "react-icons/fa6";
 import { IoHome } from "react-icons/io5";
-import { FaGlobe, FaThList } from "react-icons/fa";
+import { FaGlobe, FaInfoCircle, FaThList } from "react-icons/fa";
 import { HiShoppingCart } from "react-icons/hi2";
 import { MdCategory, MdDashboard } from "react-icons/md";
 import { TbLogout } from "react-icons/tb";
@@ -41,12 +41,12 @@ const Navbar = () => {
 
       <li>
         <NavLink
-          to="fererere"
+          to="/about"
           className={({ isActive }) =>
             `text-md font-bold ${isActive ? "border-b-2 border-b-sky-300" : ""}`
           }
         >
-          <HiShoppingCart size={20} color="black" /> Cart
+          <FaInfoCircle size={20} color="black" /> About Us
         </NavLink>
       </li>
 
@@ -87,7 +87,7 @@ const Navbar = () => {
     return <Navigate to="/signin" state={pathname}></Navigate>;
   };
   return (
-    <div className="navbar font-open-sans top-0 fixed bg-gray-100 shadow-sm h-20 border-b-2 border-gray-100 z-10 ">
+    <div className="navbar  font-open-sans top-0 fixed bg-gray-100 shadow-sm h-20 border-b-2 border-gray-100 z-10 ">
       <div className="flex  container mx-auto ">
         <div className="navbar-start">
           <div className="dropdown">

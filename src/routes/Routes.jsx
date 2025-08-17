@@ -30,6 +30,7 @@ import SalesReport from "../Dashboard/admin/salesReport/SalesReport";
 import UpdateProfile from "../Dashboard/updateProfile/UpdateProfile";
 import ErrorPage from "../components/ErrorPage";
 import AllCategory from "../pages/allCategory/AllCategory";
+import AboutUs from "../pages/about/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -76,10 +77,10 @@ export const router = createBrowserRouter([
         path: "category/:category",
         element: <CategoryDetails></CategoryDetails>,
       },
-      // {
-      //   path: "/:category",
-      //   element: <CategoryDetails />,
-      // },
+      {
+        path: "/about",
+        element: <AboutUs />,
+      },
       {
         path: "update-profile",
         element: (

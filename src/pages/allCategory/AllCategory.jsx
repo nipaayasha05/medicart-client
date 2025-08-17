@@ -4,6 +4,7 @@ import React from "react";
 import AllCategoryCard from "./AllCategoryCard";
 import Loader from "../../components/Loader";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const AllCategory = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,6 +20,10 @@ const AllCategory = () => {
   if (isLoading) return <Loader />;
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>MediCart|All Categories</title>
+      </Helmet>
       <div className="py-10 ">
         <h3 className="text-3xl text-sky-500 font-bold text-center font-montserrat py-5">
           Explore Medicine Categories

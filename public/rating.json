@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Ayesha Islam",
+    "photo": "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/short/linkedin-profile-picture-maker/dummy_image/thumb/004.webp",
+    "rating": 5,
+    "review": "Medicart made buying medicines so much easier for me. The checkout process was smooth, and delivery was on time with secure packaging."
+  },
+  {
+    "id": 2,
+    "name": "Farhan Ali",
+    "photo": "https://www.profilebakery.com/wp-content/uploads/2023/04/AI-photos-of-yourself.jpg",
+    "rating": 4,
+    "review": "I loved how simple the website is to use. The search and filter options helped me quickly find the medicine I needed without wasting time."
+  },
+  {
+    "id": 3,
+    "name": "Nusrat Jahan",
+    "photo": "https://www.perfocal.com/blog/content/images/size/w960/2021/01/Perfocal_17-11-2019_TYWFAQ_100_standard-3.jpg",
+    "rating": 5,
+    "review": "The customer support team is excellent. I got proper guidance on my query and the response was quick. Definitely recommend Medicart to others."
+  },
+  {
+    "id": 4,
+    "name": "Tanvir Hasan",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWNkapsZfke7gFWYC7UcUxIEU1CjWcOvl_uQ&s",
+    "rating": 4,
+    "review": "I found good discounts on several medicines. Payment was secure with Stripe and I even downloaded my invoice easily after the purchase."
+  }
+]

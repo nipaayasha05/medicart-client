@@ -6,7 +6,7 @@ const ProdutsDetails = ({ recentProducts, isOpen }) => {
     (medicine) => medicine._id === isOpen
   );
   if (!detailsMedicine) return null;
-  console.log(detailsMedicine);
+  // console.log(detailsMedicine);
   return (
     <div>
       <div>

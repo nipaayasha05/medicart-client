@@ -12,6 +12,8 @@ import Service from "./service/Service";
 import { Helmet } from "react-helmet";
 import TopProducts from "./recentProduts/RecentProducts";
 import RecentProducts from "./recentProduts/RecentProducts";
+import Rating from "./rating/Rating";
+import Partners from "./partners/Partners";
 
 const Home = () => {
   // const axiosSecure = useAxiosSecure();
@@ -20,7 +22,7 @@ const Home = () => {
     queryKey: ["slider"],
     queryFn: async () => {
       const { data } = await axios.get(
-        "http://localhost:3000/getHomeAdvertise"
+        "https://assignment-12-server-nine-hazel.vercel.app/getHomeAdvertise"
       );
 
       const sliderImage = data.filter(
@@ -45,18 +47,26 @@ const Home = () => {
       <div>
         <CategoryCard />
       </div>
+      <div>
+        <RecentProducts />
+      </div>
 
       <div className="py-">
         <DiscountProduct />
       </div>
+
       <div>
-        <RecentProducts />
+        <Partners />
       </div>
       <div>
         <Service />
       </div>
       <div>
         <Article />
+      </div>
+
+      <div>
+        <Rating />
       </div>
     </div>
   );

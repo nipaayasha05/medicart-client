@@ -21,8 +21,10 @@ const RecentProducts = () => {
     queryKey: ["recentProducts"],
 
     queryFn: async () => {
-      const { data } = await axios.get(`http://localhost:3000/newArrivals`);
-      console.log(data);
+      const { data } = await axios.get(
+        `https://assignment-12-server-nine-hazel.vercel.app/newArrivals`
+      );
+      // console.log(data);
       return data;
     },
   });
@@ -80,7 +82,7 @@ const RecentProducts = () => {
       <p className="text-3xl font-montserrat text-sky-500 font-bold text-center py-5">
         Fresh on Shelf
       </p>
-      <div className="container mx-auto   grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 py-3">
+      <div className="container mx-auto    grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 py-3">
         {recentProducts.map((product) => (
           <div product={product} key={product._id}>
             <div className="card transform transition duration-300 hover:scale-105 bg-gray-100 m-5 shadow-md">

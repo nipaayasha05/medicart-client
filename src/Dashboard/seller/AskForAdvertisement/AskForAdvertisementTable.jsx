@@ -18,9 +18,9 @@ const AskForAdvertisementTable = ({ addAdvertisement, isLoading }) => {
                     <input type="checkbox" className="checkbox" />
                   </label>
                 </th>
-                <th>Medicine Image</th>
+                <th> Image</th>
 
-                <th>Medicine Name</th>
+                <th> Title</th>
                 <th>Description</th>
                 <th>Status</th>
               </tr>
@@ -38,7 +38,7 @@ const AskForAdvertisementTable = ({ addAdvertisement, isLoading }) => {
 
                   <td>
                     <img
-                      className="w-36 sm:h-24 h-14  rounded-xl"
+                      className="w-40 sm:h-24 h-14  rounded-xl"
                       src={advertisement?.image}
                       alt=""
                     />

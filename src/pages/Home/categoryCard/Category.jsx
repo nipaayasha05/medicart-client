@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const Category = ({ category }) => {
   // console.log(category);
   return (
-    <div className="card bg-gray-50 transform transition duration-300 hover:scale-105  shadow-md">
+    <div className="card bg-gray-50 font-open-sans transform transition duration-300 hover:scale-105  shadow-md">
       <figure>
         <img className="w-full h-[280px]" src={category.image} />
       </figure>
