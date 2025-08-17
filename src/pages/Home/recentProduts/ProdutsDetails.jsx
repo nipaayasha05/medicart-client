@@ -20,10 +20,12 @@ const ProdutsDetails = ({ recentProducts, isOpen }) => {
           </figure>
           <div className="card-body bg-orange-50">
             <h2 className="card-title">{detailsMedicine.itemName}</h2>
+            <p>{detailsMedicine.description}</p>
             <p>
               <strong>Generic Name : </strong>
               {detailsMedicine.genericName}
             </p>
+
             <p>
               <strong>Category : </strong>
               {detailsMedicine.category}
@@ -38,7 +40,7 @@ const ProdutsDetails = ({ recentProducts, isOpen }) => {
             </p>
             <p>
               <strong>Discount : </strong>
-              {detailsMedicine.discount}
+              {detailsMedicine.discount}%
             </p>
             <p>
               <strong>Price : </strong>

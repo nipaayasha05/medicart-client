@@ -12,7 +12,7 @@ const Rating = () => {
   }, []);
   return (
     <div className="m-5">
-      <p className="text-3xl font-montserrat text-sky-500 font-bold text-center py-5  ">
+      <p className="text-3xl font-montserrat text-sky-500 font-bold text-center py-5   ">
         Your Words, Our Inspiration
       </p>
       <div className="container mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 py-3  ">

@@ -27,7 +27,7 @@ const Category = ({ category }) => {
           </div>
           <div className="card-actions justify-end ">
             <Link to={`category/${category.itemName}`}>
-              <button className="btn    bg-sky-500 text-white   ">
+              <button className="btn  border-none  bg-sky-500 text-white   ">
                 View Medicines <FaArrowRight />
               </button>
             </Link>

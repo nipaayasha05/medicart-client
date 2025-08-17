@@ -11,7 +11,9 @@ const ServiceCard = ({ service }) => {
           />
         </figure>
         <div className="card-body h-1/12 items-center text-center">
-          <h2 className="card-title sm:text-xl font-bold">{service.title}</h2>
+          <h2 className="card-title text-black sm:text-xl font-bold">
+            {service.title}
+          </h2>
           <p className="sm:text-xl text-gray-700">{service.description}</p>
         </div>
       </div>

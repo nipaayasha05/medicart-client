@@ -85,7 +85,7 @@ const RecentProducts = () => {
       <div className="container mx-auto    grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 py-3">
         {recentProducts.map((product) => (
           <div product={product} key={product._id}>
-            <div className="card transform transition duration-300 hover:scale-105 bg-gray-100 m-5 shadow-md">
+            <div className="card transform transition duration-300 hover:scale-105 bg-gray-50 m-5 shadow-md">
               <figure>
                 <img
                   src={product.image}
@@ -94,7 +94,7 @@ const RecentProducts = () => {
                 />
               </figure>
               <div className="card-body  font-open-sans text-gray-700 text-sm sm:text-xl">
-                <h2 className="card-title text-sm sm:text-xl h-[58px]">
+                <h2 className="card-title  text-sm sm:text-xl h-[58px]">
                   {product.itemName}
                 </h2>
                 <p className=" h-[75px]  ">
@@ -106,7 +106,7 @@ const RecentProducts = () => {
                     onClick={() => {
                       handleModal(product._id);
                     }}
-                    className="btn text-white bg-sky-500  "
+                    className="btn border-none text-white bg-sky-500  "
                   >
                     View <FaEye size={24} color="white" />
                   </button>
@@ -118,7 +118,7 @@ const RecentProducts = () => {
                     onClick={() => {
                       handleAddToCart(product);
                     }}
-                    className="btn bg-sky-500 text-white      "
+                    className="btn border-none bg-sky-500 text-white      "
                   >
                     <FiShoppingCart size={18} />
 

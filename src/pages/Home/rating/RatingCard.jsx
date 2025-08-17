@@ -11,7 +11,7 @@ const RatingCard = ({ rating }) => {
             className="w-[150px] h-[150px] rounded-full p-1    bg-gray-100"
           />
         </figure>
-        <div className="card-body   h-1/12 items-center text-center  ">
+        <div className="card-body text-black  h-1/12 items-center text-center  ">
           <div className="flex items-center gap-1 text-orange-400">
             {Array.from({ length: rating.rating }).map((_, i) => (
               <FaStar key={i} size={18} />
