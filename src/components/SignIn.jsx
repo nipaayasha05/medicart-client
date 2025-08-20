@@ -68,18 +68,20 @@ const SignIn = () => {
         <meta charSet="utf-8" />
         <title>MediCart|Join Us</title>
       </Helmet>
-      <div className="card bg-gray-100 m-5    mx-auto my-30 max-w-sm shrink-0 shadow-2xl">
+      <div className="card bg-gray-100 m-5  font-open-sans  mx-auto my-30 max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
-          <h1 className="text-5xl font-bold text-sky-600">Log In now!</h1>
+          <h1 className="text-5xl font-montserrat font-bold text-sky-500">
+            Log In now!
+          </h1>
           <form onSubmit={handleSignIn} className="fieldset">
-            <label className="label">Email</label>
+            <label className="label text-gray-700">Email</label>
             <input
               type="email"
               name="email"
               className="input"
               placeholder="Email"
             />
-            <label className="label">Password</label>
+            <label className="label text-gray-700">Password</label>
             <input
               type="password"
               name="password"
@@ -88,7 +90,7 @@ const SignIn = () => {
             />
 
             <div>
-              <a className="link link-hover">Forgot password?</a>
+              <a className="link link-hover text-gray-700">Forgot password?</a>
             </div>
 
             <button
@@ -98,10 +100,10 @@ const SignIn = () => {
             >
               <FcGoogle size={24} /> Login with Google
             </button>
-            <button className="btn     my-2  bg-sky-500 text-white rounded-2xl   mt-4 mr-4">
+            <button className="btn   border-none  my-2  bg-sky-500 text-white     mt-4 mr-4">
               Join Us
             </button>
-            <p className="font-semibold text-center pt-5">
+            <p className="font-semibold text-center text-gray-700 pt-5">
               Don’t Have An Account ?
               <NavLink className="text-sky-600 " to="/signup">
                 Registration

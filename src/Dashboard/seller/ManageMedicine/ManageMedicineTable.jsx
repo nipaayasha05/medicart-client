@@ -57,7 +57,7 @@ const ManageMedicineTable = ({
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16">
+                <tr className="bg-sky-200 lg:text-xl md:text-sm text-gray-700 sm:text-xl  lg:h-24 h-20 border-gray-400  border">
                   <th>
                     <label>
                       <input type="checkbox" className="checkbox" />
@@ -79,7 +79,7 @@ const ManageMedicineTable = ({
                 {/* row 1 */}
                 {addMedicine.map((medicine, index) => (
                   <tr
-                    className="lg:text-xl md:text-sm hover:bg-gray-100"
+                    className="lg:text-xl  hover:text-black  text-black  md:text-sm bg-gray-100 hover:bg-orange-100 border-gray-400 rounded-box border  "
                     medicine={medicine}
                     index={index}
                     key={medicine._id}
@@ -87,7 +87,7 @@ const ManageMedicineTable = ({
                     <th>{index + 1}</th>
                     <td>
                       <img
-                        className="w-36 sm:h-24 h-14  rounded-xl"
+                        className="w-36 sm:h-24 h-20  rounded-xl"
                         src={medicine?.image}
                         alt=""
                       />

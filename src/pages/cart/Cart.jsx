@@ -48,7 +48,7 @@ const Cart = () => {
       const { data } = await axiosSecure(
         `/get-add-to-cart-count?email=${user?.email}`
       );
-      console.log(data.count);
+      // console.log(data.count);
       return data;
     },
   });
@@ -234,19 +234,19 @@ const Cart = () => {
   }
 
   return (
-    <div className="container mx-auto py-5">
+    <div className="container font-open-sans mx-auto py-5">
       <Helmet>
         <meta charSet="utf-8" />
         <title>MediCart|Cart</title>
       </Helmet>
       <p
-        className="text-3xl font-bold text-center py-3 text-sky-500
+        className="text-3xl font-montserrat font-bold text-center py-3 text-sky-500
       "
       >
         Cart
       </p>
       {cartItems.length > 0 ? (
-        <div>
+        <div className="font-open-sans">
           <div className="flex flex-col sm:flex-row   items-center justify-start">
             <button
               onClick={() =>
@@ -289,7 +289,7 @@ const Cart = () => {
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="bg-gray-200 text-gray-800 sm:text-xl sm:h-24 h-16">
+                <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16">
                   <th></th>
                   <th>#</th>
 
@@ -309,7 +309,7 @@ const Cart = () => {
                 {/* row 1 */}
                 {cartItems.map((cart, index) => (
                   <tr
-                    className="lg:text-xl md:text-sm hover:bg-gray-100"
+                    className="lg:text-xl hover:text-black md:text-sm hover:bg-gray-100"
                     medicine={cart}
                     index={index}
                     key={cart._id}
@@ -317,7 +317,7 @@ const Cart = () => {
                     <td>
                       <input
                         type="checkbox"
-                        className="checkbox"
+                        className="checkbox  hover:text-black    "
                         checked={selectedIds.includes(cart._id)}
                         onChange={() => {
                           handleCheckBox(cart._id);
@@ -339,7 +339,7 @@ const Cart = () => {
                     <td className="">
                       <div className="flex justify-center items-center   gap-2">
                         <button
-                          className="btn btn-sm bg-sky-500 text-white font-extrabold"
+                          className="btn border-none btn-sm bg-sky-500 text-white font-extrabold"
                           onClick={() => {
                             if (quantities[cart._id] > 1)
                               handleQuantityChange(
@@ -354,7 +354,7 @@ const Cart = () => {
                           {cart.quantity}
                         </p>
                         <button
-                          className="btn btn-sm bg-sky-500 text-white font-extrabold"
+                          className="btn border-none btn-sm bg-sky-500 text-white font-extrabold"
                           onClick={() =>
                             handleQuantityChange(
                               cart._id,

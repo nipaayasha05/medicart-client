@@ -32,12 +32,14 @@ const ManageUsers = () => {
         <meta charSet="utf-8" />
         <title>MediCart|Manage Users</title>
       </Helmet>
-      <h3 className="font-bold text-3xl p-2 mt-5 text-sky-600">Manage Users</h3>{" "}
-      <div className="overflow-x-auto py-5">
-        <table className="table">
+      <h3 className="font-bold font-montserrat text-3xl p-2 mt-5 text-sky-500">
+        Manage Users
+      </h3>{" "}
+      <div className="overflow-x-auto py-5  ">
+        <table className="table ">
           {/* head */}
-          <thead>
-            <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16">
+          <thead className="rounded-xl ">
+            <tr className="bg-sky-200 lg:text-xl md:text-sm text-gray-700 sm:text-xl  lg:h-24 h-16 border-gray-400  border">
               <th></th>
               <th>#</th>
 
@@ -51,7 +53,7 @@ const ManageUsers = () => {
             {/* row 1 */}
             {users.map((user, index) => (
               <tr
-                className="lg:text-xl md:text-sm hover:bg-gray-100"
+                className="lg:text-xl  hover:text-black  text-black  md:text-sm bg-gray-100 hover:bg-orange-100 border-gray-400 rounded-box border  "
                 user={user}
                 index={index}
                 key={user._id}
@@ -68,7 +70,7 @@ const ManageUsers = () => {
                       setIsOpen(true);
                       document.getElementById("my_modal_2").showModal();
                     }}
-                    className="btn bg-sky-500 text-white"
+                    className="btn border-none bg-sky-500 text-white"
                   >
                     Update Role
                   </button>{" "}

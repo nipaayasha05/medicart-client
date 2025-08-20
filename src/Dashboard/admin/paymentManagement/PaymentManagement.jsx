@@ -37,7 +37,7 @@ const PaymentManagement = () => {
       const { data } = await axiosSecure(
         `/payment-history-all-count?search${search}`
       );
-      console.log(data.count);
+      // console.log(data.count);
       return data;
     },
   });
@@ -84,12 +84,12 @@ const PaymentManagement = () => {
         <meta charSet="utf-8" />
         <title>MediCart|Payment Management</title>
       </Helmet>{" "}
-      <h3 className="font-bold text-3xl text-sky-600 mt-5 p-2">
+      <h3 className="font-bold text-3xl font-montserrat text-sky-600 mt-5 p-2">
         Payment Management
       </h3>
       {allPayment.length > 0 ? (
         <div>
-          <div className="flex flex-col sm:flex-row   items-center justify-start gap-2">
+          <div className="flex flex-col  sm:flex-row   items-center justify-start gap-2">
             <button
               onClick={() =>
                 setSortOrder(
@@ -131,7 +131,7 @@ const PaymentManagement = () => {
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16  ">
+                <tr className="bg-sky-200 lg:text-xl md:text-sm text-gray-700 sm:text-xl  lg:h-24 h-16 border-gray-400  border  ">
                   <th></th>
                   <th>#</th>
 
@@ -150,7 +150,7 @@ const PaymentManagement = () => {
                 {/* row 1 */}
                 {allPayment.map((all, index) => (
                   <tr
-                    className="hover:bg-gray-100 cursor-pointer lg:text-xl md:text-sm  "
+                    className="lg:text-xl  hover:text-black  text-black  md:text-sm bg-gray-100 hover:bg-orange-100 border-gray-400 rounded-box border  "
                     all={all}
                     key={all._id}
                   >
@@ -158,7 +158,7 @@ const PaymentManagement = () => {
 
                     <td>{index + 1}</td>
                     <td></td>
-                    <td className="text-center">{all.email}</td>
+                    <td className=" ">{all.email}</td>
                     <td className="text-center">{all?.items.length}</td>
                     <td className="text-center">{all.grandTotal}</td>
                     <td className="text-center">
@@ -173,9 +173,9 @@ const PaymentManagement = () => {
                       className="text-center"
                     >
                       <button
-                        className={`btn ${
+                        className={`btn border border-sky-500 ${
                           all.status === "paid"
-                            ? "bg-violet-200 text-gray-500"
+                            ? "bg-gray-100 text-gray-500"
                             : "bg-sky-500 text-white"
                         }`}
                       >
@@ -200,7 +200,7 @@ const PaymentManagement = () => {
             onClick={handlePreviousPage}
             className={`btn ${
               lastClicked === "previous"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >
@@ -213,7 +213,7 @@ const PaymentManagement = () => {
             onClick={handleNextPage}
             className={`btn ${
               lastClicked === "next"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >

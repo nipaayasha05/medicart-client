@@ -151,7 +151,7 @@ const CategoryDetails = () => {
           <table className="table">
             {/* head */}
             <thead>
-              <tr className=" bg-gray-200  text-gray-800   lg:text-xl  h-16 sm:h-24  ">
+              <tr className=" bg-sky-200 lg:text-xl md:text-sm text-gray-700 sm:text-xl  lg:h-24 h-20 border-gray-400  border ">
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />
@@ -173,13 +173,13 @@ const CategoryDetails = () => {
                 <tr
                   all={all}
                   key={all._id}
-                  className="lg:text-xl md:text-sm hover:bg-gray-100"
+                  className="lg:text-xl  hover:text-black  text-black  md:text-sm bg-gray-100 hover:bg-orange-100 border-gray-400 rounded-box border  "
                 >
                   <th>{index + 1}</th>
 
                   <td>
                     <img
-                      className="w-36 sm:h-24 h-14  rounded-xl"
+                      className="w-40 sm:h-24 h-14  rounded-xl"
                       src={all?.image}
                       alt=""
                     />
@@ -196,7 +196,7 @@ const CategoryDetails = () => {
                       onClick={() => {
                         handleModal(all._id);
                       }}
-                      className="btn bg-sky-500 text-white  "
+                      className="btn bg-sky-500 text-white  border-none"
                     >
                       {" "}
                       <FaEye size={24} />
@@ -210,7 +210,7 @@ const CategoryDetails = () => {
                       onClick={() => {
                         handleAddToCart(all);
                       }}
-                      className="btn bg-sky-500 text-white   py-6 lg:py-4 "
+                      className="btn bg-sky-500 text-white border-none  py-6 lg:py-4 "
                     >
                       {/* <FiShoppingCart size={18} /> */}
                       {cartItems.find((item) => item.medicineId === all._id)
@@ -231,7 +231,7 @@ const CategoryDetails = () => {
               onClick={handlePreviousPage}
               className={`btn ${
                 lastClicked === "previous"
-                  ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                  ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                   : "bg-sky-500 text-white"
               }`}
             >
@@ -244,7 +244,7 @@ const CategoryDetails = () => {
               onClick={handleNextPage}
               className={`btn ${
                 lastClicked === "next"
-                  ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                  ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                   : "bg-sky-500 text-white"
               }`}
             >

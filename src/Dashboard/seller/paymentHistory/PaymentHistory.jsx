@@ -42,7 +42,7 @@ const PaymentHistory = () => {
       const { data } = await axiosSecure(
         `/seller-payment-history-count?email=${user?.email}`
       );
-      console.log(data.count);
+      // console.log(data.count);
       return data;
     },
   });
@@ -79,7 +79,7 @@ const PaymentHistory = () => {
         <meta charSet="utf-8" />
         <title>MediCart|Payment History</title>
       </Helmet>
-      <h3 className="font-bold p-2 text-3xl text-sky-600 pt-5">
+      <h3 className="font-bold font-montserrat p-2 text-3xl text-sky-500 pt-5">
         Payment History
       </h3>
       {paymentHistory.length > 0 ? (
@@ -123,7 +123,7 @@ const PaymentHistory = () => {
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16">
+                <tr className="bg-sky-200 lg:text-xl md:text-sm text-gray-700 sm:text-xl  lg:h-24 h-16 border-gray-400  border">
                   <th></th>
                   <th>#</th>
 
@@ -140,7 +140,7 @@ const PaymentHistory = () => {
                 {/* row 1 */}
                 {paymentHistory.map((history, index) => (
                   <tr
-                    className="lg:text-xl md:text-sm hover:bg-gray-100"
+                    className="lg:text-xl  hover:text-black  text-black  md:text-sm bg-gray-100 hover:bg-orange-100 border-gray-400 rounded-box border    "
                     history={history}
                     index={index}
                     key={`${history._id}${index}`}
@@ -153,7 +153,15 @@ const PaymentHistory = () => {
                     <td>{history.totalPrice.toFixed(2)}</td>
                     <td>{new Date(history.orderDate).toLocaleString()}</td>
                     <td>{history.transaction}</td>
-                    <td>{history.status}</td>
+                    <td
+                      className={`badge text-black mt-4 ${
+                        history.status === "paid"
+                          ? "badge  bg-sky-100"
+                          : "badge bg-orange-100"
+                      }`}
+                    >
+                      {history.status}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -172,7 +180,7 @@ const PaymentHistory = () => {
             onClick={handlePreviousPage}
             className={`btn ${
               lastClicked === "previous"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >
@@ -185,7 +193,7 @@ const PaymentHistory = () => {
             onClick={handleNextPage}
             className={`btn ${
               lastClicked === "next"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >

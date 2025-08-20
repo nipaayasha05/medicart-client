@@ -12,7 +12,7 @@ const AskForAdvertisementTable = ({ addAdvertisement, isLoading }) => {
           <table className="table">
             {/* head */}
             <thead>
-              <tr className=" bg-sky-200  text-gray-800 sm:text-xl sm:h-24 h-16 ">
+              <tr className=" bg-sky-200 lg:text-xl md:text-sm text-gray-700 sm:text-xl  lg:h-24 h-20 border-gray-400  border">
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />
@@ -21,7 +21,7 @@ const AskForAdvertisementTable = ({ addAdvertisement, isLoading }) => {
                 <th> Image</th>
 
                 <th> Title</th>
-                <th>Description</th>
+                <th className="hidden md:hidden lg:block">Description</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -29,24 +29,26 @@ const AskForAdvertisementTable = ({ addAdvertisement, isLoading }) => {
               {/* row 1 */}
               {addAdvertisement.map((advertisement, index) => (
                 <tr
-                  className="lg:text-xl md:text-sm hover:bg-gray-100"
+                  className="lg:text-xl  hover:text-black  text-black  md:text-sm bg-gray-100 hover:bg-orange-100 border-gray-400 rounded-box border  "
                   advertisement={advertisement}
                   index={index}
                   key={advertisement._id}
                 >
-                  <th>{index + 1}</th>
+                  <td>{index + 1}</td>
 
                   <td>
                     <img
-                      className="w-40 sm:h-24 h-14  rounded-xl"
+                      className="w-48 sm:h-24 h-20  rounded-xl"
                       src={advertisement?.image}
                       alt=""
                     />
                   </td>
 
-                  <th>{advertisement?.medicineName}</th>
+                  <td>{advertisement?.medicineName}</td>
 
-                  <td>{advertisement.description}</td>
+                  <td className="hidden md:hidden lg:block">
+                    {advertisement.description}
+                  </td>
                   <td
                     className={`font-bold ${
                       advertisement.status === "Add to slide"

@@ -39,7 +39,7 @@ const AskForAdvertisement = () => {
         <title>MediCart|Ask for Advertise</title>
       </Helmet>
       <div className="flex p-2 justify-between items-center py-5">
-        <h3 className="font-bold text-3xl text-sky-600">
+        <h3 className="font-bold text-3xl text-sky-500">
           {" "}
           Ask For Advertisement
         </h3>
@@ -48,7 +48,7 @@ const AskForAdvertisement = () => {
             setIsOpen(true);
             document.getElementById("my_modal_2").showModal();
           }}
-          className="btn  bg-sky-600 text-white    my-2   "
+          className="btn  bg-sky-500 text-white    my-2   "
         >
           Add Advertisement
         </button>

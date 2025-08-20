@@ -42,7 +42,7 @@ const Users = () => {
       const { data } = await axiosSecure(
         `/payment-history-count?email=${user?.email}`
       );
-      console.log(data.count);
+      // console.log(data.count);
       return data;
     },
   });
@@ -80,7 +80,7 @@ const Users = () => {
         <meta charSet="utf-8" />
         <title>MediCart|Payment History</title>
       </Helmet>
-      <p className="p-2 py-3 text-3xl font-bold text-sky-600">
+      <p className="p-2 py-3 font-montserrat text-3xl font-bold text-sky-500">
         Payment History{" "}
       </p>
       <p className="ml-2 text-xl text-sky-500">
@@ -132,7 +132,7 @@ const Users = () => {
             <table className="table">
               {/* head */}
               <thead>
-                <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16 border-b border-gray-300 ">
+                <tr className="bg-sky-200 lg:text-xl md:text-sm text-gray-700 sm:text-xl  lg:h-24 h-16 border-gray-400  border">
                   <th></th>
                   <th>#</th>
 
@@ -155,7 +155,7 @@ const Users = () => {
                   Array.isArray(user.items)
                     ? user?.items.map((item, i) => (
                         <tr
-                          className={`hover:bg-gray-300 cursor-pointer ${
+                          className={`hover:bg-gray-10 hover:text-black lg:text-xl     text-black  md:text-sm bg-gray-100 hover:bg-orange-100       cursor-pointer ${
                             i === user.items.length - 1
                               ? "border-b border-gray-400"
                               : ""
@@ -210,7 +210,7 @@ const Users = () => {
             onClick={handlePreviousPage}
             className={`btn ${
               lastClicked === "previous"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-500 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >
@@ -223,7 +223,7 @@ const Users = () => {
             onClick={handleNextPage}
             className={`btn ${
               lastClicked === "next"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-500 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >

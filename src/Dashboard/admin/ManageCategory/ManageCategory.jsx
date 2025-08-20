@@ -37,13 +37,15 @@ const ManageCategory = () => {
       </Helmet>{" "}
       <div>
         <div className="flex justify-between p-2 items-center ">
-          <h3 className="font-bold text-3xl text-sky-600">Manage Category</h3>
+          <h3 className="font-bold text-3xl font-montserrat text-sky-600">
+            Manage Category
+          </h3>
           <button
             onClick={() => {
               setIsOpen(true);
               document.getElementById("my_modal_2").showModal();
             }}
-            className="btn  bg-sky-500 text-white    my-2  "
+            className="btn  bg-sky-500 text-white  font-open-sans  my-2  "
           >
             Add Category
           </button>

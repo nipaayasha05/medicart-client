@@ -136,12 +136,14 @@ const Shop = () => {
   }
 
   return (
-    <div className="container mx-auto pb-5">
+    <div className="container mx-auto pb-5 font-montserrat">
       <Helmet>
         <meta charSet="utf-8" />
         <title>MediCart|Shop</title>
       </Helmet>
-      <p className="py-2 text-3xl font-bold text-center text-sky-600 ">shop</p>
+      <p className="py-2 font-montserrat text-4xl font-bold text-center text-sky-500 ">
+        shop
+      </p>
 
       <div className="flex justify-between items-center">
         <div className="flex flex-col sm:flex-row   items-center">
@@ -193,152 +195,78 @@ const Shop = () => {
         </div>
       </div>
 
-      <div className="overflow-x-auto py-5">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr className=" bg-gray-200  text-gray-800 lg:text-xl md:text-sm sm:h-24 h-16 ">
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <th>Medicine Image</th>
+      {/* card */}
+      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-7 py-3">
+        {allMedicine.map((medicine) => (
+          <div medicine={medicine} key={medicine._id}>
+            <div className="card transform transition duration-300 hover:scale-105   bg-gray-5  shadow-lg">
+              <figure>
+                <img
+                  src={medicine?.image}
+                  className="w-full p- h-[250px]"
+                  alt="Shoes"
+                />
+              </figure>
+              <div className="card-body rounded-b-xl  ">
+                <h2 className="card-title border-b-2 border-dashed border-gray-700">
+                  {medicine.itemName}
+                </h2>
 
-              <th>Medicine Name</th>
-              <th>Category</th>
-              <th>Company</th>
-              <th>Price</th>
-              <th>Discount</th>
-              <th>Unit</th>
-              <th> Details</th>
-              <th> Add to Cart</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            {allMedicine.map((all, index) => (
-              <tr
-                all={all}
-                key={all._id}
-                className="lg:text-xl md:text-sm hover:bg-gray-100"
-              >
-                <th>{index + 1}</th>
-
-                <td>
-                  <img
-                    className="w-36 sm:h-24 h-14  rounded-xl"
-                    src={all?.image}
-                    alt=""
-                  />
-                </td>
-
-                <td>{all?.itemName}</td>
-                <td>{all?.category}</td>
-
-                <td>{all.company}</td>
-                <td>{all.price}$</td>
-                <td>{all.discount}%</td>
-                <td>{all.massUnit}</td>
-                <td>
+                <div className="card-actions flex justify-between ">
                   {" "}
                   <button
                     onClick={() => {
-                      handleModal(all._id);
+                      handleModal(medicine._id);
                     }}
-                    className="btn bg-sky-500  "
+                    className="btn border-none bg-sky-500  "
                   >
                     {" "}
                     <FaEye size={24} color="white" />
-                  </button>
-                </td>
-                <td>
+                  </button>{" "}
                   <button
                     disabled={cartItems.find(
-                      (item) => item.medicineId === all._id
+                      (item) => item.medicineId === medicine._id
                     )}
                     onClick={() => {
-                      handleAddToCart(all);
+                      handleAddToCart(medicine);
                     }}
-                    className="btn  bg-sky-500 text-white  py-6 sm:py-4 "
+                    className={`btn border-none bg-sky-500 text-white  py-6 sm:py-4 `}
                   >
-                    {/* <FiShoppingCart size={18} /> */}
-                    {cartItems.find((item) => item.medicineId === all._id)
+                    {" "}
+                    <FiShoppingCart size={18} />{" "}
+                    {cartItems.find((item) => item.medicineId === medicine._id)
                       ? "Already Added"
                       : "Add to Cart"}
                   </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* p */}
       <div className="py-5 text-center space-x-3  ">
-        <p>{currentPage}</p>
+        {/* <p>{currentPage}</p> */}
         {currentPage > 0 && (
           <button
             onClick={handlePreviousPage}
             className={`btn ${
               lastClicked === "previous"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >
             <FaArrowLeft /> Previous
           </button>
         )}
-        {/* {pages.map((page) => (
-          <button
-            onClick={() => setCurrentPage(page)}
-            key={page}
-            className={`btn ${
-              currentPage === page
-                ? "bg-sky-200 text-blue-600 border-2 border-blue-300"
-                : "bg-sky-500 text-white"
-            }`}
-          >
-            {page}
-          </button>
-        ))} */}
-        {/* <select
-          value={itemsPerPage}
-          onChange={handleItemsPerPage}
-          name=""
-          id=""
-        >
-          <option
-            value="
-          "
-          >
-            10
-          </option>
-          <option
-            value="5
-          "
-          >
-            5
-          </option>
-          <option
-            value="10
-          "
-          >
-            10
-          </option>
-          <option
-            value="15
-          "
-          >
-            15
-          </option>
-        </select> */}
+
         {currentPage < pages.length - 1 && (
           <button
             onClick={handleNextPage}
             className={`btn ${
               lastClicked === "next"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >

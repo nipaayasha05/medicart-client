@@ -51,14 +51,14 @@ const ManageBannerAdvertise = () => {
         <meta charSet="utf-8" />
         <title>MediCart|Manage Banner Advertise</title>
       </Helmet>
-      <h3 className="font-bold p-2 text-3xl text-sky-600">
+      <h3 className="font-bold font-montserrat p-2 text-3xl text-sky-500">
         Manage Banner Advertise
       </h3>
       <div className="overflow-x-auto py-5">
         <table className="table">
           {/* head */}
           <thead>
-            <tr className=" bg-sky-200  text-gray-800 sm:text-xl sm:h-24 h-16 ">
+            <tr className=" bg-sky-200 lg:text-xl md:text-sm text-gray-700 sm:text-xl  lg:h-24 h-16 border-gray-400  border">
               <th>
                 <label>
                   <input type="checkbox" className="checkbox" />
@@ -67,7 +67,7 @@ const ManageBannerAdvertise = () => {
               <th>Medicine Image</th>
 
               <th>Medicine Name</th>
-              <th>Description</th>
+              <th className="hidden md:hidden lg:block">Description</th>
               <th>Email</th>
               <th>Created At</th>
               <th>Status</th>
@@ -77,24 +77,26 @@ const ManageBannerAdvertise = () => {
             {/* row 1 */}
             {adminAdvertise.map((advertise, index) => (
               <tr
-                className="lg:text-xl md:text-sm hover:bg-gray-100"
+                className="lg:text-xl  hover:text-black  text-black  md:text-sm bg-gray-100 hover:bg-orange-100 border-gray-400 rounded-box border  "
                 advertise={advertise}
                 index={index}
                 key={advertise._id}
               >
-                <th>{index + 1}</th>
+                <td>{index + 1}</td>
 
                 <td>
                   <img
-                    className="w-36 sm:h-24 h-14  rounded-xl"
+                    className="w-44 sm:h-24 h-14  rounded-xl"
                     src={advertise?.image}
                     alt=""
                   />
                 </td>
 
-                <th>{advertise?.medicineName}</th>
+                <td>{advertise?.medicineName}</td>
 
-                <td>{advertise.description}</td>
+                <td className="hidden md:hidden lg:block">
+                  {advertise.description}
+                </td>
                 <td>{advertise.email}</td>
                 <td>{new Date(advertise.createdAt).toLocaleString()}</td>
                 <td>
@@ -103,7 +105,7 @@ const ManageBannerAdvertise = () => {
                     onClick={() => {
                       handleToggleSlide(advertise);
                     }}
-                    className={`btn w-[150px] py-4 p-1 lg:py-6   ${
+                    className={`btn border-none w-[150px] py-4 p-1 lg:py-6   ${
                       advertise.status === "Add to slide"
                         ? " bg-sky-500 text-white"
                         : "btn-error text-white"

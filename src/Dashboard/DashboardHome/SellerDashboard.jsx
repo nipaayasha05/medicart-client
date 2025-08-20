@@ -70,14 +70,14 @@ const SellerDashboard = () => {
         <meta charSet="utf-8" />
         <title>MediCart|Seller Dashboard</title>
       </Helmet>
-      <p className="text-3xl font-bold  text-center text-sky-600 pt-5">
+      <p className="text-3xl font-bold  text-center text-sky-600 font-montserrat pt-5">
         Total Revenue
       </p>
-      <div className="flex justify-center">
+      <div className="flex justify-center text-black">
         <div className="mt-10 shadow-md p-10 rounded-xl  w-10/12 flex justify-center items-center bg-gray-100 gap-5 ">
           {" "}
           <div
-            className="bg-orange-100 p-8 h-[150px]  rounded-2xl flex-1 flex items-center shadow-md
+            className="bg-orange-100 p-8 h-[150px]  rounded-2xl flex-1 flex items-center shadow-md text-black
           "
           >
             <p className="text-xl">
@@ -122,7 +122,7 @@ const SellerDashboard = () => {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="w-[350px] h-[350px] ">
+        <div className="w-[350px] h-[350px] text-black">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={150} height={40} data={weeklyDate}>
               <XAxis dataKey="date" />

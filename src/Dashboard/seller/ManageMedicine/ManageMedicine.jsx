@@ -53,7 +53,7 @@ const ManageMedicine = () => {
       const { data } = await axiosSecure(
         `/getMedicine-count?email=${user?.email}`
       );
-      console.log(data.count);
+      // console.log(data.count);
       return data;
     },
   });
@@ -105,7 +105,7 @@ const ManageMedicine = () => {
           <meta charSet="utf-8" />
           <title>MediCart|Manage Medicines</title>
         </Helmet>
-        <h3 className="font-bold text-3xl text-sky-600 font-montserrat">
+        <h3 className="font-bold text-3xl text-sky-500 font-montserrat">
           Manage Medicine
         </h3>
         <button
@@ -113,7 +113,7 @@ const ManageMedicine = () => {
             setIsOpen(true);
             document.getElementById("my_modal_2").showModal();
           }}
-          className="btn font-open-sans bg-sky-600 text-white    my-2   "
+          className="btn font-open-sans bg-sky-500 text-white    my-2   "
         >
           Add Medicine
         </button>
@@ -136,7 +136,7 @@ const ManageMedicine = () => {
             onClick={handlePreviousPage}
             className={`btn ${
               lastClicked === "previous"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >
@@ -149,7 +149,7 @@ const ManageMedicine = () => {
             onClick={handleNextPage}
             className={`btn ${
               lastClicked === "next"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >

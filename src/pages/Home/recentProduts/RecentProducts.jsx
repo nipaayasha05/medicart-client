@@ -93,12 +93,12 @@ const RecentProducts = () => {
                   alt="Shoes"
                 />
               </figure>
-              <div className="card-body  font-open-sans text-gray-700 text-sm sm:text-xl">
+              <div className="card-body sm:h-1/12 font-open-sans text-gray-700 text-sm sm:text-xl">
                 <h2 className="card-title  text-sm sm:text-xl h-[58px]">
                   {product.itemName}
                 </h2>
-                <p className=" h-[75px]  ">
-                  <strong>Description : </strong>
+                <p className=" h-[140px ">
+                  <strong> </strong>
                   {product.description}
                 </p>
                 <div className="card-actions flex pt-3 justify-between">

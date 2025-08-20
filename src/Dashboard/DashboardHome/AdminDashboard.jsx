@@ -57,15 +57,15 @@ const AdminDashboard = () => {
 
   if (isLoading) return <Loader />;
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto text-black">
       <Helmet>
         <meta charSet="utf-8" />
         <title>MediCart|Admin Dashboard</title>
       </Helmet>
-      <p className="text-3xl font-bold  text-center text-sky-600 pt-5">
+      <p className="text-3xl font-montserrat font-bold  text-center text-sky-600 pt-5">
         Total Revenue
       </p>
-      <div className="flex justify-center">
+      <div className="flex justify-center font-montserrat">
         <div className="mt-10 shadow-md p-10 rounded-xl  w-10/12 flex justify-center items-center bg-gray-100 gap-5 ">
           {" "}
           <div
@@ -88,7 +88,7 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-end sm:justify-center mt-5 sm:items-center items-center">
+      <div className="flex flex-col font-open-sans sm:flex-row justify-end sm:justify-center mt-5 sm:items-center items-center">
         <div className="w-[350px] h-[350px] m-5">
           <ResponsiveContainer width="100%" height="90%">
             <PieChart width={400} height={350}>
@@ -115,7 +115,7 @@ const AdminDashboard = () => {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="w-[350px] h-[350px] ">
+        <div className="w-[350px] h-[350px] font-open-sans text-black">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={150} height={40} data={weeklyDate}>
               <XAxis dataKey="date" />

@@ -49,7 +49,7 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
           <table className="table">
             {/* head */}
             <thead>
-              <tr className="bg-sky-200 text-gray-800 sm:text-xl sm:h-24 h-16">
+              <tr className="bg-sky-200 lg:text-xl md:text-sm text-gray-700 sm:text-xl  lg:h-24 h-16 border-gray-400  border">
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />
@@ -58,7 +58,7 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
 
                 <th>Category Image</th>
                 <th>Category Name</th>
-                <th>Description</th>
+                <th className="hidden md:hidden lg:block">Description</th>
                 <th>Created At</th>
                 <th>Update</th>
                 <th>Delete</th>
@@ -68,12 +68,12 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
               {/* row 1 */}
               {categories.map((category, index) => (
                 <tr
-                  className="lg:text-xl md:text-sm hover:bg-gray-100"
+                  className="lg:text-xl  hover:text-black  text-black  md:text-sm bg-gray-100 hover:bg-orange-100 border-gray-400 rounded-box border    "
                   category={category}
                   index={index}
                   key={category._id}
                 >
-                  <th>{index + 1}</th>
+                  <td>{index + 1}</td>
                   <td>
                     <img
                       className="w-36 sm:h-24 h-14  rounded-xl"
@@ -81,8 +81,10 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
                       alt=""
                     />
                   </td>
-                  <th>{category?.itemName}</th>
-                  <td>{category.description} </td>
+                  <td>{category?.itemName}</td>
+                  <td className=" hidden md:hidden lg:block">
+                    {category.description}{" "}
+                  </td>
                   <td>{new Date(category.createdAt).toLocaleString()}</td>
                   <td>
                     <button
@@ -91,7 +93,7 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
                         setIsOpen(true);
                         document.getElementById("my_modal_1").showModal();
                       }}
-                      className="btn  bg-sky-500 text-white    my-2    "
+                      className="btn  bg-sky-500 text-white border-none   my-2    "
                     >
                       Edit
                     </button>
@@ -102,7 +104,7 @@ const ManageCategoryTable = ({ categories, isLoading, refetch }) => {
                       onClick={() => {
                         handleDelete(category._id);
                       }}
-                      className="btn bg-sky-500 text-white"
+                      className="btn border-none bg-sky-500 text-white"
                     >
                       Delete
                     </button>

@@ -15,7 +15,7 @@ const UpdateProfile = () => {
         <meta charSet="utf-8" />
         <title>MediCart|Update Profile</title>
       </Helmet>
-      <div className="mt-10 bg-gray-200 mb-10 mx-auto rounded-box shadow-md shadow-gray-500 w-[350px] m-3 py-5">
+      <div className="mt-10 bg-gray-100 mb-10 mx-auto rounded-box shadow-md   w-[350px] m-3 py-5">
         <div className="relative">
           <img
             className="mx-auto w-[250px] h-[250px] border-2 border-sky-300 rounded-full p-2 "
@@ -43,7 +43,7 @@ const UpdateProfile = () => {
               setIsOpen(true);
               document.getElementById("my_modal_2").showModal();
             }}
-            className="btn bg-sky-500 text-white"
+            className="btn border-none bg-sky-500 text-white"
           >
             Update
           </button>

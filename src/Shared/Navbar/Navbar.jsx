@@ -106,7 +106,7 @@ const Navbar = () => {
     return <Navigate to="/signin" state={pathname}></Navigate>;
   };
   return (
-    <div className="navbar text-black font-open-sans top-0 fixed bg-gray-100 shadow-sm h-20 border-b-2 border-gray-100 z-10 ">
+    <div className="navbar text-black font-open-sans top-0 fixed bg-sky-50 shadow-sm h-20 border-b-2 border-sky-100 z-10 ">
       <div className="flex  container mx-auto ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -186,7 +186,7 @@ const Navbar = () => {
                 />
                 {isOpen && (
                   <div
-                    className="absolute  px- -mx-24 my-1 bg-base-100 rounded-xl shadow-2xl overflow-hidden 
+                    className="absolute bg-gray-100  px- -mx-24 my-1 bg-base-100 rounded-xl shadow-2xl overflow-hidden 
               text-sm "
                   >
                     <NavLink
@@ -206,7 +206,7 @@ const Navbar = () => {
 
                     <NavLink
                       onClick={handleUserLogOut}
-                      className="px-4  flex gap-2 py-3  hover:bg-gray-100     font-semibold"
+                      className="px-4  flex gap-2 py-3  hover:bg-gray-100   border-none  font-semibold"
                     >
                       <TbLogout size={20} /> LogOut
                     </NavLink>
@@ -216,7 +216,10 @@ const Navbar = () => {
             </div>
           ) : (
             <div>
-              <NavLink to="/signin" className="btn bg-sky-500 text-white">
+              <NavLink
+                to="/signin"
+                className="btn border-none bg-sky-500 text-white"
+              >
                 Join Us
               </NavLink>
             </div>

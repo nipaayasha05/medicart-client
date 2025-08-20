@@ -89,16 +89,17 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "signup",
+        Component: SignUp,
+      },
+      {
+        path: "signin",
+        Component: SignIn,
+      },
     ],
   },
-  {
-    path: "signup",
-    Component: SignUp,
-  },
-  {
-    path: "signin",
-    Component: SignIn,
-  },
+
   {
     path: "/dashboard",
     element: (

@@ -6,7 +6,7 @@ const AllCategoryCard = ({ category }) => {
   return (
     <div className="container mx-auto">
       {" "}
-      <div className="card bg-gray-50 transform transition duration-300 hover:scale-105  shadow-md">
+      <div className="card bg-gray-50 transform transition duration-300 hover:scale-105 font-open-sans shadow-md">
         <figure>
           <img className="w-full h-[280px]" src={category.image} />
         </figure>
@@ -28,7 +28,7 @@ const AllCategoryCard = ({ category }) => {
             </div>
             <div className="card-actions justify-end ">
               <Link to={`/category/${category.itemName}`}>
-                <button className="btn    bg-sky-500 text-white   ">
+                <button className="btn border-none   bg-sky-500 text-white   ">
                   View Medicines <FaArrowRight />
                 </button>
               </Link>

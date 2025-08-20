@@ -15,7 +15,7 @@ const Admin = () => {
           to="/dashboard/manage-users"
           className={({ isActive }) =>
             `text-md font-bold ${
-              isActive ? "border-b-2 bg-sky-200 border-b-sky-200" : ""
+              isActive ? "border-b-2 bg-sky-200  border-b-sky-200" : ""
             }`
           }
         >

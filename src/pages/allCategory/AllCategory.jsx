@@ -25,7 +25,7 @@ const AllCategory = () => {
         <title>MediCart|All Categories</title>
       </Helmet>
       <div className="py-10 ">
-        <h3 className="text-3xl text-sky-500 font-bold text-center font-montserrat py-5">
+        <h3 className="text-3xl font-montserrat text-sky-500 font-bold text-center  nt-montserrat py-5">
           Explore Medicine Categories
         </h3>
         <div className="m-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

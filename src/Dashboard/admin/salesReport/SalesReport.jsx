@@ -46,7 +46,7 @@ const SalesReport = () => {
       const { data } = await axiosSecure(
         `/admin-sales-report-count?search=${search}`
       );
-      console.log(data.count);
+      // console.log(data.count);
       return data;
     },
   });
@@ -130,34 +130,38 @@ const SalesReport = () => {
   if (!reports.length) return <div>No sales report</div>;
 
   return (
-    <div className="container mx-auto pb-5">
+    <div className="container   mx-auto pb-5">
       <Helmet>
         <meta charSet="utf-8" />
         <title>MediCart|Sales Report</title>
       </Helmet>
-      <p className="text-3xl font-bold pt-4 text-sky-600 p-2">Sales Report</p>
+      <p className="text-3xl font-montserrat font-bold pt-4 text-sky-500 p-2">
+        Sales Report
+      </p>
 
       <div className="pt-5 flex items-center  gap-5 p-2">
-        <label>
-          <strong className="text-sky-600"> Start Date :</strong>{" "}
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            className="border border-gray-300 rounded-sm py-1 px-2"
-          />
-        </label>
-        <label>
-          <strong className="text-sky-600"> End Date :</strong>{" "}
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            className="border border-gray-300 rounded-sm py-1 px-2"
-          />
-        </label>
+        <div className="flex flex-col space-y-1 sm:flex-row">
+          <label>
+            <strong className="text-sky-500"> Start Date :</strong>{" "}
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+              className="border border-gray-300 rounded-sm py-1 px-2"
+            />
+          </label>
+          <label>
+            <strong className="text-sky-500"> End Date :</strong>{" "}
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+              className="border border-gray-300 rounded-sm py-1 px-2"
+            />
+          </label>
+        </div>
 
-        <div>
+        <div className=" ">
           {tableRef.current ? (
             <DownloadTableExcel
               filename="users table"
@@ -170,7 +174,7 @@ const SalesReport = () => {
               </button>
             </DownloadTableExcel>
           ) : (
-            <p className="text-blue-500 font-semibold">
+            <p className="text-sky-500 font-semibold">
               Please select start and end dates to enable export.
             </p>
           )}
@@ -215,7 +219,7 @@ const SalesReport = () => {
           />
         </label>
       </div>
-      <div className="py-5 overflow-x-auto">
+      <div className="py-5 overflow-x-auto text-black">
         <table ref={tableRef}>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -236,7 +240,7 @@ const SalesReport = () => {
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className=" bg-gray-50">
+              <tr key={row.id} className="hover:bg-orange-100 bg-gray-50">
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
@@ -257,7 +261,7 @@ const SalesReport = () => {
             onClick={handlePreviousPage}
             className={`btn ${
               lastClicked === "previous"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >
@@ -270,7 +274,7 @@ const SalesReport = () => {
             onClick={handleNextPage}
             className={`btn ${
               lastClicked === "next"
-                ? "bg-sky-300 text-blue-500 border-2 border-sky-200"
+                ? "bg-gray-100 text-sky-500 border-2 border-sky-500"
                 : "bg-sky-500 text-white"
             }`}
           >

@@ -66,10 +66,10 @@ const UserDashboard = () => {
         <meta charSet="utf-8" />
         <title>MediCart|Admin Dashboard</title>
       </Helmet>
-      <p className="text-3xl font-bold  text-center text-sky-600 pt-5">
+      <p className="text-3xl font-bold  text-center text-sky-500 font-montserrat pt-5">
         Total Revenue
       </p>
-      <div className="flex justify-center">
+      <div className="flex justify-center text-black">
         <div className="mt-10 shadow-md p-10 rounded-xl  w-10/12 flex justify-center items-center bg-gray-100 gap-5 ">
           {" "}
           <div
@@ -93,7 +93,7 @@ const UserDashboard = () => {
       </div>
 
       <div className="flex flex-col sm:flex-row justify-end sm:justify-center mt-5 sm:items-center items-center">
-        <div className="w-[350px] h-[350px] m-5">
+        <div className="w-[350px] h-[350px] m-5 ">
           <ResponsiveContainer width="100%" height="90%">
             <PieChart width={400} height={350}>
               <Pie
@@ -119,7 +119,7 @@ const UserDashboard = () => {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="w-[350px] h-[350px] ">
+        <div className="w-[350px] h-[350px] text-black">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart width={150} height={40} data={weeklyDate}>
               <XAxis dataKey="date" />

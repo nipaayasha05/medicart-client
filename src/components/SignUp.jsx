@@ -119,32 +119,34 @@ const SignUp = () => {
         <meta charSet="utf-8" />
         <title>MediCart|Registration</title>
       </Helmet>
-      <div className="card bg-gray-100 m-5    mx-auto my-30    max-w-sm shrink-0 shadow-2xl  ">
+      <div className="card bg-gray-100 m-5  font-open-sans   mx-auto my-30    max-w-sm shrink-0 shadow-2xl  ">
         <div className="card-body">
-          <h1 className="text-5xl font-bold text-sky-600">Sign Up now!</h1>
+          <h1 className="text-5xl font-bold font-montserrat text-sky-500">
+            Sign Up now!
+          </h1>
           <form onSubmit={handleSignUp} className="fieldset">
-            <label className="label">Name</label>
+            <label className="label text-gray-700">Name</label>
             <input
               type="text"
               name="name"
               className="input"
               placeholder="Name"
             />
-            <label className="label">Email</label>
+            <label className="label text-gray-700">Email</label>
             <input
               type="email"
               name="email"
               className="input"
               placeholder="Email"
             />
-            <label className="label">Password</label>
+            <label className="label text-gray-700">Password</label>
             <input
               type="password"
               name="password"
               className="input"
               placeholder="Password"
             />
-            <label className="label">Select Image</label>
+            <label className="label text-gray-700">Select Image</label>
             <input
               className="text-gray-400 input cursor-pointer"
               type="file"
@@ -152,7 +154,7 @@ const SignUp = () => {
               name="image"
               accept="image/*"
             />
-            <label className="label">Select Role</label>
+            <label className="label text-gray-700">Select Role</label>
             <select
               name="role"
               className="mr-5 bg-white py-2 rounded-sm border border-gray-300 text-gray-400 pl-2"
@@ -161,7 +163,7 @@ const SignUp = () => {
               <option value="Seller">Seller</option>
             </select>
             <div>
-              <a className="link link-hover">Forgot password?</a>
+              <a className="link link-hover text-gray-700">Forgot password?</a>
             </div>
 
             <button
@@ -171,10 +173,10 @@ const SignUp = () => {
             >
               <FcGoogle size={24} /> Login with Google
             </button>
-            <button className="btn     my-2 bg-sky-500 text-white rounded-2xl   mt-4 mr-4">
+            <button className="btn   border-none  my-2 bg-sky-500 text-white     mt-4 mr-4">
               Registration
             </button>
-            <p className="font-semibold text-center pt-5">
+            <p className="font-semibold text-center text-gray-700 pt-5">
               Already Have An Account ?
               <NavLink className=" text-sky-600" to="/signin">
                 Log In

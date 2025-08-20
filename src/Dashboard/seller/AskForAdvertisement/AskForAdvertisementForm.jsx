@@ -63,7 +63,7 @@ const AskForAdvertisementForm = ({ refetch }) => {
         <input
           type="text"
           name="medicineName"
-          placeholder="Medicine Name"
+          placeholder="Title"
           {...register("medicineName", { required: true })}
           className="input input-bordered w-full"
         />
