@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { FiShoppingCart } from "react-icons/fi";
 import CatMedicineDetails from "./CatMedicineDetails";
 import { FaArrowLeft, FaArrowRight, FaEye } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const CategoryDetails = () => {
   const { category } = useParams();
@@ -38,7 +39,7 @@ const CategoryDetails = () => {
     queryKey: ["categoryDetail", category],
     queryFn: async () => {
       const { data } = await axiosSecure(`/category-count/${category}`);
-      console.log(data.count);
+      // console.log(data.count);
       return data;
     },
   });
@@ -127,6 +128,12 @@ const CategoryDetails = () => {
 
   return (
     <div>
+      <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>MediCart| Category</title>
+        </Helmet>
+      </div>
       <div className="container mx-auto py-5">
         <p className="py- text-3xl font-bold p-2 font-montserrat text-sky-500">
           {" "}
