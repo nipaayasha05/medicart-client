@@ -7,7 +7,7 @@ const ArticleCard = ({ art }) => {
     <div className="card transform transition duration-300 hover:scale-105  m-5 font-open-sans  shadow-md text-gray-700">
       <figure className="relative">
         <img className="w-full h-[280px]" src={art.image} />
-        <p className="absolute py-1 w-full font-bold  text-center text-gray-700 bottom-0 -mb-0.5 bg-sky-100 sm:text-lg ">
+        <p className="absolute py-1 w-full font-bold  text-center text-gray-700 bottom-0 -mb-0.5 bg-sky-100  ">
           {art.category}
         </p>
       </figure>
@@ -15,11 +15,11 @@ const ArticleCard = ({ art }) => {
       <div className="card-body rounded-b-xl text-black bg-gray-50 ">
         <div className="sm:h-10/12">
           <div className="flex  items-center gap-10  ">
-            <h2 className=" sm:text-xl sm:font-bold card-title text-gray-700">
+            <h2 className="sm:font-bold card-title text-gray-700">
               {art.title}
             </h2>
           </div>
-          <div className="text-start sm:text-lg">
+          <div className="text-start ">
             <p> {art.summary}</p>
           </div>
         </div>

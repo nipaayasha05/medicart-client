@@ -14,7 +14,7 @@ const Partners = () => {
       <p className="text-3xl font-montserrat text-sky-500 font-bold text-center py-5  ">
         Reliable Partnerships, Trusted Quality
       </p>
-      <div className="pt-5 sm:text-lg">
+      <div className="pt-5">
         <section className="py-16 bg-gray-50 rounded-xl font-open-sans">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center  md:items-start gap-10 px-4">
             {/* Left: Title + Tagline */}

@@ -10,7 +10,7 @@ const Category = ({ category }) => {
         <img className="w-full h-[280px] " src={category.image} />
       </figure>
       <div className="">
-        <div className="card-body text-black  sm:text-lg">
+        <div className="card-body text-gray-700">
           <div className="sm:h-10/12">
             <div className="  ">
               <h2 className=" card-title -ml-2 ">

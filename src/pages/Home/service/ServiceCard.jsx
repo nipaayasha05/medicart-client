@@ -10,7 +10,7 @@ const ServiceCard = ({ service }) => {
             className="w-full h-[150px] rounded-xl p-2 bg-gray-100"
           />
         </figure>
-        <div className="card-body h-1/12 items-center text-center sm:text-lg">
+        <div className="card-body h-1/12 items-center text-center">
           <h2 className="card-title text-gray-700 font-bold">
             {service.title}
           </h2>

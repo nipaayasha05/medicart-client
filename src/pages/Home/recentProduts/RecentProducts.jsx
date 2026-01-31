@@ -93,7 +93,7 @@ const RecentProducts = () => {
                   alt="Shoes"
                 />
               </figure>
-              <div className="card-body sm:h-1/12 font-open-sans text-gray-700 sm:text-lg">
+              <div className="card-body sm:h-1/12 font-open-sans text-gray-700 ">
                 <h2 className="card-title   h-[58px line-camp-1">
                   {product.itemName}
                 </h2>
@@ -106,9 +106,9 @@ const RecentProducts = () => {
                     onClick={() => {
                       handleModal(product._id);
                     }}
-                    className="btn border-none text-white bg-sky-500  "
+                    className="btn btn-sm border-none text-white bg-sky-500  "
                   >
-                    View <FaEye size={24} color="white" />
+                    View <FaEye size={20} color="white" />
                   </button>
 
                   <button
@@ -118,9 +118,15 @@ const RecentProducts = () => {
                     onClick={() => {
                       handleAddToCart(product);
                     }}
-                    className="btn border-none bg-sky-500 text-white      "
+                    className="btn btn-sm  border-none bg-sky-500 text-white      "
                   >
-                    <FiShoppingCart size={18} />
+                    {cartItems.find(
+                      (item) => item.medicineId === product._id,
+                    ) ? (
+                      ""
+                    ) : (
+                      <FiShoppingCart size={18} />
+                    )}
 
                     {cartItems.find((item) => item.medicineId === product._id)
                       ? "Already Added"
