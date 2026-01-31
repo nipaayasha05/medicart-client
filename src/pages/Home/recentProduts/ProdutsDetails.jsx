@@ -18,7 +18,7 @@ const ProdutsDetails = ({ recentProducts, isOpen }) => {
               alt="Shoes"
             />
           </figure>
-          <div className="card-body bg-orange-50">
+          <div className="card-body  ">
             <h2 className="card-title">{detailsMedicine.itemName}</h2>
             <p>{detailsMedicine.description}</p>
             <p>

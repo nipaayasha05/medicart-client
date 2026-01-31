@@ -12,7 +12,7 @@ const Service = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="py-10">
       <p className="text-3xl font-montserrat text-sky-500 font-bold text-center py-5">
         Your Health, Our Promise
       </p>

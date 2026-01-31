@@ -13,7 +13,7 @@ const Article = () => {
   }, []);
 
   return (
-    <div>
+    <div className="py-10">
       <p className="text-3xl font-montserrat text-sky-500 font-bold text-center py-5">
         Health Tips & Wellness Articles
       </p>

@@ -11,19 +11,17 @@ const AllCategoryCard = ({ category }) => {
           <img className="w-full h-[280px]" src={category.image} />
         </figure>
         <div className="">
-          <div className="card-body text-black text-sm  sm:text-xl  ">
+          <div className="card-body text-black  ">
             <div className="sm:h-10/12">
               <div className="  ">
-                <h2 className="text-sm sm:text-xl card-title -ml-2 ">
+                <h2 className=" card-title -ml-2 ">
                   <strong></strong> {category.itemName}
                 </h2>
-                <p className="text-sm sm:text-xl card-md">
+                <p className=" card-md">
                   <strong>Total Medicine : </strong>
                   {category.medicineCount}
                 </p>
-                <p className="text-sm sm:text-xl  line-clamp-4 ">
-                  {category.description}
-                </p>
+                <p className="  line-clamp-4 ">{category.description}</p>
               </div>
             </div>
             <div className="card-actions justify-end ">

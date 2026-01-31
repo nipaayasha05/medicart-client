@@ -48,7 +48,7 @@ const AboutUs = () => {
           <h2 className="text-3xl font-montserrat font-semibold mb-10 text-center text-sky-500">
             Our Values
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center text-sm sm:text-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center ">
             <div className="p-6 bg-gray-100   rounded-xl shadow-md transform transition duration-300 hover:scale-105 ">
               <h3 className="text-2xl font-bold mb-2 text-sky-500">Trust</h3>
               <p>Reliable and verified medicines for all our customers.</p>

@@ -10,11 +10,11 @@ const Partners = () => {
       });
   }, []);
   return (
-    <div className="m-5">
+    <div className="py-10">
       <p className="text-3xl font-montserrat text-sky-500 font-bold text-center py-5  ">
         Reliable Partnerships, Trusted Quality
       </p>
-      <div className="pt-5">
+      <div className="pt-5 sm:text-lg">
         <section className="py-16 bg-gray-50 rounded-xl font-open-sans">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center  md:items-start gap-10 px-4">
             {/* Left: Title + Tagline */}
@@ -22,7 +22,7 @@ const Partners = () => {
               <h2 className="text-3xl font-bold text-sky-500 mb-4">
                 Our Partners
               </h2>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600">
                 Trusted by Bangladesh's top pharmaceutical companies, MediCart
                 ensures that every medicine you purchase is 100% authentic and
                 safe. Our platform collaborates with leading pharma brands to

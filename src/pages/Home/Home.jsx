@@ -22,11 +22,11 @@ const Home = () => {
     queryKey: ["slider"],
     queryFn: async () => {
       const { data } = await axios.get(
-        "https://assignment-12-server-nine-hazel.vercel.app/getHomeAdvertise"
+        "https://assignment-12-server-nine-hazel.vercel.app/getHomeAdvertise",
       );
 
       const sliderImage = data.filter(
-        (item) => item.status === "Remove from slide"
+        (item) => item.status === "Remove from slide",
       );
       // console.log(sliderImage);
 
@@ -35,7 +35,7 @@ const Home = () => {
   });
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto ">
       <Helmet>
         <meta charSet="utf-8" />
         <title>MediCart|Home</title>

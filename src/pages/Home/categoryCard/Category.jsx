@@ -5,24 +5,22 @@ import { Link } from "react-router";
 const Category = ({ category }) => {
   // console.log(category);
   return (
-    <div className="card bg-gray-50 font-open-sans transform transition duration-300 hover:scale-105  shadow-md">
+    <div className="card bg-gray-50 font-open-sans transform transition duration-300 hover:scale-105  shadow-md ">
       <figure>
-        <img className="w-full h-[280px]" src={category.image} />
+        <img className="w-full h-[280px] " src={category.image} />
       </figure>
       <div className="">
-        <div className="card-body text-black text-sm  sm:text-xl  ">
+        <div className="card-body text-black  sm:text-lg">
           <div className="sm:h-10/12">
             <div className="  ">
-              <h2 className="text-sm sm:text-xl card-title -ml-2 ">
-                <strong></strong> {category.itemName}
+              <h2 className=" card-title -ml-2 ">
+                <strong className=""></strong> {category.itemName}
               </h2>
-              <p className="text-sm sm:text-xl card-md">
-                <strong>Total Medicine : </strong>
+              <p className=" card-md">
+                <span>Total Medicine : </span>
                 {category.medicineCount}
               </p>
-              <p className="text-sm sm:text-xl  line-clamp-4 ">
-                {category.description}
-              </p>
+              <p className="  line-clamp-4 ">{category.description}</p>
             </div>
           </div>
           <div className="card-actions justify-end ">

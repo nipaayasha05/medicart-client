@@ -22,7 +22,7 @@ const RecentProducts = () => {
 
     queryFn: async () => {
       const { data } = await axios.get(
-        `https://assignment-12-server-nine-hazel.vercel.app/newArrivals`
+        `https://assignment-12-server-nine-hazel.vercel.app/newArrivals`,
       );
       // console.log(data);
       return data;
@@ -38,7 +38,7 @@ const RecentProducts = () => {
     queryKey: ["cart", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/get-add-to-cart-shop?email=${user?.email}`
+        `/get-add-to-cart-shop?email=${user?.email}`,
       );
       // console.log(res.data);
       return res.data;
@@ -78,7 +78,7 @@ const RecentProducts = () => {
 
   if (isLoading) return <Loader />;
   return (
-    <div>
+    <div className="py-10">
       <p className="text-3xl font-montserrat text-sky-500 font-bold text-center py-5">
         Fresh on Shelf
       </p>
@@ -93,11 +93,11 @@ const RecentProducts = () => {
                   alt="Shoes"
                 />
               </figure>
-              <div className="card-body sm:h-1/12 font-open-sans text-gray-700 text-sm sm:text-xl">
-                <h2 className="card-title  text-sm sm:text-xl h-[58px]">
+              <div className="card-body sm:h-1/12 font-open-sans text-gray-700 sm:text-lg">
+                <h2 className="card-title   h-[58px line-camp-1">
                   {product.itemName}
                 </h2>
-                <p className=" h-[140px ">
+                <p className=" h-[140px line-camp-2">
                   <strong> </strong>
                   {product.description}
                 </p>
@@ -113,7 +113,7 @@ const RecentProducts = () => {
 
                   <button
                     disabled={cartItems.find(
-                      (item) => item.medicineId === product._id
+                      (item) => item.medicineId === product._id,
                     )}
                     onClick={() => {
                       handleAddToCart(product);
